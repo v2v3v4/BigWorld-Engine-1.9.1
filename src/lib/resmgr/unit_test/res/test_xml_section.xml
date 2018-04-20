@@ -1,0 +1,14 @@
+<src.xml>
+	<!-- This is the source xml for the test packed section-->
+	<test_bool> 	true 		</test_bool>
+	<test_int> 		-123		</test_int>
+	<test_float> 	3.142f 		</test_float>
+	<test_vector3>  1.000000 2.000000 3.000000 		</test_vector3>
+	<test_matrix34>
+			<row0>	1.000000 2.000000 3.000000		</row0>
+			<row1>	4.000000 5.000000 6.000000		</row1>
+			<row2>	7.000000 8.000000 9.000000		</row2>
+			<row3>	10.000000 11.000000 12.000000	</row3>
+	</test_matrix34>
+</src.xml>
+

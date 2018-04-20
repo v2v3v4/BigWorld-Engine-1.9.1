@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="BW Custom Build Rules"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="FX Compiler"
+			DisplayName="FX Compiler"
+			CommandLine="&quot;%DXSDK_DIR%Utilities\Bin\x86\fxc.exe&quot; /LD /D IN_GAME=1 /I $(InputDir)..\std_effects /T fx_2_0 /Fc $(IntDir)\$(InputName).html /Cc /nologo $(InputPath)"
+			Outputs="$(IntDir)\$(InputName).html"
+			FileExtensions="*.fx"
+			ExecutionDescription="Compiling shader : $(InputPath) ..."
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

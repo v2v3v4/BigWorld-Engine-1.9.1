@@ -1,0 +1,1459 @@
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.00.50727.762 (e7899ea8).
+//
+// e:\bw191\src\lib\web_render\hybrid_vc2005\shdocvw.tli
+//
+// Wrapper implementations for Win32 type library shdocvw.dll
+// compiler-generated file created 04/25/09 at 18:09:30 - DO NOT EDIT!
+
+#pragma once
+
+//
+// interface IWebBrowser wrapper method implementations
+//
+
+inline HRESULT IWebBrowser::GoBack ( ) {
+    HRESULT _hr = raw_GoBack();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowser::GoForward ( ) {
+    HRESULT _hr = raw_GoForward();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowser::GoHome ( ) {
+    HRESULT _hr = raw_GoHome();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowser::GoSearch ( ) {
+    HRESULT _hr = raw_GoSearch();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowser::Navigate ( _bstr_t URL, VARIANT * Flags, VARIANT * TargetFrameName, VARIANT * PostData, VARIANT * Headers ) {
+    HRESULT _hr = raw_Navigate(URL, Flags, TargetFrameName, PostData, Headers);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowser::Refresh ( ) {
+    HRESULT _hr = raw_Refresh();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowser::Refresh2 ( VARIANT * Level ) {
+    HRESULT _hr = raw_Refresh2(Level);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowser::Stop ( ) {
+    HRESULT _hr = raw_Stop();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline IDispatchPtr IWebBrowser::GetApplication ( ) {
+    IDispatch * _result = 0;
+    HRESULT _hr = get_Application(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IDispatchPtr(_result, false);
+}
+
+inline IDispatchPtr IWebBrowser::GetParent ( ) {
+    IDispatch * _result = 0;
+    HRESULT _hr = get_Parent(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IDispatchPtr(_result, false);
+}
+
+inline IDispatchPtr IWebBrowser::GetContainer ( ) {
+    IDispatch * _result = 0;
+    HRESULT _hr = get_Container(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IDispatchPtr(_result, false);
+}
+
+inline IDispatchPtr IWebBrowser::GetDocument ( ) {
+    IDispatch * _result = 0;
+    HRESULT _hr = get_Document(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IDispatchPtr(_result, false);
+}
+
+inline VARIANT_BOOL IWebBrowser::GetTopLevelContainer ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_TopLevelContainer(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t IWebBrowser::GetType ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Type(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline long IWebBrowser::GetLeft ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Left(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser::PutLeft ( long pl ) {
+    HRESULT _hr = put_Left(pl);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline long IWebBrowser::GetTop ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Top(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser::PutTop ( long pl ) {
+    HRESULT _hr = put_Top(pl);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline long IWebBrowser::GetWidth ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Width(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser::PutWidth ( long pl ) {
+    HRESULT _hr = put_Width(pl);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline long IWebBrowser::GetHeight ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Height(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser::PutHeight ( long pl ) {
+    HRESULT _hr = put_Height(pl);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline _bstr_t IWebBrowser::GetLocationName ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_LocationName(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline _bstr_t IWebBrowser::GetLocationURL ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_LocationURL(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline VARIANT_BOOL IWebBrowser::GetBusy ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_Busy(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// dispinterface DWebBrowserEvents wrapper method implementations
+//
+
+inline HRESULT DWebBrowserEvents::BeforeNavigate ( _bstr_t URL, long Flags, _bstr_t TargetFrameName, VARIANT * PostData, _bstr_t Headers, VARIANT_BOOL * Cancel ) {
+    return _com_dispatch_method(this, 0x64, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008\x0003\x0008\x400c\x0008\x400b", (BSTR)URL, Flags, (BSTR)TargetFrameName, PostData, (BSTR)Headers, Cancel);
+}
+
+inline HRESULT DWebBrowserEvents::NavigateComplete ( _bstr_t URL ) {
+    return _com_dispatch_method(this, 0x65, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008", (BSTR)URL);
+}
+
+inline HRESULT DWebBrowserEvents::StatusTextChange ( _bstr_t Text ) {
+    return _com_dispatch_method(this, 0x66, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008", (BSTR)Text);
+}
+
+inline HRESULT DWebBrowserEvents::ProgressChange ( long Progress, long ProgressMax ) {
+    return _com_dispatch_method(this, 0x6c, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003\x0003", Progress, ProgressMax);
+}
+
+inline HRESULT DWebBrowserEvents::DownloadComplete ( ) {
+    return _com_dispatch_method(this, 0x68, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DWebBrowserEvents::CommandStateChange ( long Command, VARIANT_BOOL Enable ) {
+    return _com_dispatch_method(this, 0x69, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003\x000b", Command, Enable);
+}
+
+inline HRESULT DWebBrowserEvents::DownloadBegin ( ) {
+    return _com_dispatch_method(this, 0x6a, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DWebBrowserEvents::NewWindow ( _bstr_t URL, long Flags, _bstr_t TargetFrameName, VARIANT * PostData, _bstr_t Headers, VARIANT_BOOL * Processed ) {
+    return _com_dispatch_method(this, 0x6b, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008\x0003\x0008\x400c\x0008\x400b", (BSTR)URL, Flags, (BSTR)TargetFrameName, PostData, (BSTR)Headers, Processed);
+}
+
+inline HRESULT DWebBrowserEvents::TitleChange ( _bstr_t Text ) {
+    return _com_dispatch_method(this, 0x71, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008", (BSTR)Text);
+}
+
+inline HRESULT DWebBrowserEvents::FrameBeforeNavigate ( _bstr_t URL, long Flags, _bstr_t TargetFrameName, VARIANT * PostData, _bstr_t Headers, VARIANT_BOOL * Cancel ) {
+    return _com_dispatch_method(this, 0xc8, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008\x0003\x0008\x400c\x0008\x400b", (BSTR)URL, Flags, (BSTR)TargetFrameName, PostData, (BSTR)Headers, Cancel);
+}
+
+inline HRESULT DWebBrowserEvents::FrameNavigateComplete ( _bstr_t URL ) {
+    return _com_dispatch_method(this, 0xc9, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008", (BSTR)URL);
+}
+
+inline HRESULT DWebBrowserEvents::FrameNewWindow ( _bstr_t URL, long Flags, _bstr_t TargetFrameName, VARIANT * PostData, _bstr_t Headers, VARIANT_BOOL * Processed ) {
+    return _com_dispatch_method(this, 0xcc, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008\x0003\x0008\x400c\x0008\x400b", (BSTR)URL, Flags, (BSTR)TargetFrameName, PostData, (BSTR)Headers, Processed);
+}
+
+inline HRESULT DWebBrowserEvents::Quit ( VARIANT_BOOL * Cancel ) {
+    return _com_dispatch_method(this, 0x67, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x400b", Cancel);
+}
+
+inline HRESULT DWebBrowserEvents::WindowMove ( ) {
+    return _com_dispatch_method(this, 0x6d, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DWebBrowserEvents::WindowResize ( ) {
+    return _com_dispatch_method(this, 0x6e, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DWebBrowserEvents::WindowActivate ( ) {
+    return _com_dispatch_method(this, 0x6f, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DWebBrowserEvents::PropertyChange ( _bstr_t Property ) {
+    return _com_dispatch_method(this, 0x70, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008", (BSTR)Property);
+}
+
+//
+// interface IWebBrowserApp wrapper method implementations
+//
+
+inline HRESULT IWebBrowserApp::Quit ( ) {
+    HRESULT _hr = raw_Quit();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowserApp::ClientToWindow ( int * pcx, int * pcy ) {
+    HRESULT _hr = raw_ClientToWindow(pcx, pcy);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowserApp::PutProperty ( _bstr_t Property, const _variant_t & vtValue ) {
+    HRESULT _hr = raw_PutProperty(Property, vtValue);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline _variant_t IWebBrowserApp::GetProperty ( _bstr_t Property ) {
+    VARIANT _result;
+    VariantInit(&_result);
+    HRESULT _hr = raw_GetProperty(Property, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _variant_t(_result, false);
+}
+
+inline _bstr_t IWebBrowserApp::GetName ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Name(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline long IWebBrowserApp::GetHWND ( ) {
+    long _result = 0;
+    HRESULT _hr = get_HWND(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t IWebBrowserApp::GetFullName ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_FullName(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline _bstr_t IWebBrowserApp::GetPath ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Path(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline VARIANT_BOOL IWebBrowserApp::GetVisible ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_Visible(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowserApp::PutVisible ( VARIANT_BOOL pBool ) {
+    HRESULT _hr = put_Visible(pBool);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL IWebBrowserApp::GetStatusBar ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_StatusBar(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowserApp::PutStatusBar ( VARIANT_BOOL pBool ) {
+    HRESULT _hr = put_StatusBar(pBool);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline _bstr_t IWebBrowserApp::GetStatusText ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_StatusText(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline void IWebBrowserApp::PutStatusText ( _bstr_t StatusText ) {
+    HRESULT _hr = put_StatusText(StatusText);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline int IWebBrowserApp::GetToolBar ( ) {
+    int _result = 0;
+    HRESULT _hr = get_ToolBar(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowserApp::PutToolBar ( int Value ) {
+    HRESULT _hr = put_ToolBar(Value);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL IWebBrowserApp::GetMenuBar ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_MenuBar(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowserApp::PutMenuBar ( VARIANT_BOOL Value ) {
+    HRESULT _hr = put_MenuBar(Value);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL IWebBrowserApp::GetFullScreen ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_FullScreen(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowserApp::PutFullScreen ( VARIANT_BOOL pbFullScreen ) {
+    HRESULT _hr = put_FullScreen(pbFullScreen);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+//
+// interface IWebBrowser2 wrapper method implementations
+//
+
+inline HRESULT IWebBrowser2::Navigate2 ( VARIANT * URL, VARIANT * Flags, VARIANT * TargetFrameName, VARIANT * PostData, VARIANT * Headers ) {
+    HRESULT _hr = raw_Navigate2(URL, Flags, TargetFrameName, PostData, Headers);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline enum OLECMDF IWebBrowser2::QueryStatusWB ( enum OLECMDID cmdID ) {
+    enum OLECMDF _result;
+    HRESULT _hr = raw_QueryStatusWB(cmdID, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IWebBrowser2::ExecWB ( enum OLECMDID cmdID, enum OLECMDEXECOPT cmdexecopt, VARIANT * pvaIn, VARIANT * pvaOut ) {
+    HRESULT _hr = raw_ExecWB(cmdID, cmdexecopt, pvaIn, pvaOut);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IWebBrowser2::ShowBrowserBar ( VARIANT * pvaClsid, VARIANT * pvarShow, VARIANT * pvarSize ) {
+    HRESULT _hr = raw_ShowBrowserBar(pvaClsid, pvarShow, pvarSize);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline enum tagREADYSTATE IWebBrowser2::GetReadyState ( ) {
+    enum tagREADYSTATE _result;
+    HRESULT _hr = get_ReadyState(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline VARIANT_BOOL IWebBrowser2::GetOffline ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_Offline(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser2::PutOffline ( VARIANT_BOOL pbOffline ) {
+    HRESULT _hr = put_Offline(pbOffline);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL IWebBrowser2::GetSilent ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_Silent(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser2::PutSilent ( VARIANT_BOOL pbSilent ) {
+    HRESULT _hr = put_Silent(pbSilent);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL IWebBrowser2::GetRegisterAsBrowser ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_RegisterAsBrowser(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser2::PutRegisterAsBrowser ( VARIANT_BOOL pbRegister ) {
+    HRESULT _hr = put_RegisterAsBrowser(pbRegister);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL IWebBrowser2::GetRegisterAsDropTarget ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_RegisterAsDropTarget(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser2::PutRegisterAsDropTarget ( VARIANT_BOOL pbRegister ) {
+    HRESULT _hr = put_RegisterAsDropTarget(pbRegister);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL IWebBrowser2::GetTheaterMode ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_TheaterMode(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser2::PutTheaterMode ( VARIANT_BOOL pbRegister ) {
+    HRESULT _hr = put_TheaterMode(pbRegister);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL IWebBrowser2::GetAddressBar ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_AddressBar(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser2::PutAddressBar ( VARIANT_BOOL Value ) {
+    HRESULT _hr = put_AddressBar(Value);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL IWebBrowser2::GetResizable ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_Resizable(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IWebBrowser2::PutResizable ( VARIANT_BOOL Value ) {
+    HRESULT _hr = put_Resizable(Value);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+//
+// dispinterface DWebBrowserEvents2 wrapper method implementations
+//
+
+inline HRESULT DWebBrowserEvents2::StatusTextChange ( _bstr_t Text ) {
+    return _com_dispatch_method(this, 0x66, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008", (BSTR)Text);
+}
+
+inline HRESULT DWebBrowserEvents2::ProgressChange ( long Progress, long ProgressMax ) {
+    return _com_dispatch_method(this, 0x6c, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003\x0003", Progress, ProgressMax);
+}
+
+inline HRESULT DWebBrowserEvents2::CommandStateChange ( long Command, VARIANT_BOOL Enable ) {
+    return _com_dispatch_method(this, 0x69, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003\x000b", Command, Enable);
+}
+
+inline HRESULT DWebBrowserEvents2::DownloadBegin ( ) {
+    return _com_dispatch_method(this, 0x6a, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DWebBrowserEvents2::DownloadComplete ( ) {
+    return _com_dispatch_method(this, 0x68, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DWebBrowserEvents2::TitleChange ( _bstr_t Text ) {
+    return _com_dispatch_method(this, 0x71, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008", (BSTR)Text);
+}
+
+inline HRESULT DWebBrowserEvents2::PropertyChange ( _bstr_t szProperty ) {
+    return _com_dispatch_method(this, 0x70, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0008", (BSTR)szProperty);
+}
+
+inline HRESULT DWebBrowserEvents2::BeforeNavigate2 ( IDispatch * pDisp, VARIANT * URL, VARIANT * Flags, VARIANT * TargetFrameName, VARIANT * PostData, VARIANT * Headers, VARIANT_BOOL * Cancel ) {
+    return _com_dispatch_method(this, 0xfa, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0009\x400c\x400c\x400c\x400c\x400c\x400b", pDisp, URL, Flags, TargetFrameName, PostData, Headers, Cancel);
+}
+
+inline HRESULT DWebBrowserEvents2::NewWindow2 ( IDispatch * * ppDisp, VARIANT_BOOL * Cancel ) {
+    return _com_dispatch_method(this, 0xfb, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x4009\x400b", ppDisp, Cancel);
+}
+
+inline HRESULT DWebBrowserEvents2::NavigateComplete2 ( IDispatch * pDisp, VARIANT * URL ) {
+    return _com_dispatch_method(this, 0xfc, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0009\x400c", pDisp, URL);
+}
+
+inline HRESULT DWebBrowserEvents2::DocumentComplete ( IDispatch * pDisp, VARIANT * URL ) {
+    return _com_dispatch_method(this, 0x103, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0009\x400c", pDisp, URL);
+}
+
+inline HRESULT DWebBrowserEvents2::OnQuit ( ) {
+    return _com_dispatch_method(this, 0xfd, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DWebBrowserEvents2::OnVisible ( VARIANT_BOOL Visible ) {
+    return _com_dispatch_method(this, 0xfe, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x000b", Visible);
+}
+
+inline HRESULT DWebBrowserEvents2::OnToolBar ( VARIANT_BOOL ToolBar ) {
+    return _com_dispatch_method(this, 0xff, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x000b", ToolBar);
+}
+
+inline HRESULT DWebBrowserEvents2::OnMenuBar ( VARIANT_BOOL MenuBar ) {
+    return _com_dispatch_method(this, 0x100, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x000b", MenuBar);
+}
+
+inline HRESULT DWebBrowserEvents2::OnStatusBar ( VARIANT_BOOL StatusBar ) {
+    return _com_dispatch_method(this, 0x101, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x000b", StatusBar);
+}
+
+inline HRESULT DWebBrowserEvents2::OnFullScreen ( VARIANT_BOOL FullScreen ) {
+    return _com_dispatch_method(this, 0x102, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x000b", FullScreen);
+}
+
+inline HRESULT DWebBrowserEvents2::OnTheaterMode ( VARIANT_BOOL TheaterMode ) {
+    return _com_dispatch_method(this, 0x104, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x000b", TheaterMode);
+}
+
+inline HRESULT DWebBrowserEvents2::WindowSetResizable ( VARIANT_BOOL Resizable ) {
+    return _com_dispatch_method(this, 0x106, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x000b", Resizable);
+}
+
+inline HRESULT DWebBrowserEvents2::WindowSetLeft ( long Left ) {
+    return _com_dispatch_method(this, 0x108, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003", Left);
+}
+
+inline HRESULT DWebBrowserEvents2::WindowSetTop ( long Top ) {
+    return _com_dispatch_method(this, 0x109, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003", Top);
+}
+
+inline HRESULT DWebBrowserEvents2::WindowSetWidth ( long Width ) {
+    return _com_dispatch_method(this, 0x10a, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003", Width);
+}
+
+inline HRESULT DWebBrowserEvents2::WindowSetHeight ( long Height ) {
+    return _com_dispatch_method(this, 0x10b, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003", Height);
+}
+
+inline HRESULT DWebBrowserEvents2::WindowClosing ( VARIANT_BOOL IsChildWindow, VARIANT_BOOL * Cancel ) {
+    return _com_dispatch_method(this, 0x107, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x000b\x400b", IsChildWindow, Cancel);
+}
+
+inline HRESULT DWebBrowserEvents2::ClientToHostWindow ( long * CX, long * CY ) {
+    return _com_dispatch_method(this, 0x10c, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x4003\x4003", CX, CY);
+}
+
+inline HRESULT DWebBrowserEvents2::SetSecureLockIcon ( long SecureLockIcon ) {
+    return _com_dispatch_method(this, 0x10d, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003", SecureLockIcon);
+}
+
+inline HRESULT DWebBrowserEvents2::FileDownload ( VARIANT_BOOL * Cancel ) {
+    return _com_dispatch_method(this, 0x10e, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x400b", Cancel);
+}
+
+inline HRESULT DWebBrowserEvents2::NavigateError ( IDispatch * pDisp, VARIANT * URL, VARIANT * Frame, VARIANT * StatusCode, VARIANT_BOOL * Cancel ) {
+    return _com_dispatch_method(this, 0x10f, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0009\x400c\x400c\x400c\x400b", pDisp, URL, Frame, StatusCode, Cancel);
+}
+
+inline HRESULT DWebBrowserEvents2::PrintTemplateInstantiation ( IDispatch * pDisp ) {
+    return _com_dispatch_method(this, 0xe1, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0009", pDisp);
+}
+
+inline HRESULT DWebBrowserEvents2::PrintTemplateTeardown ( IDispatch * pDisp ) {
+    return _com_dispatch_method(this, 0xe2, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0009", pDisp);
+}
+
+inline HRESULT DWebBrowserEvents2::UpdatePageStatus ( IDispatch * pDisp, VARIANT * nPage, VARIANT * fDone ) {
+    return _com_dispatch_method(this, 0xe3, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0009\x400c\x400c", pDisp, nPage, fDone);
+}
+
+inline HRESULT DWebBrowserEvents2::PrivacyImpactedStateChange ( VARIANT_BOOL bImpacted ) {
+    return _com_dispatch_method(this, 0x110, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x000b", bImpacted);
+}
+
+inline HRESULT DWebBrowserEvents2::NewWindow3 ( IDispatch * * ppDisp, VARIANT_BOOL * Cancel, unsigned long dwFlags, _bstr_t bstrUrlContext, _bstr_t bstrUrl ) {
+    return _com_dispatch_method(this, 0x111, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x4009\x400b\x0003\x0008\x0008", ppDisp, Cancel, dwFlags, (BSTR)bstrUrlContext, (BSTR)bstrUrl);
+}
+
+//
+// dispinterface DShellWindowsEvents wrapper method implementations
+//
+
+inline HRESULT DShellWindowsEvents::WindowRegistered ( long lCookie ) {
+    return _com_dispatch_method(this, 0xc8, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003", lCookie);
+}
+
+inline HRESULT DShellWindowsEvents::WindowRevoked ( long lCookie ) {
+    return _com_dispatch_method(this, 0xc9, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003", lCookie);
+}
+
+//
+// interface IShellWindows wrapper method implementations
+//
+
+inline long IShellWindows::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IDispatchPtr IShellWindows::Item ( const _variant_t & index ) {
+    IDispatch * _result = 0;
+    HRESULT _hr = raw_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IDispatchPtr(_result, false);
+}
+
+inline IUnknownPtr IShellWindows::_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = raw__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline HRESULT IShellWindows::Register ( IDispatch * pid, long HWND, int swClass, long * plCookie ) {
+    HRESULT _hr = raw_Register(pid, HWND, swClass, plCookie);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellWindows::RegisterPending ( long lThreadId, VARIANT * pvarloc, VARIANT * pvarlocRoot, int swClass, long * plCookie ) {
+    HRESULT _hr = raw_RegisterPending(lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellWindows::Revoke ( long lCookie ) {
+    HRESULT _hr = raw_Revoke(lCookie);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellWindows::OnNavigate ( long lCookie, VARIANT * pvarloc ) {
+    HRESULT _hr = raw_OnNavigate(lCookie, pvarloc);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellWindows::OnActivated ( long lCookie, VARIANT_BOOL fActive ) {
+    HRESULT _hr = raw_OnActivated(lCookie, fActive);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline IDispatchPtr IShellWindows::FindWindowSW ( VARIANT * pvarloc, VARIANT * pvarlocRoot, int swClass, long * pHWND, int swfwOptions ) {
+    IDispatch * _result = 0;
+    HRESULT _hr = raw_FindWindowSW(pvarloc, pvarlocRoot, swClass, pHWND, swfwOptions, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IDispatchPtr(_result, false);
+}
+
+inline HRESULT IShellWindows::OnCreated ( long lCookie, IUnknown * punk ) {
+    HRESULT _hr = raw_OnCreated(lCookie, punk);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellWindows::ProcessAttachDetach ( VARIANT_BOOL fAttach ) {
+    HRESULT _hr = raw_ProcessAttachDetach(fAttach);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface IShellUIHelper wrapper method implementations
+//
+
+inline HRESULT IShellUIHelper::ResetFirstBootMode ( ) {
+    HRESULT _hr = raw_ResetFirstBootMode();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellUIHelper::ResetSafeMode ( ) {
+    HRESULT _hr = raw_ResetSafeMode();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellUIHelper::RefreshOfflineDesktop ( ) {
+    HRESULT _hr = raw_RefreshOfflineDesktop();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellUIHelper::AddFavorite ( _bstr_t URL, VARIANT * Title ) {
+    HRESULT _hr = raw_AddFavorite(URL, Title);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellUIHelper::AddChannel ( _bstr_t URL ) {
+    HRESULT _hr = raw_AddChannel(URL);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellUIHelper::AddDesktopComponent ( _bstr_t URL, _bstr_t Type, VARIANT * Left, VARIANT * Top, VARIANT * Width, VARIANT * Height ) {
+    HRESULT _hr = raw_AddDesktopComponent(URL, Type, Left, Top, Width, Height);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline VARIANT_BOOL IShellUIHelper::IsSubscribed ( _bstr_t URL ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = raw_IsSubscribed(URL, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IShellUIHelper::NavigateAndFind ( _bstr_t URL, _bstr_t strQuery, VARIANT * varTargetFrame ) {
+    HRESULT _hr = raw_NavigateAndFind(URL, strQuery, varTargetFrame);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellUIHelper::ImportExportFavorites ( VARIANT_BOOL fImport, _bstr_t strImpExpPath ) {
+    HRESULT _hr = raw_ImportExportFavorites(fImport, strImpExpPath);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellUIHelper::AutoCompleteSaveForm ( VARIANT * Form ) {
+    HRESULT _hr = raw_AutoCompleteSaveForm(Form);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellUIHelper::AutoScan ( _bstr_t strSearch, _bstr_t strFailureUrl, VARIANT * pvarTargetFrame ) {
+    HRESULT _hr = raw_AutoScan(strSearch, strFailureUrl, pvarTargetFrame);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellUIHelper::AutoCompleteAttach ( VARIANT * Reserved ) {
+    HRESULT _hr = raw_AutoCompleteAttach(Reserved);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline _variant_t IShellUIHelper::ShowBrowserUI ( _bstr_t bstrName, VARIANT * pvarIn ) {
+    VARIANT _result;
+    VariantInit(&_result);
+    HRESULT _hr = raw_ShowBrowserUI(bstrName, pvarIn, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _variant_t(_result, false);
+}
+
+//
+// dispinterface DShellNameSpaceEvents wrapper method implementations
+//
+
+inline HRESULT DShellNameSpaceEvents::FavoritesSelectionChange ( long cItems, long hItem, _bstr_t strName, _bstr_t strUrl, long cVisits, _bstr_t strDate, long fAvailableOffline ) {
+    return _com_dispatch_method(this, 0x1, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003\x0003\x0008\x0008\x0003\x0008\x0003", cItems, hItem, (BSTR)strName, (BSTR)strUrl, cVisits, (BSTR)strDate, fAvailableOffline);
+}
+
+inline HRESULT DShellNameSpaceEvents::SelectionChange ( ) {
+    return _com_dispatch_method(this, 0x2, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DShellNameSpaceEvents::DoubleClick ( ) {
+    return _com_dispatch_method(this, 0x3, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+inline HRESULT DShellNameSpaceEvents::Initialized ( ) {
+    return _com_dispatch_method(this, 0x4, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
+
+//
+// interface IShellFavoritesNameSpace wrapper method implementations
+//
+
+inline HRESULT IShellFavoritesNameSpace::MoveSelectionUp ( ) {
+    HRESULT _hr = raw_MoveSelectionUp();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellFavoritesNameSpace::MoveSelectionDown ( ) {
+    HRESULT _hr = raw_MoveSelectionDown();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellFavoritesNameSpace::ResetSort ( ) {
+    HRESULT _hr = raw_ResetSort();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellFavoritesNameSpace::NewFolder ( ) {
+    HRESULT _hr = raw_NewFolder();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellFavoritesNameSpace::Synchronize ( ) {
+    HRESULT _hr = raw_Synchronize();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellFavoritesNameSpace::Import ( ) {
+    HRESULT _hr = raw_Import();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellFavoritesNameSpace::Export ( ) {
+    HRESULT _hr = raw_Export();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellFavoritesNameSpace::InvokeContextMenuCommand ( _bstr_t strCommand ) {
+    HRESULT _hr = raw_InvokeContextMenuCommand(strCommand);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellFavoritesNameSpace::MoveSelectionTo ( ) {
+    HRESULT _hr = raw_MoveSelectionTo();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline VARIANT_BOOL IShellFavoritesNameSpace::GetSubscriptionsEnabled ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_SubscriptionsEnabled(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline VARIANT_BOOL IShellFavoritesNameSpace::CreateSubscriptionForSelection ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = raw_CreateSubscriptionForSelection(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline VARIANT_BOOL IShellFavoritesNameSpace::DeleteSubscriptionForSelection ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = raw_DeleteSubscriptionForSelection(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IShellFavoritesNameSpace::SetRoot ( _bstr_t bstrFullPath ) {
+    HRESULT _hr = raw_SetRoot(bstrFullPath);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface IShellNameSpace wrapper method implementations
+//
+
+inline long IShellNameSpace::GetEnumOptions ( ) {
+    long _result = 0;
+    HRESULT _hr = get_EnumOptions(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IShellNameSpace::PutEnumOptions ( long pgrfEnumFlags ) {
+    HRESULT _hr = put_EnumOptions(pgrfEnumFlags);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline IDispatchPtr IShellNameSpace::GetSelectedItem ( ) {
+    IDispatch * _result = 0;
+    HRESULT _hr = get_SelectedItem(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IDispatchPtr(_result, false);
+}
+
+inline void IShellNameSpace::PutSelectedItem ( IDispatch * pItem ) {
+    HRESULT _hr = put_SelectedItem(pItem);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline _variant_t IShellNameSpace::GetRoot ( ) {
+    VARIANT _result;
+    VariantInit(&_result);
+    HRESULT _hr = get_Root(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _variant_t(_result, false);
+}
+
+inline void IShellNameSpace::PutRoot ( const _variant_t & pvar ) {
+    HRESULT _hr = put_Root(pvar);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline int IShellNameSpace::GetDepth ( ) {
+    int _result = 0;
+    HRESULT _hr = get_Depth(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IShellNameSpace::PutDepth ( int piDepth ) {
+    HRESULT _hr = put_Depth(piDepth);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline unsigned int IShellNameSpace::GetMode ( ) {
+    unsigned int _result = 0;
+    HRESULT _hr = get_Mode(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IShellNameSpace::PutMode ( unsigned int puMode ) {
+    HRESULT _hr = put_Mode(puMode);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline unsigned long IShellNameSpace::GetFlags ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Flags(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IShellNameSpace::PutFlags ( unsigned long pdwFlags ) {
+    HRESULT _hr = put_Flags(pdwFlags);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline void IShellNameSpace::PutTVFlags ( unsigned long dwFlags ) {
+    HRESULT _hr = put_TVFlags(dwFlags);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline unsigned long IShellNameSpace::GetTVFlags ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_TVFlags(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t IShellNameSpace::GetColumns ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Columns(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline void IShellNameSpace::PutColumns ( _bstr_t bstrColumns ) {
+    HRESULT _hr = put_Columns(bstrColumns);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline int IShellNameSpace::GetCountViewTypes ( ) {
+    int _result = 0;
+    HRESULT _hr = get_CountViewTypes(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IShellNameSpace::SetViewType ( int iType ) {
+    HRESULT _hr = raw_SetViewType(iType);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline IDispatchPtr IShellNameSpace::SelectedItems ( ) {
+    IDispatch * _result = 0;
+    HRESULT _hr = raw_SelectedItems(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IDispatchPtr(_result, false);
+}
+
+inline HRESULT IShellNameSpace::Expand ( const _variant_t & var, int iDepth ) {
+    HRESULT _hr = raw_Expand(var, iDepth);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IShellNameSpace::UnselectAll ( ) {
+    HRESULT _hr = raw_UnselectAll();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface IScriptErrorList wrapper method implementations
+//
+
+inline HRESULT IScriptErrorList::advanceError ( ) {
+    HRESULT _hr = raw_advanceError();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IScriptErrorList::retreatError ( ) {
+    HRESULT _hr = raw_retreatError();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline long IScriptErrorList::canAdvanceError ( ) {
+    long _result = 0;
+    HRESULT _hr = raw_canAdvanceError(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline long IScriptErrorList::canRetreatError ( ) {
+    long _result = 0;
+    HRESULT _hr = raw_canRetreatError(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline long IScriptErrorList::getErrorLine ( ) {
+    long _result = 0;
+    HRESULT _hr = raw_getErrorLine(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline long IScriptErrorList::getErrorChar ( ) {
+    long _result = 0;
+    HRESULT _hr = raw_getErrorChar(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline long IScriptErrorList::getErrorCode ( ) {
+    long _result = 0;
+    HRESULT _hr = raw_getErrorCode(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t IScriptErrorList::getErrorMsg ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = raw_getErrorMsg(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline _bstr_t IScriptErrorList::getErrorUrl ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = raw_getErrorUrl(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline long IScriptErrorList::getAlwaysShowLockState ( ) {
+    long _result = 0;
+    HRESULT _hr = raw_getAlwaysShowLockState(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline long IScriptErrorList::getDetailsPaneOpen ( ) {
+    long _result = 0;
+    HRESULT _hr = raw_getDetailsPaneOpen(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IScriptErrorList::setDetailsPaneOpen ( long fDetailsPaneOpen ) {
+    HRESULT _hr = raw_setDetailsPaneOpen(fDetailsPaneOpen);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline long IScriptErrorList::getPerErrorDisplay ( ) {
+    long _result = 0;
+    HRESULT _hr = raw_getPerErrorDisplay(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IScriptErrorList::setPerErrorDisplay ( long fPerErrorDisplay ) {
+    HRESULT _hr = raw_setPerErrorDisplay(fPerErrorDisplay);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface ISearch wrapper method implementations
+//
+
+inline _bstr_t ISearch::GetTitle ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Title(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline _bstr_t ISearch::GetId ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Id(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline _bstr_t ISearch::GetURL ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_URL(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+//
+// interface ISearches wrapper method implementations
+//
+
+inline long ISearches::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t ISearches::GetDefault ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Default(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline ISearchPtr ISearches::Item ( const _variant_t & index ) {
+    struct ISearch * _result = 0;
+    HRESULT _hr = raw_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return ISearchPtr(_result, false);
+}
+
+inline IUnknownPtr ISearches::_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = raw__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+//
+// interface ISearchAssistantOC wrapper method implementations
+//
+
+inline HRESULT ISearchAssistantOC::AddNextMenuItem ( _bstr_t bstrText, long idItem ) {
+    HRESULT _hr = raw_AddNextMenuItem(bstrText, idItem);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT ISearchAssistantOC::SetDefaultSearchUrl ( _bstr_t bstrUrl ) {
+    HRESULT _hr = raw_SetDefaultSearchUrl(bstrUrl);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT ISearchAssistantOC::NavigateToDefaultSearch ( ) {
+    HRESULT _hr = raw_NavigateToDefaultSearch();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline VARIANT_BOOL ISearchAssistantOC::IsRestricted ( _bstr_t bstrGuid ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = raw_IsRestricted(bstrGuid, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline VARIANT_BOOL ISearchAssistantOC::GetShellFeaturesEnabled ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_ShellFeaturesEnabled(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline VARIANT_BOOL ISearchAssistantOC::GetSearchAssistantDefault ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_SearchAssistantDefault(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline ISearchesPtr ISearchAssistantOC::GetSearches ( ) {
+    struct ISearches * _result = 0;
+    HRESULT _hr = get_Searches(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return ISearchesPtr(_result, false);
+}
+
+inline VARIANT_BOOL ISearchAssistantOC::GetInWebFolder ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_InWebFolder(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT ISearchAssistantOC::PutProperty ( VARIANT_BOOL bPerLocale, _bstr_t bstrName, _bstr_t bstrValue ) {
+    HRESULT _hr = raw_PutProperty(bPerLocale, bstrName, bstrValue);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline _bstr_t ISearchAssistantOC::GetProperty ( VARIANT_BOOL bPerLocale, _bstr_t bstrName ) {
+    BSTR _result = 0;
+    HRESULT _hr = raw_GetProperty(bPerLocale, bstrName, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline void ISearchAssistantOC::PutEventHandled ( VARIANT_BOOL _arg1 ) {
+    HRESULT _hr = put_EventHandled(_arg1);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline HRESULT ISearchAssistantOC::ResetNextMenu ( ) {
+    HRESULT _hr = raw_ResetNextMenu();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT ISearchAssistantOC::FindOnWeb ( ) {
+    HRESULT _hr = raw_FindOnWeb();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT ISearchAssistantOC::FindFilesOrFolders ( ) {
+    HRESULT _hr = raw_FindFilesOrFolders();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT ISearchAssistantOC::FindComputer ( ) {
+    HRESULT _hr = raw_FindComputer();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT ISearchAssistantOC::FindPrinter ( ) {
+    HRESULT _hr = raw_FindPrinter();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT ISearchAssistantOC::FindPeople ( ) {
+    HRESULT _hr = raw_FindPeople();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline _bstr_t ISearchAssistantOC::GetSearchAssistantURL ( VARIANT_BOOL bSubstitute, VARIANT_BOOL bCustomize ) {
+    BSTR _result = 0;
+    HRESULT _hr = raw_GetSearchAssistantURL(bSubstitute, bCustomize, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline HRESULT ISearchAssistantOC::NotifySearchSettingsChanged ( ) {
+    HRESULT _hr = raw_NotifySearchSettingsChanged();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline void ISearchAssistantOC::PutASProvider ( _bstr_t pProvider ) {
+    HRESULT _hr = put_ASProvider(pProvider);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline _bstr_t ISearchAssistantOC::GetASProvider ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_ASProvider(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline void ISearchAssistantOC::PutASSetting ( int pSetting ) {
+    HRESULT _hr = put_ASSetting(pSetting);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline int ISearchAssistantOC::GetASSetting ( ) {
+    int _result = 0;
+    HRESULT _hr = get_ASSetting(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT ISearchAssistantOC::NETDetectNextNavigate ( ) {
+    HRESULT _hr = raw_NETDetectNextNavigate();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT ISearchAssistantOC::PutFindText ( _bstr_t FindText ) {
+    HRESULT _hr = raw_PutFindText(FindText);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline int ISearchAssistantOC::GetVersion ( ) {
+    int _result = 0;
+    HRESULT _hr = get_Version(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t ISearchAssistantOC::EncodeString ( _bstr_t bstrValue, _bstr_t bstrCharSet, VARIANT_BOOL bUseUTF8 ) {
+    BSTR _result = 0;
+    HRESULT _hr = raw_EncodeString(bstrValue, bstrCharSet, bUseUTF8, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+//
+// interface ISearchAssistantOC2 wrapper method implementations
+//
+
+inline VARIANT_BOOL ISearchAssistantOC2::GetShowFindPrinter ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_ShowFindPrinter(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// interface ISearchAssistantOC3 wrapper method implementations
+//
+
+inline VARIANT_BOOL ISearchAssistantOC3::GetSearchCompanionAvailable ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_SearchCompanionAvailable(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void ISearchAssistantOC3::PutUseSearchCompanion ( VARIANT_BOOL pbUseSC ) {
+    HRESULT _hr = put_UseSearchCompanion(pbUseSC);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline VARIANT_BOOL ISearchAssistantOC3::GetUseSearchCompanion ( ) {
+    VARIANT_BOOL _result = 0;
+    HRESULT _hr = get_UseSearchCompanion(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// dispinterface _SearchAssistantEvents wrapper method implementations
+//
+
+inline HRESULT _SearchAssistantEvents::OnNextMenuSelect ( long idItem ) {
+    return _com_dispatch_method(this, 0x1, DISPATCH_METHOD, VT_EMPTY, NULL, 
+        L"\x0003", idItem);
+}
+
+inline HRESULT _SearchAssistantEvents::OnNewSearch ( ) {
+    return _com_dispatch_method(this, 0x2, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+}
