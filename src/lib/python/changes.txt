@@ -1,0 +1,77 @@
+This file describes the changes made to Python by MicroForte. The source was
+originally downloaded from http://www.python.org/download as Python-2.4.tgz.
+
+11th September 2003
+builtin.dir can now handle any sequence for __members__ and __methods__, not
+just PyList.
+
+29th September 2003
+typeobject.c looks in tp_dict for __module__ and __name__ for all type
+objects, not just ones with the heap flag set.
+
+3rd October 2003
+Added low-level memory allocator redirection (low_level_malloc + friends)
+
+15th December 2003
+Added an interface to provide a different filename namespace.
+This consists of the extern-able calls PyOS_fopen, PyOS_statType,
+PyOS_listdir and PyOS_dlopen.  They are declared in pythonrun.h with
+other PyOS stuff. They allow another filesystem to be inserted
+underneath Python.
+
+16th January 2004
+ALTSEP is defined to be equal to SEP if not otherwise defined
+(simplifies some code)
+
+11th May 2004
+In the generic getattr, now checking if tp_mro is set instead of always
+assuming it is if tp_dict is set. Builtin types like descriptors seem
+to not have this set.
+
+18th September 2006
+Integrated changes into Python 2.5. Some of our modifications were not
+integrated:
+- math, struct, time, _weakref, cString, cPickle are no longer compiled into
+libpython2.5.a. Modules will now be shipped as .so files.
+- ALTSEP is no longer always defined. Changed our code to handle this case.
+- Low-level memory redirection has been removed.
+- os.tempnam() and os.tmpnam() no longer returns an error when BigWorld's
+file system is used. Instead, they are no longer built into the os module.
+- PyObject_GenericGetAttr() no longer checks if tp->tp_mro is set.
+- Compiler define PYTHONPATH is no longer set to "" on Windows.
+
+
+23rd September 2008
+Changed the following function prototypes to support the appropriate const 
+semantics:
+PyObject_CallFunction
+PyObject_CallMethod
+_PyObject_CallFunction_SizeT
+_PyObject_CallMethod_SizeT
+PySys_GetObject
+PySys_SetObject
+PySys_GetFile
+PySys_SetPath
+
+I also added a dodgy addendum to pyconfig.h generated from a diff between
+a 32 bit and 64 bit output of the configuration script to make the ultimate 
+state effectively the same as if the appropriate header had been used. If
+python is reconfigured, this needs to be manually generated and added to the 
+end.
+
+
+Python must be configured with:
+	$ ./configure --enable-unicode=ucs4
+
+To buld the dynamically loadable modules (.so):
+- First you must build a stock standard Python interpreter:
+	$ ./configure --enable-unicode=ucs4
+	$ make
+- Then make BigWorld's modified libpython2.5.a in src/lib/python:
+	$ make libpython2.5.a
+- Then you copy the interpreter you've just built into src/lib/python:
+	$ cp standard_python_distribution/python src/lib/python
+- Finally build the modules in src/lib/python:
+	$ make sharedmods
+  The modules will be located in src/lib/python/build/lib.linux-i686-2.5, or
+  something similar.
