@@ -1,0 +1,55 @@
+diff -urNad python-mysqldb~/_mysql.c python-mysqldb/_mysql.c
+--- python-mysqldb~/_mysql.c	2007-10-07 00:00:11.000000000 +0200
++++ python-mysqldb/_mysql.c	2007-10-07 00:00:11.000000000 +0200
+@@ -489,10 +489,10 @@
+ 				  "named_pipe", "init_command",
+ 				  "read_default_file", "read_default_group",
+ 				  "client_flag", "ssl",
+-				  "local_infile",
++				  "local_infile", "reconnect", 
+ 				  NULL } ;
+ 	int connect_timeout = 0;
+-	int compress = -1, named_pipe = -1, local_infile = -1;
++	int compress = -1, named_pipe = -1, local_infile = -1, reconnect = -1;
+ 	char *init_command=NULL,
+ 	     *read_default_file=NULL,
+ 	     *read_default_group=NULL;
+@@ -500,7 +500,7 @@
+ 	self->converter = NULL;
+ 	self->open = 0;
+ 	check_server_init(-1);
+-	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|ssssisOiiisssiOi:connect",
++	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|ssssisOiiisssiOii:connect",
+ 					 kwlist,
+ 					 &host, &user, &passwd, &db,
+ 					 &port, &unix_socket, &conv,
+@@ -509,7 +509,7 @@
+ 					 &init_command, &read_default_file,
+ 					 &read_default_group,
+ 					 &client_flag, &ssl,
+-					 &local_infile
++					 &local_infile, &reconnect
+ 					 ))
+ 		return -1;
+ 
+@@ -553,6 +553,7 @@
+ 		mysql_options(&(self->connection), MYSQL_OPT_COMPRESS, 0);
+ 		client_flag |= CLIENT_COMPRESS;
+ 	}
++
+ 	if (named_pipe != -1)
+ 		mysql_options(&(self->connection), MYSQL_OPT_NAMED_PIPE, 0);
+ 	if (init_command != NULL)
+@@ -574,6 +575,12 @@
+ 	conn = mysql_real_connect(&(self->connection), host, user, passwd, db,
+ 				  port, unix_socket, client_flag);
+ 
++	/* Needs to come after real_connect per mysql API manual */
++	if (conn && reconnect > 0) {
++		my_bool bool = reconnect;
++		mysql_options(conn, MYSQL_OPT_RECONNECT, &bool);
++	}
++
+ 	Py_END_ALLOW_THREADS ;
+ 
+ 	if (!conn) {

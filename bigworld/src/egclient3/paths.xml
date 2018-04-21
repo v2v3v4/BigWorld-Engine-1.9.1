@@ -1,0 +1,10 @@
+<root>
+	<Paths>
+		<Path>
+			../../res
+		</Path>
+		<Path>
+			../egclient2/res
+		</Path>
+	</Paths>
+</root>	

@@ -1,0 +1,36 @@
+<root>
+	<ClientAvatar>
+		<playerName>	MyCharacter	</playerName>
+		<prop2>	73	</prop2>
+		<prop5>
+			<intValue>	120	</intValue>
+			<stringValue>	Blah	</stringValue>
+			<dictValue>
+				<value>
+					<key>	coopers	</key>
+					<value>	carlton	</value>
+				</value>
+				<value>
+					<key>	naughty	</key>
+					<value>	nice	</value>
+				</value>
+				<value>
+					<key>	happy	</key>
+					<value>	sad	</value>
+				</value>
+			</dictValue>
+		</prop5>
+		<position>	0.000000 0.000000 0.000000	</position>
+		<direction>	0.000000 0.000000 0.000000	</direction>
+		<spaceID>	1	</spaceID>
+		<databaseID>	1	</databaseID>
+	</ClientAvatar>
+	<Account>
+		<character>	MyCharacter	</character>
+		<playerName>	MyAccount	</playerName>
+		<databaseID>	2	</databaseID>
+	</Account>
+	<_BigWorldInfo>
+		<LogOnMapping>	</LogOnMapping>
+	</_BigWorldInfo>
+</root>
