@@ -1,0 +1,195 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;8.&nbsp;Migrating WebConsole and other server tools</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="up" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="prev" href="ch07.html" title="Chapter&nbsp;7.&nbsp;Watcher Network Protocol v2">
+      <link rel="next" href="ch09.html" title="Chapter&nbsp;9.&nbsp;Migrating the Game Database (MySQL)"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;8.&nbsp;Migrating WebConsole and other server tools</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch07.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch09.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Server_Tools_Changes"></a>Chapter&nbsp;8.&nbsp;Migrating WebConsole and other server tools
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch08.html#d0e562">8.1. Watcher protocol incompatibility with 1.8 servers</a></span></dt>
+                  <dt><span class="sect1"><a href="ch08.html#xref_Upgrading_WebConsole_19">8.2. Upgrading WebConsole vs re-installing</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect2"><a href="ch08.html#d0e602">8.2.1. Migrating WebConsole user database</a></span></dt>
+                     </dl>
+                  </dd>
+               </dl>
+            </div>
+            <p>When migrating between BigWorld 1.8.x and BigWorld 1.9 there are
+               	two important factors to consider in regards to the server tools.
+            </p>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>Watcher protocol incompatibility with 1.8 servers.</li>
+                  <li>Upgrading WebConsole vs re-installing.</li>
+               </ul>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e562"></a>8.1.&nbsp;Watcher protocol incompatibility with 1.8 servers
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Due the incompatibility for BigWorld 1.9 server tools such as
+                  		WebConsole to interact with BigWorld 1.8 servers, it is recommended
+                  		that during the migration to BigWorld 1.9 the old server tools are
+                  		maintained to allow developers to continue operating seemlessly.
+               </p>
+               <p>Please refer to the section <a href="ch08.html#xref_Upgrading_WebConsole_19" title="8.2.&nbsp;Upgrading WebConsole vs re-installing">Upgrading WebConsole vs re-installing</a>
+                  		for futher details.
+               </p>
+               <p>Below is a complete list of BigWorld utilities that may be
+                  		affected due to the Watcher protocol changes, and thus won't
+                  		work against earlier server versions.
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>WebConsole</li>
+                     <li>StatLogger / StatGrapher</li>
+                     <li><code class="filename">control_cluster.py</code></li>
+                     <li><code class="filename">bot_op.py</code></li>
+                  </ul>
+               </div>
+               <p>Please be aware that any custom applications that use the Watcher
+                  		protocol should still operate correctly, however we recommend
+                  		upgrading them if possible to avoid any future incompatibilities.
+               </p>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Upgrading_WebConsole_19"></a>8.2.&nbsp;Upgrading WebConsole vs re-installing
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>During the migration phase from BigWorld 1.8 to 1.9, it is
+                  		recommended to install the BigWorld 1.9 server tools on a fresh
+                  		machine with a more recent linux distribution (eg: Fedora 8).
+                  		BigWorld 1.9 server tools are now much easier to maintain due to
+                  		their ability to run from default distribution packages (ie:
+                  		those provided by
+                  		<code class="filename">yum</code> and <code class="filename">apt</code>).
+               </p>
+               <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+                  <h3 class="title">Note</h3>
+                  <p>BigWorld does not support server tools from BigWorld 1.9
+                     		running on Fedora Core 6 or earlier.
+                  </p>
+               </div>
+               <p>While the overhead of installing a new machine to run the server
+                  		tools on may be frustrating, we believe it is the best long term
+                  		solution to enable the trouble free operation of the server tools
+                  		in your development environment.
+               </p>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e602"></a>8.2.1.&nbsp;Migrating WebConsole user database
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>When installing WebConsole from BigWorld 1.9, you may
+                     			wish to migrate your existing WebConsole user database to the
+                     			new machine. In order to do this, please follow the instructions
+                     			below, step by step. NB: The following instructions assume a
+                     			linux distribution of Fedora, please modify any commands as
+                     			appropriate if using Debian.
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>Install a new machine with linux (Note: do not install the server tools yet).</li>
+                        <li>Install a MySQL server on the new machine.</li>
+                        <li>Ensure the MySQL server has been started. <code class="code">/etc/init.d/mysqld start</code></li>
+                        <li>Create a database user account on the new MySQL server for the server tools. For more details, see the Server Installation
+                           Guide section Configure MySQL Server.
+                        </li>
+                        <li>Ensure WebConsole has been stopped on the original machine <code class="code">/etc/init.d/bw_web_console stop</code></li>
+                        <li>
+                           <p>Create the new <span class="literal">bw_web_console</span> database to migrate the data into.
+                           </p>
+                           <p>On the new server tools machine, start a mysql connection and create the database as follows:</p><pre class="programlisting">$ mysql -u <em class="emphasis">DB_USERNAME</em> -p
+Enter password:
+...
+mysql&gt; CREATE DATABASE bw_web_console;
+Query OK, 1 row affected (0.01sec)
+				</pre></li>
+                        <li>
+                           <p>Migrate the data from the old tools machine database to the new tools machine database.</p>
+                           <p>Login to the old tools machine, and as the root user perform the following:</p><pre class="programlisting">$ mysqldump --opt bw_web_console | mysql --host=<em class="emphasis">NEW_MACHINE</em> -u <em class="emphasis">DB_USERNAME</em> -p -C bw_web_console
+				</pre></li>
+                        <li>Install the server tools on the new machine.</li>
+                     </ul>
+                  </div>
+                  <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+                     <h3 class="title">Note</h3>
+                     <p>If you experience issues with SELinux disabling access when trying to run <span><strong class="command">mysqldump</strong></span>,
+                        			set the SELinux mode to 'Disabled' and try again. After performing the mysqldump operation you can safely re-enable
+                        			SELinux if desired.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch07.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch09.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;7.&nbsp;Watcher Network Protocol v2&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;9.&nbsp;Migrating the Game Database (MySQL)</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

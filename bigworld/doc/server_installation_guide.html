@@ -1,0 +1,1180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Server Installation Guide</title>
+    <link href="bigworld.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="bigworld.js"></script>
+</head>
+<body onLoad="loader();">
+<div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"/></div>
+
+<div class="titlepage">
+<!-- BIGWORLD SERVER INSTALLATION GUIDE -->
+<h1>BigWorld Server Installation Guide</h1>
+
+<!-- TABLE OF CONTENTS -->
+<hr>
+<div class="toc">
+  <p><b>Table of Contents</b></p>
+  <dl>
+  <dt><span class="chapter"><a href="#Overview">1. Overview</a></span></dt>
+  <dt><span class="chapter"><a href="#HWReqs">2. Hardware Requirements</a></span></dt>
+    <dd><dl>
+    <dt><span class="chapter"><a href="#CPUSpecs"           >2.1. CPU specifications</a></span></dt>
+    <dt><span class="chapter"><a href="#Duals_Singles_Quads">2.2. Duals/Single/Quad/Blades</a></span></dt>
+    <dt><span class="chapter"><a href="#NetworkCards"       >2.3. Network interface cards</a></span></dt>
+    <dt><span class="chapter"><a href="#DiskStorage"        >2.4. Disk storage</a></span></dt>
+    <dt><span class="chapter"><a href="#PowerSupplies"      >2.5. Power supplies</a></span></dt>
+    <dt><span class="chapter"><a href="#Memory"             >2.6. Memory</a></span></dt>
+    <dt><span class="chapter"><a href="#NOCBandwidth"       >2.7. NOC bandwidth</a></span></dt>
+    </dl></dd>
+  <dt><span class="chapter"><a href="#InstallFC">3. Installing Fedora 8</a></span></dt>
+    <dd><dl>
+    <dt><span class="chapter"><a href="#FCDVDInstall">3.1. Installing from DVD</a></span></dt>
+    <dt><span class="chapter"><a href="#FCPostInstall">3.2. Post-installation setup</a></span></dt>
+    </dl></dd>
+  <dt><span class="chapter"><a href="#InstallServer">4. Installing the BigWorld Server</a></span></dt>
+  <dd><dl>
+    <dt><span class="chapter"><a href="#ObtainingPackage">4.1. Obtaining the package</a></span></dt>
+    <dt><span class="chapter"><a href="#InstallBWMachined">4.2. Installing BWMachined</a></span></dt>
+      <dd><dl>
+	  <dt><span class="chapter"><a href="#BWMachinedRPMPackage">BWMachined RPM Package</a></span></dt>
+      <dt><span class="chapter"><a href="#RunDaemon">Run the daemon installation script</a></span></dt>
+      <dt><span class="chapter"><a href="#CreateBWMFiles">Create <code>bwmachined.conf</code> files</a></span></dt>
+        <dd><dl>
+        <dt><span class="chapter"><a href="#ConfUserEnv">Configure users' environment settings</a></span></dt>
+          <dd><dl>
+          <dt><span class="chapter"><a href="#LocalBwmachinedConf">Local file (<code>~/.bwmachined.conf</code>)</a></span></dt>
+          <dt><span class="chapter"><a href="#GlobalBwmachinedConf">Global file (<code>/etc/bwmachined.conf</code>)</a></span></dt>
+          </dl></dd>
+        <dt><span class="chapter"><a href="#ConfServComps">Configure server components and other categories</a></span></dt>
+          <dd><dl>
+		  <dt><span class="chapter"><a href="#BWMachinedConfandInternalInterface"><code>/etc/bwmachined.conf</code> and InternalInterface</a></span></dt>
+          <dt><span class="chapter"><a href="#BWMachinedConfandTimingMethod"><code>/etc/bwmachined.conf</code> and TimingMethod</a></span></dt>
+          <dt><span class="chapter"><a href="#BWMachinedConfandReviver"><code>/etc/bwmachined.conf</code> and Reviver</a></span></dt>
+          </dl></dd>
+        </dl></dd>
+        <dt><span class="chapter"><a href="#CheckBWMRunning">Check that BWMachined is running</a></span></dt>
+      </dl></dd> 
+    <dt><span class="chapter"><a href="#ConfigureMySQLServer">4.3. Configure MySQL server</a></span></dt>
+      <dd><dl>
+      <dt><span class="chapter"><a href="#MySQLTrouble">MySQL Troubleshooting</a></span></dt>
+      </dl></dd>
+    <dt><span class="chapter"><a href="#SetEnvVars">4.4. Setting environment variables</a></span></dt>
+    <dt><span class="chapter"><a href="#InstallTools">4.5. Installing server tools</a></span></dt>
+    <dt><span class="chapter"><a href="#ExtraBits">4.6. Extra bits</a></span></dt>
+      <dd><dl>
+      <dt><span class="chapter"><a href="#AddingBWPanel">Adding BWPanel to GNOME panel</a></span></dt>
+      </dl></dd>
+    </dl></dd>
+  <dt><span class="chapter"><a href="#ClusterConfiguration">5. Cluster Configuration</a></span></dt>
+    <dd><dl>
+    <dt><span class="chapter"><a href="#Security">5.1. Security</a></span></dt>
+      <dd><dl>
+      <dt><span class="chapter"><a href="#SecurityFedora">Fedora</a></span></dt>
+      <dt><span class="chapter"><a href="#SecurityDebian">Debian</a></span></dt>
+      </dl></dd>
+    <dt><span class="chapter"><a href="#Routing">5.2. Routing</a></span></dt>
+      <dd><dl>
+      <dt><span class="chapter"><a href="#RoutingFedora">Fedora</a></span></dt>
+      <dt><span class="chapter"><a href="#RoutingDebian">Debian</a></span></dt>
+      </dl></dd>
+    <dt><span class="chapter"><a href="#DisablingCron">5.3. Disabling <code>cron</code> jobs</a></span></dt>
+    </dl></dd>
+  <dt><span class="chapter"><a href="#DevelopmentConfiguration">6. Development Environment Configuration</a></span></dt>
+  <dt><span class="chapter"><a href="#DebianNotes">7. Debian Specific Notes</a></span></dt>
+  </dl>
+</div>
+<hr>
+
+<!-- OVERVIEW -->
+<h2><a name="Overview">1. Overview</a></h2>
+
+<p>This document describes how to install Fedora 8 Linux and the BigWorld
+Server. Fedora 8 is the recommended platform for a development
+environment. Debian Linux is recommended for a production environment. There is
+no guide here for installing Debian Linux but the BigWorld Server installation
+on a Debian system should be very similar to the one on Fedora 8.</p>
+
+<p><b>Note:</b> The object and executable files in the BigWorld Server package
+were compiled with the default configuration of <code>gcc</code> 4.1 built from
+source.  The <code>gcc</code> distributed with any standard distribution
+(Debian or FC6) may have different configuration options to the default, so
+server sources and extensions compiled with the distribution's <code>gcc</code>
+may lead to errors when running the linked executables (and dynamically linked
+extensions) &mdash; even if the linking appears to succeed. For example, Debian
+Sarge's <code>gcc</code> is configured with
+<code>'--enable-libstdcxx-allocator=mt'</code>, whereas the default
+configuration of <code>gcc</code> is not. This difference is incompatible.</p>
+
+<!-- HARDWARE REQUIREMENTS -->
+<h2><a name="HWReqs">2. Hardware Requirements</a></h2>
+
+<p>The quick summary: as a minimum, we require the following:</p>
+<div class="itemizedlist">
+<ul>
+  <li><p>1GHz CPU (non-mobile CPU preferred)</li>
+  <li><p>256MB RAM</li>
+  <li><p>8GB Hard Disk</li>
+  <li><p>100Mbps Network Interface Card</li>
+</ul>
+</div>
+
+<h3><a name="CPUSpecs">2.1. CPU specifications</a></h3>
+<p>In general, use the fastest CPU's that you can.
+Faster CPU's mean more entities per CPU and fewer machines.</p>
+
+<p>As far as which CPU to buy, look at the normal kinds of things for servers:
+big L1 and L2 cache sizes, and fast front-side buses are always better than small
+L1 and L2 cache sizes and slow front-side buses.</p>
+
+<p>Multiple processors will help you out due to lower network traffic and fewer
+machines, until such time as the processors are generating too much data to get
+to the network card (or over the PCI bus to the network card).</p>
+
+<p>If you have multiple processors, then make sure that you have one server
+component running on each CPU.</p>
+
+<h3><a name="Duals_Singles_Quads">2.2. Duals/Single/Quad/Blades</a></h3>
+<p>In general CPU density in each box is a price decision.
+Blade machines are expensive, but if you are paying expensive rates for your NOC
+it may work out to be cheaper.
+If we ignored the NOC cost, we recommend dual CPU machines.</p>
+
+<p>An example Blade setup would be as follows:</p>
+<b>BladeCenter LS20 885051U</b>
+<div class="itemizedlist">
+<ul>
+<li><p>Processor: Low Power AMD Opteron Processor Model 246 (Standard)</li>
+<li><p>Memory: 4 GB PC3200 ECC DDR RDIMM (2 x 2 GB Kit) System Memory</li>
+<li><p>IBM eServer BladeCenter (TM) Gigabit Ethernet Expansion Card</li>
+<li><p>SCSI Hard disk drive 1 : 73GB Non Hot-Swap 2.5" 10K RPM Ultra320 SCSI HDD</li>
+</ul>
+</div>
+
+<b>BladeCenter 86773XU</b>
+<div class="itemizedlist">
+<ul>
+<li><p>Optical device: IBM 8X Max DVD-ROM Ultrabay Slim Drive (Standard)</li>
+<li><p>Diskette drive: IBM 1.44MB 3.5-inch Diskette Drive (Standard)</li>
+<li><p>Power supply modules 1 and 2: BladeCenter 2000W Power Supplies one and two (Standard)</li>
+<li><p>Management modules: BladeCenter KVM / Management Module (Standard)</li>
+<li><p>Switch module bay 1: Nortel Networks Layer 2/3 Copper GbE Switch Module for IBM eServer BladeCenter</li>
+<li><p>Switch module bay 2: Nortel Networks Layer 2/3 Copper GbE Switch Module for IBM eServer BladeCenter</li>
+</ul>
+</div>
+
+<p>A setup with 10 LS20 blades in a 86773XU BladeCenter would cost approx $60k USD.</p>
+
+<h3><a name="NetworkCards">2.3. Network interface cards</a></h3>
+<p>1Gbps NICs are recommended.
+The accurate way to determine what NIC is required is to measure the inter-server
+traffic for your game.
+If the traffic is reaching 25% of the cards capacity we recommend using a faster
+card (ie if the traffic is more than 25Mbps use a 1Gbps NIC).
+Note most 100Mbps NIC cards cannot handle more than 50Mbps sustained throughput.</p>
+
+<h3><a name="DiskStorage">2.4. Disk storage</a></h3>
+<p>For the general machines (CellApps, BaseApps, and the various managers) RAID disk
+setups are not recommended.
+None of these machines use the disk sub-system extensively (and are certainly not
+disk bound).
+Use standard drives, that are big enough to store the entire world data (typically
+in the order of 1 to 10G).
+If a drive dies it can be replaced and the data copied from the master.</p>
+
+<p>The machine with the master copy of the data should use a RAID 5 system for speed
+and data integrity.
+Hot-swap drives will facilitate easy replacement when drives fail.
+The database server also needs to use RAID 5 for data integrity.
+We also recommend using 10k or 15k RPM drives (eSata or SCSI).
+The database for a game stores backup copies of all entities.
+This database can be large, potentialy 10G to 1TB, but this should be measured
+during development.
+This can be estimated by multiplying the number of entities, by their size,
+by the number of snapshots.</p>
+
+<h3><a name="PowerSupplies">2.5. Power supplies</a></h3>
+<p>We recommend the use of dual redundant PSUs for the database machine, and the
+master data server.  All other machines can use standard single PSU's, since a
+failure of these machines is not critical.
+It is cheaper to let the BigWorld fault tolerance system do the work on the software
+side.</p>
+
+<h3><a name="Memory">2.6. Memory</a></h3>
+<p>To calculate memory requirements for the CellApp we recommend the following:</p>
+<div class="itemizedlist">
+<ul>
+<li><p>Around 32MB to 128MB, for Linux to run comfortably (depends on how well you have stripped back the kernel and system services).</li>
+<li><p>Around 32MB for a CellApp or BaseApp to run comfortably with no entities on them and no spaces loaded.</li>
+<li><p>Enough RAM for your entities, and for your world geometry (remember that the cell needs to load up enough geometry to cover for the AoI for all entities it is supporting). This amount will depend on how dense your meshes are, and how much data is stored with each entity. 2GB of RAM would not be unusual for an average game.</li>
+</ul>
+</div>
+
+<p>The BaseApps would typically require around 512M, depending on how much entity data is stored.  All other machines require around 512M.</p>
+
+<h3><a name="NOCBandwidth">2.7. NOC bandwidth</a></h3>
+<p>This is easy to calculate.  Multiply the number of players by the desired bandwidth per player.  Outgoing bandwidth is generally higher that incoming.</p>
+
+
+<!-- INSTALLING FEDORA -->
+<h2><a name="InstallFC">3. Installing Fedora 8</a></h2>
+<p><b>Note</b>: Even experienced users should skim the following sections to
+	make sure that required packages are installed.</p>
+
+<!-- INSTALLING FEDORA - INITIAL CONFIGURATION -->
+<h3><a name="FCDVDInstall">3.1. Installing from DVD</a></h3>
+
+<div class="itemizedlist">
+<ul>
+<li><p>If you are using dual booting, then repartition the disk using a tool like 
+    PartitionMagic to leave about 10G free.
+    <p>You do not need to create a disk in the free space.</p>
+</li>
+<li><p>Boot the computer using the Fedora 8 DVD.
+    <p>You may need to select the CD/DVD ROM drive as a bootable device in the 
+       BIOS.</p>
+
+</li>
+<li><p>This installation guide is based on the graphical installer. Press 
+    <code>ENTER</code> at the first boot screen to select <code>'Install 
+    in graphical mode'</code>.
+    <p>If you are having trouble with video card drivers, then you can reboot and
+       try the text-only installer.</p>
+</li>
+<li><p>If this is the first time that the CD/DVD has been used, then it is worthwhile
+    to use the inbuilt test option.
+    <p>The test will take around 15 minutes. If you do not want to test, 
+       just select <code>Skip</code>.</p>
+</li>
+
+<li><p>Select your language and keyboard type.
+    <p>The language selected will be used for the installation procedure as well
+       as being the default language of the installed system.</p>
+    <!--  <p>Foreign languages/keyboards should be fine&mdash;we have carried out the
+       procedure for both English and Japanese with no problems.</p>  -->
+</li>
+
+<li><p><b>Disk partitioning</b>
+    <p>You can partition the disk as you see fit. The <b>Use free space on 
+       selected drives and create default layout</b> option should work for 
+       most situations.</p>
+</li>
+
+<!-- li><b>Grub configuration</b>
+    <p>You can usually use the default settings, but if you will be using dual 
+       booting, then one exception is the default OS to boot into. This can 
+       also be changed later in <code>/etc/grub.conf</code>.</p> </li  -->
+
+<li><p><b>Network configuration</b>
+    <p>The default settings - use DHCP - should work for most environments.</p>
+    <p>You may want to set the hostname manually though.</p>
+</li>
+
+<li><p><b>Time zone selection</b>
+    <p>Select your time zone.</p>
+    <p>If you are dual-booting with Windows, then you should leave the 
+       <code>'System clock uses UTC'</code> check box unchecked.</p>
+    </li>
+    
+<li><p><b>Setting the <code>root</code> password</b>
+    <p>You will need access to the <code>root</code> account to install some 
+       BigWorld Server components.</p></li>
+
+<li><p><b>Package selection</b>
+    <p>Select the <code>'Software Development'</code> option.</p>
+    <p>If you wish to customise your installation by using the 
+       <code>'Customise now'</code> option, please ensure that the following
+       packages are included:</p>
+       <ul><li><p>Development&rarr;Development Libraries</li>
+           <li><p>Development&rarr;Development Tools</li>
+       </ul>
+    <p>If you wish to use the MySQL server as your database or run WebConsole,
+      then you will need to install MySQL server. Select <code>'Customise now'</code> 
+       option and include the following package:</p>
+       <ul><li><p>Servers&rarr;MySQL Database</li></ul>
+    </li>
+
+<li><p>You will be asked to reboot the machine.</li>
+
+<li><p><a name="FirewallConfiguration"><b>Firewall configuration</b></a>
+    <p>For a development machine, the firewall should be disabled. The default 
+       firewall blocks all UDP traffic, which prevents the BigWorld Server 
+       from operating.</p>
+    <p>For a production machine, you will need to setup specialised firewalls
+ for your specific security requirements.  Guides for BigWorld Server specific
+ firewall settings are given in the <a href="#Security">Security</a> section
+ of this document.</p>
+    </li>
+ 
+<li><p><b>SELinux configuration</b>
+    <p>BigWorld Server is known to work with the default SELinux settings.</p>
+	<p> BigWorld Server Tools use shared libraries that require privileges. To
+ get around this, the security context of these libraries is relaxed by
+ the install script.</p></li>
+
+<li><p><b>Date and Time configuration</b>
+    <p>Set the current date and time.</p>
+    <p>It is recommended to tick <code>Enable Network Time Protocol</code> to
+       keep the time of all the computers on the network synchronised.</p></li>
+
+<li><p><b>Display configuration</b></li>
+ 
+<li><p><b>System user account creation</b>
+    <p>Create an account for the system user. Alternatively, you can leave
+       the fields empty and create your user accounts later. The account 
+       creation tools available later will have more options.</p>
+</li>
+<li><p>The Fedora installation program completes.</li>
+</ul>
+</div>
+
+<!-- INSTALLING FEDORA CORE 6 - Post-Installation Setup -->
+<h3><a name="FCPostInstall">3.2. Post-installation setup</a></h3>
+
+<p>The following steps assume that you are using Gnome desktop environment.</p>
+
+<div class="itemizedlist">
+<ul>
+
+<li><p><b>Create user accounts</b>
+    <p>Create additional accounts by logging in as root. Then select the menu
+       item <b>System&rarr;Administration&rarr;Users and Groups</b>.
+    </p>
+    <ul><li><p>BigWorld components assume that the username to UID mapping is unique
+            across the network i.e. two users with the same name on two 
+            different machines will have the same UID and vice versa.  If you 
+            are creating accounts with the same name on multiple machines, 
+            please ensure that they all have the UID by manually specifying 
+            their UID. See <a href="#ManualUID">Changing UID's</a> if you have
+            already created the user account and needs to reassign their
+            UID.</li>
+       <li><p>BigWorld components assume that server components started by the same
+           user (as identified by their UID) belongs to the same server
+           instance, even when those components are running on different
+           machines. To run multiple BigWorld Server instances, multiple user
+           accounts are needed.</li>
+    </ul></li>
+
+<li><p><b>Install updates</b>
+    <p>Although not strictly required, it is a good idea to install the latest
+    updates. The update tool is available either via the menu:
+    <b>Applications&rarr;System Tools&rarr;Software Updater</b>, or by using the
+	command:</p>
+	<pre>$ yum update</pre>
+</li>
+
+<li><p><b>Change screen saver</b>
+    <p>It is recommended to change the screen saver to one that does 
+       not consume any CPU, otherwise the server performance may be negatively 
+       affected at unexpected times.</p>
+    <p>Access the screensaver configuration page via the menu: 
+       <b>System&rarr;Preferences&rarr;Screensaver</b>. The 
+       <b>Blank Screen</b> screen saver is recommended.</p>
+</li>
+<li><p><b>Configure services</b>
+    <p>In order to avoid unexpected load spikes on your system from background
+       services, you may wish to disable any non-essential services. This can be
+       done from the 'Service Configuration' tool under the menu:
+       <b>System&rarr;Administration&rarr;Services</b>.
+       </p>
+    <p>Services that are recommended to disable include:</p>
+    <ul>
+       <li><p>cups</p></li>
+       <li><p>bluetooth</p></li>
+       <li><p>sendmail</p></li>
+       <li><p>yum-updatesd</p></li>
+    </ul>
+</li>
+
+<li><p><b>Check build tools</b>
+    <p>To build BigWorld Server, GCC 4.1 and <code>make</code> 3.8 must be
+       installed. These should be the default compiler and make utility on
+       Fedora 8. You can run the following commands to check:</p>
+       <pre>$ gcc --version
+$ make --version</pre></li>
+
+<li><p><b>Install wxPython</b>
+    <p>wxPython is used by some of the server tools. To install it, run the
+    following command as the <code>root</code> user:</p>
+       <pre>$ yum install wxPython</pre>
+</li>
+<li><p><b>Install Tk</b>
+    <p>The Tk GUI toolkit is used by some of the server tools. To install it,
+       run the following command as the <code>root</code> user:</p>
+       <pre>$ yum install tk</pre>
+</li>
+
+<li><p><b>Display access</b>
+    <p>By default, Fedora does not allow remote processes to open displays (windows) 
+       on your <code>root</code> terminal. This will prevent the BigWorld Server startup 
+       scripts from working.</p>
+    <p>You can check to see if it has been setup correctly with the command 
+       <code>$ xclock -display localhost:0.0</code>. This should start <code>xclock</code> 
+       on your display.</p>
+    <p>If you receive the error message <code>'Can't open display'</code>, it means that 
+       permissions need to be changed. To fix that, do the following:</p>
+    <ul>
+    <li><p>Run the configuration program from the menu 
+        <b>System&rarr;Administration&rarr;Login Screen</b>.</li>
+    <li><p>On the <b>Security</b> tab, turn off <b>Deny
+        connections to X server</b> option.</li>
+    <li><p>Run the <code>xclock</code> command as described above, to check that the 
+        permissions have been changed correctly. You may have to log out in order for the 
+        settings to take effect.</li>
+    </ul>
+</li>
+
+<li><p><a name="ManualUID"><b>Change UID's</b></a>
+    <p>It might happen that your system ends up with different UID's in different 
+       machines for the same login name, even if you are not using NIS or other such 
+       tool to synchronise login names.</p>
+    <p>To manually correct this problem, change the UID with the steps below:</p>
+    <ul>
+    <li><p>Make sure no one is logged in graphically.</li>
+    <li><p>Press <code>CTRL+ALT+F1</code> to switch to a text console.</li>
+    <li><p>Log in as <code>root</code>.</li>
+    <li><p>In <code>/etc/passwd</code> and <code>/etc/group</code>,
+        replace the old UID of the owner with the new one, making sure that it is 
+        not being used by any other user.</li>
+    <li><p>Issue the commands below:
+        <pre>$ rm -rf /tmp/xses-* /tmp/mapping-* /tmp/orbit-* /tmp/keyring-*
+$ chown -R <i>&lt;username&gt;</i>:<i>&lt;username&gt;</i> /home/<i>&lt;username&gt;</i></pre>
+    </li>
+    <li><p>Press <code>CTRL+ALT+F7</code> to return to the graphical login.</li>
+   </ul>
+</li>
+
+<li><p><a name="InstallMySQL"><b>Install MySQL server</b></a>
+    <p>This step is required if you wish to use BigWorld WebConsole and
+       StatLogger, or use DBMgr with MySQL support.</p>
+    <p>BigWorld Server is compatible with MySQL 4.1 and 5.0. Compatibility with 
+       MySQL 5.1 is untested. Support for MySQL 4.0 has been deprecated.</p>
+    <ul>
+        <li><p>If you have not already installed the MySQL server, you can do so by
+            running the following command as the <code>root</code> user:
+            <pre>root@localhost # yum install mysql-server</pre></li>
+        <li><p>If you intend on using DBMgr with MySQL support, also ensure you have
+           the MySQL client development package as this is required to rebuild DbMgr
+           with MySQL support. 
+           <p>Install the MySQL client development package by 
+           running the following command as the root user:</p>
+           <pre>root@localhost # yum install mysql-devel</pre></li>
+    </ul>
+</li>
+</ul>
+</div>
+
+<!-- INSTALLING THE BIGWORLD SERVER -->
+<h2><a name="InstallServer">4. Installing the BigWorld Server</a></h2>
+
+<!-- INSTALLING THE BIGWORLD SERVER - EXTRACTING ARCHIVES -->
+<h3><a name="ObtainingPackage">4.1. Obtaining the package</a></h3>
+
+<p>To obtain the BigWorld server from the SVN patch repository, use your 
+provided username / password to access instructions on how to use the 
+repository and upgrade releases. These can be found at:
+
+<pre><a href="https://svn01.bigworldtech.com/docs">https://svn01.bigworldtech.com/docs/</a></pre>
+
+
+<!-- INSTALLING THE BIGWORLD SERVER - INSTALLING BWMACHINED -->
+<h3><a name="InstallBWMachined">4.2. Installing BWMachined</a></h3>
+
+<p>BWMachined is a daemon used in the BigWorld Server environment to
+   start and track processes, and publish information about BigWorld servers.</p>
+<p>It must be running before any other BigWorld processes are started. It is strongly
+   recommended to install it as a daemon, so it is always running 
+   (although this is not strictly necessary).</p>
+<p><b>Note:</b> The version of BWMachined shipped in BigWorld Technology 1.8 is not
+compatible with earlier versions.
+In BigWorld 1.8, the executable has been renamed from bwmachined to bwmachined2
+to allow running BigWorld Server 1.7 (or earlier) on the same cluster as newer
+versions. The UDP port it listens on has also changed from 20014 to 20018.</p>
+
+
+<p>There are two installation methods for BWMachined.  The first installation 
+method, described in <a href="#BWMachinedRPMPackage">section 4.2.1</a>, uses 
+a BWMachined RPM Package.  The second installation method, described in 
+<a href="#RunDaemon">sections 4.2.2 to 4.2.4</a>, uses the 
+<code>bwmachined2.sh</code> script.</p>
+
+<p>For more information on how to configure BWMachined, please see 
+<a href="#CreateBWMFiles">section 4.2.3</a>.</p> 
+
+
+<h4><a name="BWMachinedRPMPackage">4.2.1. BWMachined RPM Package</a></h4>
+
+<p>This section discusses how to install BWMachined using a BWMachined RPM
+package.  For more information on BigWorld RPM implementation, such as 
+how to generate the BWMachined RPM package, see the document 
+Server Operations Guide, chapter RPM.</p>
+
+<p>BWMachined RPM package can be found in 
+<code>bigworld/tools/server/rpm/binary_rpms</code> directory.</p>
+
+<p>To install BWMachined using a RPM package directly, run the 
+following command:</p>
+<pre>
+$ yum --nogpgcheck install bigworld-bwmachined-&lt;version&gt;-&lt;release&gt;.i386.rpm
+</pre>
+
+<p>where &lt;version&gt; and &lt;release&gt; are replaced by the actual version and 
+release number.</p>
+
+<p><b>Note:</b>Currently, RPM packages are supported on i386 architecture
+only.</p> 
+
+<p>For a large environment where BWMachined needs to be installed on many 
+machines, we recommend that a <code>yum</code> repository to be set up to 
+provide the BWMachined RPM package.  This allows the BWMachined to be 
+installed by running the <code>yum</code> command on a machine without the
+need to manually copy the BWMachined RPM package to that machine first.  For 
+more information on how to set up a <code>yum</code> repository, see Server 
+Operations Guide, chapter RPM.</p>
+
+<p>If a <code>yum</code> repository has been set up and the BWMachined 
+package is made available in the repository, then the BWMachined can be 
+installed using the following command:</p>
+
+<pre>
+$ yum --nogpgcheck install bigworld-bwmachined
+</pre>
+
+
+
+
+<!-- INSTALLING THE BIGWORLD SERVER - INSTALLING BWMACHINED - RUN THE DAEMON INSTALLATION SCRIPT -->
+<h4><a name="RunDaemon">4.2.2. Run the daemon installation script</a></h4>
+
+<p>To install BWMachined, you need to run <code>bwmachined2.sh</code> as the
+root user in the <code>bigworld/tools/server/install</code> directory.</p>
+
+<p>For example, issue the commands below:</p>
+
+<pre>
+user@localhost $ cd ~/mf/bigworld/tools/server/install
+user@localhost $ su
+root@localhost # ./bwmachined2.sh install</pre>
+
+<p>These commands will do the following:</p>
+<div class="itemizedlist">
+  <ul>
+  <li><p>Create the BWMachined init script in 
+      <code>/etc/rc.d/init.d/</code>.</li>
+  <li><p>Create the symbolic links in <code>/etc/rc[1-5].d/</code>. It is setup 
+      to stop in <code>rc1.d/</code> and start in <code>rc[2-5].d/</code> 
+      (you can change these manually, if desired).</li>
+  <li><p>Copy the BWMachined executable to the folder 
+      <code>/usr/local/sbin/</code>.</li>
+  <li><p>Launch the executable in daemon mode (as if the init script were called 
+      with the <code>'start'</code> argument).</li>
+  </ul>
+</div>
+
+<p><b>Note</b>: If installing BWMachined for the first time, you may receive an
+	error message such as the following in Fedora:</p>
+<pre>Stopping bwmachined2:                                     [<span style="color:red;">FAILED</span>]
+Starting bwmachined2:                                     [  <span style="color:green;">OK</span>  ]
+</pre>
+
+<p>In Debian Sarge, the corresponding error may appear as below:</p>
+
+<pre>Stopping bwmachined2: start-stop-daemon: stat /usr/local/sbin/bwmachined2: No such file or directory
+.
+Starting bwmachined2: .
+</pre>
+
+<p>These errors are due to attempts to remove a nonexistent BWMachined
+	installation and can be safely ignored.</p>
+
+<!-- INSTALLING THE BIGWORLD SERVER - INSTALLING BWMACHINED - CREATE BWMACHINED.CONF FILES -->
+<h4><a name="CreateBWMFiles">4.2.3. Create <code>bwmachined.conf</code> files</a></h4>
+
+<p>When running server components and using some of the server tools, there are
+two important settings:</p>
+<div class="itemizedlist">
+<ul>
+    <li><p>Where to find executable files</li>
+    <li><p>What resource paths to use</li>
+</ul>
+</div>
+
+<p>The preferred way to specify these settings is in file <code>~/.bwmachined.conf</code>
+(where <code>~</code> indicates the user's home directory). Note that the period character
+before the file name causes it to not be displayed by <code>ls</code>,
+unless the <code>-a</code> option is specified.</p>
+
+<p>For example, if you are using BWMachined to start BigWorld Server processes,
+   it will look for <code>.bwmachined.conf</code> in the root of your home
+   directory (you pass it your UID when requesting a process start). For
+   compatibility with older versions of BigWorld Technology, if the file is not found, then BWMachined will
+   look for the global <code>conf</code> in <code>/etc/bwmachined.conf</code>.
+   <b>NB:</b> Specifying game resource paths via /etc/bwmachined.conf is
+   deprecated. Please use a per-user ~/.bwmachined.conf file instead.</p>
+
+<!-- INSTALLING THE BIGWORLD SERVER - INSTALLING BWMACHINED - CREATE BWMACHINED.CONF FILES - CONFIGURE USERS' ENVIRONMENT SETTINGS -->
+<h5><a name="ConfUserEnv">4.2.3.1. Configure users' environment settings</a></h5>
+
+<h6><a name="LocalBwmachinedConf">Local file (<code>~/.bwmachined.conf</code>)</a></h6>
+
+<p>The local file has to be manually created. Below is an example
+   <code>~/.bwmachined.conf</code>:</p>
+   <pre># .bwmachined.conf
+# Format: MF_ROOT;BW_RES_PATH 
+/home/johns/mf;/home/johns/mf/fantasydemo/res:/home/johns/mf/bigworld/res</pre>
+
+<p>The path before the semi-colon should point to the root directory of the
+   installed files. The paths after the semi-colon (separated by colon
+   characters) specify the resource paths that will be used to find resources
+   used by your game.</p>
+
+<p>For compatibility with older version of BigWorld Technology, BWMachined can have its
+    settings specified globally. The advantage of the local
+    <code>.bwmachined.conf</code> is that modifying its settings is very easy,
+    especially when home directories are network-mounted.</p>
+
+<h6><a name="GlobalBwmachinedConf">Global file (<code>/etc/bwmachined.conf</code>)</a></h6>
+
+<p>Below is an example of <code>/etc/bwmachined.conf</code>:</p>
+   <pre>#--------------------------------------------------------------------------
+# Sample bwmachined.conf - /etc/bwmachined.conf
+# Format is:  uid;MF_ROOT;BW_RES_PATH
+#--------------------------------------------------------------------------
+500;/home/johns/mf;/home/johns/mf/fantasydemo/res:/home/johns/mf/bigworld/res
+502;/home/maryb/mf;/home/maryb/mf/cz/res:/home/maryb/mf/bigworld/res</pre>
+
+<p>As shown in the example above, the global <code>bwmachined.conf</code> has 
+   to include an entry for every user, echoing the environment settings.</p>
+
+<!-- INSTALLING THE BIGWORLD SERVER - INSTALLING BWMACHINED - CREATE BWMACHINED.CONF FILES - CONFIGURE SERVER COMPONENTS AND OTHER CATEGORIES -->
+<h5><a name="ConfServComps">4.2.3.2. Configure server components and other categories</a></h5>
+
+<p>After the lines configuring environment settings for users (usually empty), the global file
+   can contain entries for categories, and a list of items pertaining to it, 
+   with the syntax below (* meaning 0 or more occurrences):</p>
+   <pre>*[<i>category</i>]
+*<i>item</i></pre>
+
+<p>Please note that this setting can only be specified on the global 
+   configuration file.</p>
+
+<p>Tools can query BWMachined to find the tags associated with 
+   categories. Categories may be used by future tools or customer-created 
+   tools.</p>
+
+<p>An example <code>/etc/bwmachined.conf</code> would have its bottom part as 
+   below (since the top part will contain user settings, as described in the 
+   section above):</p>
+   <pre>[Colours]
+blue
+green
+red</pre>
+
+<h6><a name="BWMachinedConfandInternalInterface"><code>/etc/bwmachined.conf</code> and InternalInterface</a></h6>
+<p>The BigWorld machine daemon is used for both internal machines and
+out-facing machines such as those that BaseApps and LoginApps are run on. The
+protocol that BigWorld components use for discovery of server processes, and
+process startup registry involves a UDP broadcast to the machine daemons. 
+</p>
+
+<p>The machine daemon must determine the interface to receive these broadcasts
+from. By default, the machine daemon will determine which interface is the
+internal interface by sending a broadcast packet on each interface and waiting
+for this broadcast packet to be returned. The interface which receives the
+first broadcast packet is assumed to be the internal network.</p>
+
+<p>For the out-facing machines with more than one interface, this may result in
+the incorrect interface being chosen. In this case, the
+<code>[InternalInterface]</code> configuration option must be set with either
+the dotted-decimal address or the name of the interface that is connected to
+the internal
+network.</p>
+
+<p>For example, using the name of the interface:</p>
+
+<pre>[InternalInterface]
+eth1</pre>
+
+<p>Using dotted-decimal notation:</p>
+
+<pre>[InternalInterface]
+192.168.0.1</pre>
+
+<p>If this option is not specified, auto-discovery of the internal interface
+will be performed. If the option is specified, but no interface is found that
+matches the value set in InternalInterface, then an error will be logged to
+syslog and the machine daemon process will terminate.</p>
+
+<h6><a name="BWMachinedConfandTimingMethod"><code>/etc/bwmachined.conf</code> and TimingMethod</a></h6>
+
+<p>The BigWorld server components can use one of three different methods for
+timing calculations. One method uses Read Time Stamp Counter
+(<code>rdtsc</code>), one uses <code>clock_gettime</code> calls and the other 
+uses <code>gettimeofday</code> calls.
+The <code>rdtsc</code> method is significantly faster but has problems on
+machines with SpeedStep technology or multicore machines where the Time Stamp
+Counter is not synchronised between cores.</p>
+<p>
+Processes spawned by BWMachined have this set from
+their <code>[TimingMethod]</code> category. This can be set to
+<code>rdtsc</code>, <code>gettime</code> or <code>gettimeofday</code>. 
+For example, to use the <code>clock_gettime</code> method, add the following to
+<code>/etc/bwmachined.conf</code>.
+</p>
+
+<pre>[TimingMethod]
+gettime
+</pre>
+
+<p>
+<b>Note</b>: For processes not started via BWMachined, the <code>BW_TIMING_METHOD</code>
+environment variable is used.
+</p>
+
+<h6><a name="BWMachinedConfandReviver"><code>/etc/bwmachined.conf</code> and Reviver</a></h6>
+
+<p>When the Reviver starts, it queries the local BWMachined process, 
+    and will only support the components that have an entry in a special 
+    <code>[<i>category</i>]</code> called <code>Components</code> on 
+    <code>/etc/bwmachined.conf</code>. 
+</p>
+
+<p>An example <code>/etc/bwmachined.conf</code> specifying that the Reviver 
+   should support all server components would have its bottom part as below:</p>
+   <pre>[Components]
+baseApp
+baseAppMgr
+cellApp
+cellAppMgr
+dbMgr
+loginApp</pre>
+   
+<p><b>Note</b>: BaseApp and CellApp will not be restarted by Reviver, the 
+	<code>[Components]</code> entries are used by the WebConsole and
+	control_cluster.py to determine which processes should be started by
+	bwmachined on that host.</p>
+
+<p><b>Note</b>: If the <code>[Components]</code> category does not contain any
+    entries, then Reviver will support all server components.</p> 
+
+<p><b>Note</b>: The configuration file is only read when BWMachined 
+    starts. It will have to be restarted if you want it to acknowledge your 
+    changes.</p>
+ 
+<!-- INSTALLING THE BIGWORLD SERVER - INSTALLING BWMACHINED - CHECK THAT BWMACHINED IS RUNNING -->
+<h4><a name="CheckBWMRunning">4.2.4. Check that BWMachined is running</a></h4>
+
+<div class="itemizedlist">
+<ul>
+<li><p>To check if the daemon is running, issue the command below:
+   <pre>$ ps ax | grep bwmachined</pre>
+   <p>The output should be two lines: one for the <code>grep</code> command 
+      itself, and the other for BWMachined process.</p></li>
+
+<li><p>Another way to verify if the daemon is running, is to run the <code>mls</code>
+    utility (for more details, see the document Server Operations Guide, chapter 
+    Miscellaneous Command-line Tools).
+    <p>To use it, issue the command below:</p>
+    <pre>$ ~/mf/bigworld/tools/server/mls</pre>
+  <p>The machines correctly running BWMachined should be displayed, as 
+     in the example below:</p>
+     <pre>We have shire    at 10.40.3.37 : cpu at 2201</pre>
+  <p>If you your machine is not listed, but has BWMachined running, 
+     then you might need to check your firewall rules. For more details, see 
+     section <a href="#FirewallConfiguration">Installing Fedora 8&rarr;Installing from DVD&rarr;
+     Firewall Configuration</a> in this document.</p></li>
+</ul>
+
+
+</div>
+
+<!-- INSTALLING THE BIGWORLD SERVER - CONFIGURE MYSQL SERVER -->
+<h3><a name="ConfigureMySQLServer">4.3. Configure MySQL server</a></h3>
+<p>This step is required if you wish to use BigWorld WebConsole and
+   StatLogger, or use DBMgr with MySQL support.</p>
+<p>At this point it is assumed you have installed the MySQL server and
+   the MySQL client development packages. See <a href="#InstallMySQL">
+   Installing MySQL</a> for more information.</p>
+<div class="itemizedlist">
+<ul>
+<li><p>
+	<p>The MySQL daemon is not configured to run by default in Fedora.  You can
+	check whether or not it is running with <code>`/sbin/service mysqld
+	status`</code>.  If (as expected) the MySQL daemon isn't running, you can
+	manually start it with <code>`/sbin/service mysqld start`</code>.</p>
+	
+	<p>To ensure that MySQL starts automatically each time you boot the machine,
+	you can use the <b>chkconfig</b> utility.  You can see what runlevels MySQL
+	is enabled for with <code>`/sbin/chkconfig --list mysqld`</code>.  Chances
+	are, it will be disabled for all runlevels, so you can add it to the
+	network-enabled runlevels with <code>`/sbin/chkconfig --level 35 mysqld
+	on`</code>.
+	</p>
+</li>
+
+<li><p>The default MySQL installation is configured with one user called
+    <code>root</code>. Note that this is <i>not</i> the same as 
+    the system <code>root</code> user. 
+    <p>Additional users may be created using the <code>mysql</code> 
+       command-line utility. A user is required for DBMgr's database and
+           for the WebConsole and StatLogger server tools.</p>
+    <p>Firstly, log in as the MySQL <code>root</code> user:</p>
+       <pre>$ mysql -u root</pre>
+    <p>Then create an additional user using the following commands:</p>
+       <pre>mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'bigworld'@'localhost' IDENTIFIED BY 'bigworld_passwd';
+mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'bigworld'@'%' IDENTIFIED BY 'bigworld_passwd';</pre>
+    <p>The above commands creates a user called <code>bigworld</code> that
+       has <code>ALL PRIVILEGES</code> on all databases. You can restrict
+       the access to specific databases by replacing <code>*.*</code> with
+       a more restrictive pattern. Also, you can restrict the machines from
+       which the user can connect by specifying a more restrictive pattern
+       after the <code>@</code> symbol. The bigworld user, however,
+       requires <code>ALL PRIVILEGES</code> to be granted.</p></li>
+<li><p>Create a new database using the <code>mysql</code> command-line utility.
+    For example:
+    <pre>mysql&gt; CREATE DATABASE fantasydemo;</pre>
+</li>
+<li><p>The DBMgr binary provided in your package does <i>not</i> have MySQL 
+    support built-in. You will need to rebuild DBMgr with MySQL support
+    enabled. Please refer to the Server Operations Guide for instructions
+    on how to rebuild and configure your game environment for MySQL support.
+</li>
+</ul>
+</div>
+
+<h4><a name="MySQLTrouble">4.3.1. MySQL Troubleshooting</a></h4>
+<div class="itemizedlist">
+<ul>
+<li><p>MySQL documentation suggests that the innodb_buffer_pool_size system variable 
+    can be set to 80% of the physical memory size. However, you must
+    also take into account that the total memory available to a 32-bit
+    process under Linux is 3GB. And within that 3GB, the heap can only
+    occupy 1.8GB. So even if the machine has 4GB of physical memory,
+    <code>innodb_buffer_pool_size</code> should not be set to more than
+    1.5GB.  Otherwise, "out of memory" errors may occur when MySQL
+    server is under heavy load.</li>
+</ul>
+</div>
+
+<!-- INSTALLING THE BIGWORLD SERVER - SETTING ENVIRONMENT VARIABLES -->
+<h3><a name="SetEnvVars">4.4. Setting environment variables</a></h3>
+
+<p>Prior to BigWorld Technology 1.8, environment variables were read by various processes
+   to indicate where resources were kept. As of version 1.8, the preferred method for specifying
+   these values is via <code>~/.bwmachined.conf</code> file. For details, see section
+   <a href="#ConfUserEnv">Installing the BigWorld Server&rarr;
+                          Installing BWMachined&rarr;
+                          Create <code>bwmachined.conf</code> files&rarr;
+                          Configure users' environment settings</a>.</p>
+<div class="itemizedlist">
+<ul>
+<li><p><code><b>MF_ROOT</b></code>
+    <p>This variable should be set to the root of your installation of BigWorld Server.</p>
+    <p>For example, <code>/home/johns/mf</code>.</p></li>
+
+<li><p><code><b>BW_RES_PATH</b></code>
+    <p>This variable specifies the paths that BigWorld Technology's resource manager should 
+       use when loading files.</p>
+    <p>It can contain multiple paths; if a resource is not found in the first 
+       path, then the second one will be checked, and so on.</p>
+    <p>It will almost always have two paths specified, with the second one being 
+       <code>$MF_ROOT/bigworld/res</code>.</p> 
+    <p>This path contains system resources that are used by the tools, as well as 
+       standard resources that the game uses, such as fonts.</p>
+    <p><b>Note</b>: Problems can occur if the path order is reversed. For example,
+       to set up <code>BW_RES_PATH</code> to use the FantasyDemo resources, you 
+       would set it to <code>$MF_ROOT/fantasydemo/res:$MF_ROOT/bigworld/res</code>&mdash;
+       with <code>fantasydemo</code> listed before <code>bigworld</code>.</p></li>
+
+<li><p><code><b>MF_CONFIG</b></code>
+    <p>This variable indicates the configuration to use when compiling and
+       running the server via BWPanel.</p></li>
+</ul>
+</div>
+
+<!-- INSTALLING THE BIGWORLD SERVER - INSTALLING SERVER TOOLS -->
+<h3><a name="InstallTools">4.5. Installing server tools</a></h3>
+<p>
+A suite of utilities collectively referred to as <b>Server Tools</b> is provided to 
+monitor and query BigWorld Server status, both live and post event. 
+These tools include WebConsole, MessageLogger and StatLogger.</p>
+
+<p>
+A typical deployment of the server tools is to install one instance of the 
+WebConsole, MessageLogger and StatLogger in the network.  The WebConsole can 
+be used to control multiple BigWorld servers.  Each server is running under 
+different Unix account.  A WebConsole account will need to be created for each 
+user (e.g. server operator/developer) that will control a BigWorld server in 
+the network.  Each Unix user can only run one BigWorld server at a time.  
+</p>
+
+<p>
+To install these server tools, refer to the 
+<a href="server_tools_installation_guide.html">Server Tools Installation Guide</a>.
+</p>
+
+<!-- INSTALLING THE BIGWORLD SERVER - EXTRA BITS -->
+<h3><a name="ExtraBits">4.6. Extra bits</a></h3>
+
+<!-- INSTALLING THE BIGWORLD SERVER - EXTRA BITS - ADDING BWPANEL TO GNOME PANEL -->
+<h4><a name="AddingBWPanel">4.6.1. Adding BWPanel to GNOME panel</a></h4>
+<p>As a simple way to manage the server cluster, BigWorld 
+   developed the BWPanel tool, a simple front-end to the server (for more 
+   details, see the document Server Operations Guide, chapter Admin Tools, 
+   section BWPanel).</p> 
+<p>To make an icon on the GNOME panel to start it, follow the steps below 
+   (please note that doing so will have the downside that you may not see 
+   error messages that would appear in the terminal):</p>
+<div class="itemizedlist">
+  <ul>
+    <li><p>Right-click the GNOME panel.</li>
+    <li><p>Select <b>Add to Panel/Launcher...</b> menu item.</li>
+    <li><p>Set <b>Name</b> field to <code>BWPanel</code>.</li>
+    <li><p>Set <b>Command</b> field to 
+    <code>/home/&lt;server_account&gt;/mf/bigworld/tools/server/bwpanel/bwpanel</code>.</li>
+  </ul>
+</div>
+
+<!-- CLUSTER CONFIGURATION -->
+<h2><a name="ClusterConfiguration">5. Cluster Configuration</a></h2>
+
+<!-- CLUSTER CONFIGURATION - SECURITY -->
+<h3><a name="Security">5.1. Security</a></h3>
+
+<p>In a BigWorld Server cluster, not all machines are connected to the public
+   internet, but those that are need to be secured well.</p>
+
+<p>This is most easily achieved by using a firewall to block incoming packets. 
+   In general, the approach for machines with public IP addresses should be to 
+   block all incoming UDP packets on the interface with the public IP.</p>
+<p>The exception is that LoginApp's and BaseApp's need to allow UDP traffic to
+   the ports they listen on (specified by <code>loginApp/port</code> and
+   <code>baseApp/externalPort</code> in <code>res/server/bw.xml</code>).</p>
+
+<p>Using the Linux firewall configuration tool, <code>iptables</code>, we can
+	add a rule to drop all incoming UDP traffic on the external interface
+	(in the examples below, we assume this is <code>eth1</code>), as illustrated below:</p>
+   <pre>$ /sbin/iptables -A INPUT -p udp -i eth1 -j DROP</pre>
+
+<p>On the machines running LoginApp's, we can add a rule to allow traffic
+   through on the login port (using the default of 20013), as illustrated
+   below:</p>
+   <pre>$ /sbin/iptables -I INPUT 1 -p udp -i eth1 --destination-port 20013 -j ACCEPT</pre>
+
+<p>Similarly, for machines running BaseApp's, we add similar rules to allow
+	traffic through on the BaseApp external port as specified in the
+	<code>baseApp/externalPort</code> option.</p>
+
+<p>We use <code>-I INPUT 1</code> in the new rule instead of <code>-A
+	INPUT</code> because <code>iptables</code> applies the first rule in the
+	chain that matches an incoming packet. Therefore, we need to insert the
+	rule for accepting login packets before the rule for rejecting all UDP
+	traffic on <code>eth1</code>.</p>
+
+<p>For a production server, you should disable all networking services (except 
+   perhaps SSH).<br/>
+   To be on the safe side, you can also block all incoming TCP traffic, as
+   illustrated below:</p>
+   <pre>$ /sbin/iptables -I INPUT 1 -p tcp -i eth1 --destination-port 22 -j ACCEPT
+$ /sbin/iptables -A INPUT -p tcp -i eth1 -j DROP</pre>
+
+
+<p>The BWMachineD process requires the ability to broadcast on the internal
+interface (here denoted as <code>eth0</code>) on UDP ports 20018 and 20019, and receive back its own replies. The
+firewall rules should accommodate this requirement. For example:</p>
+
+<pre>$ /sbin/iptables -I INPUT 1 -p udp -i eth0 -m multiport --destination-ports 20018:20019 -j ACCEPT
+</pre>
+
+
+<p>You must ensure that the firewall rules are restored each time the machine
+   boots.</p>
+
+<!-- CLUSTER CONFIGURATION - SECURITY - FEDORA -->
+<h4><a name="SecurityFedora">5.1.1. Fedora</a></h4>
+
+<p>Under Fedora, save these <code>iptables</code> commands to 
+   <code>/etc/sysconfig/iptables</code>:</p>
+   <pre>$ /sbin/iptables-save &gt; /etc/sysconfig/iptables</pre>
+
+<!-- CLUSTER CONFIGURATION - SECURITY - DEBIAN -->
+<h4><a name="SecurityDebian">5.1.2. Debian</a></h4>
+
+<p>Under Debian, you can use <code>iptables-restore</code> from a saved iptables 
+ruleset made using <code>iptables-save</code>.</p>
+<p>First, after applying the rules above, save the current ruleset to a file, 
+using <code>iptables-save</code>:</p>
+   <pre>$ /sbin/iptables-save &gt; /root/iptables.ruleset</pre>
+<p>Then, instruct Debian to restore this ruleset when the
+appropriate interface goes up. We do this by adding a script (called, for
+example, <code>restore.iptables</code>) to <code>/etc/network/if-up.d</code>
+(make sure also that it is executable):</p>
+
+   <pre>#!/bin/sh
+
+# restore-iptables
+# Startup script run when interface comes up to restore a previously saved
+# ruleset
+
+# restore the ruleset stored here
+RULESET_PATH=/root/iptables.ruleset
+
+/sbin/iptables-restore ${RULESET_PATH}
+</pre>
+
+<p>Ensure that this script is executable:</p>
+   <pre>$ chmod +x /etc/network/if-up.d/iptables-restore</pre>
+
+
+<!-- CLUSTER CONFIGURATION - ROUTING -->
+<h3><a name="Routing">5.2. Routing</a></h3>
+
+<p>A large number of tools and server components in BigWorld Technology rely on being
+   able to send IP broadcast packets to the default broadcast address
+   (255.255.255.255), and for them to be routed correctly.</p>
+
+<p>This will happen by default on a machine with only one network interface 
+   (<i>i.e.</i>, machines on the internal network only, such as CellApp machines, 
+   DBMgr machines, etc...).<br/>
+   For machines with two network interfaces (<i>i.e.</i>, BaseApp and LoginApp 
+   machines), we need to make sure that packets sent to the broadcast address 
+   are routed via the internal interface.</p>
+
+<p>We can make sure this is done correctly by making an entry in the kernel
+   routing table with <code>ip</code> (we assume that <code>eth0</code> is on 
+   the internal network):</p>
+   <pre>$ /sbin/ip route add broadcast 255.255.255.255 dev eth0</pre>
+
+<p>You need to ensure this route is applied by default whenever <code>eth0</code> is brought online. </p>
+
+<!-- CLUSTER CONFIGURATION - ROUTING - FEDORA -->
+<h4><a name="RoutingFedora">5.2.1. Fedora</a></h4>
+
+<p>Under Fedora, create the file
+   <code>/etc/sysconfig/network-scripts/route-eth0</code> with everything after
+   <code>ip route add</code> in it:</p>
+   <pre>$ echo "broadcast 255.255.255.255 dev eth0" &gt; /etc/sysconfig/network-scripts/route-eth0</pre>
+
+<!-- CLUSTER CONFIGURATION - ROUTING - DEBIAN -->
+<h4><a name="RoutingDebian">5.2.2. Debian</a></h4>  
+
+<p>Under Debian, you will need to add a script to
+<code>/etc/network/if-up.d</code> (for example,
+<code>set-broadcast-route-dev</code>)
+as below:</p>
+   <pre>#!/bin/sh
+# set-broadcast-route-dev
+
+/sbin/ip route add broadcast 255.255.255.255 dev eth0</pre>
+
+<p>Ensure that this script is executable:</p>
+   <pre>$ chmod +x /etc/network/if-up.d/set-broadcast-route-dev</pre>
+
+
+<h3><a name="DisablingCron">5.3. Disabling <code>cron</code> jobs</a></h3>
+
+<p><code>Cron</code> jobs may adversely affect the performance of a running 
+server. For example, many distributions ship with default <code>cron</code> jobs 
+to update the <i>slocate</i> database. Such jobs may involve reading from each part of
+affected disks, effectively causing a flush of the disk cache Linux has in
+memory, and a momentary lapse in performance of server processes, as disk
+swapping starts to occur on the host machine.
+</p>
+
+<p>We recommend that BigWorld Server machines have resource-intensive (CPU,
+memory or disk) <code>cron</code> jobs disabled in production. You can achieve this 
+(with various levels of granularity) by doing one of the following as the superuser:</p>
+<div class="itemizedlist">
+<ul>
+<li><p>Removing the relevant <code>cron</code> jobs from the following appropriate folders: 
+		<ul>
+		<li><p><code>/etc/cron.d</code> (contains crontabs for system services)</li>
+		<li><p><code>/etc/cron.hourly</code> (for hourly <code>cron</code> job scripts)</li>
+		<li><p><code>/etc/cron.daily</code> (for daily <code>cron</code> job scripts)</li>
+		<li><p><code>/etc/cron.weekly</code> (for weekly <code>cron</code> job scripts)</li>
+		<li><p><code>/etc/cron.monthly</code> (for monthly <code>cron</code> job scripts)</li>
+		</ul>
+	<p>Also remove any unnecessary user-level <code>cron</code> jobs.</p>
+	<p><b>Note</b>: In particular on Fedora systems, there may be a script
+		called <code>beagle-crawl-system</code> which is part of the Beagle
+		desktop search infrastructure, and indexes installed applications and
+		their associated documentation. You can disable this by moving this
+		cron job out of the <code>/etc/cron.daily</code> directory.  You may
+		also wish to disable the beagle user-level daemon from starting up.
+		This is usually started as part of your GNOME session, and can be
+		disabled via <b>System&rarr;Preferences&rarr;More
+		Preferences&rarr;Sessions&rarr;Startup Programs</b>. Find the entry for
+		<code>beagled</code> and disable it. </p>
+
+</li>
+<li><p>Removing altogether regular cronjobs from the system crontab by editing
+<code>/etc/crontab</code>, and commenting the appropriate lines:
+	<pre>
+# /etc/crontab: system-wide crontab
+...
+# m h dom mon dow user  command
+<b style="color:red;">#</b>17 *    * * *   root    run-parts --report /etc/cron.hourly
+<b style="color:red;">#</b>25 6    * * *   root    test -x /usr/sbin/anacron || run-parts --report /etc/cron.daily
+<b style="color:red;">#</b>47 6    * * 7   root    test -x /usr/sbin/anacron || run-parts --report /etc/cron.weekly
+<b style="color:red;">#</b>52 6    1 * *   root    test -x /usr/sbin/anacron || run-parts --report /etc/cron.monthly
+	</pre>
+</li>
+<li><p>Disabling the <code>cron</code> system service, which will cause no cron jobs (whether system- or user-level jobs) to run:
+	<p>Under Fedora:</p>
+	<pre>
+$ chkconfig --del crond</pre>
+
+	<p>Under Debian:</p>
+	<pre>
+$ update-rc.d -f cron remove
+$ update-rc.d cron stop 89 2 3 4 5 . stop 11 0 1 6 .</pre>
+</li>
+</ul>
+</div>
+
+<!-- DEVELOPMENT ENVIRONMENT CONFIGURATION -->
+<h2>6. <a name="DevelopmentConfiguration">Development Environment Configuration</a></h2>
+
+<p>
+	Developing a BigWorld-based game inevitably means managing code and assets
+	on both Windows and Linux machines.  The syncronisation issues associated
+	with this can be largely avoided by setting up a shared filesystem
+	arrangement.  Basically this means developing on a Windows machine in a
+	shared directory and mounting that directory on the Linux machine.  The
+	details for setting this up are covered in the <b>Simplified Server Usage</b>
+	section of the <b>Client Programming Guide</b>.
+</p>
+
+<!-- DEBIAN SPECIFIC NOTES -->
+<h2>7. <a name="DebianNotes">Debian Specific Notes</a></h2>
+
+<p>
+	BigWorld's recommended deployment platform is Debian stable, currently
+	Debian GNU/Linux 4.0 ("etch"). It is worth noting that the BigWorld Server
+	uses Python 2.5 internally, but the default Python version on Debian 4.0 is
+	Python 2.4.
+</p>
+
+<p>
+	When running the BigWorld Server on Debian,
+	you will need to ensure the following packages are installed:
+	<ul><li>libstdc++6</li></ul>
+</p>
+
+<p>
+	If you are using the <b>Secondary Databases</b> support described in the
+	<b>Server Programming Guide</b>, you will need to install the following
+	packages as well:
+	<ul>
+		<li>python</li>
+		<li>python-pysqlite2</li>
+	</ul>
+</p>
+
+</div>
+</body>
+
+</html>

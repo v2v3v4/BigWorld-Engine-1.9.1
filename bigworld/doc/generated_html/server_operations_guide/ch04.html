@@ -1,0 +1,109 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;4.&nbsp;Watcher (Web Interface)</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Server Operations Guide">
+      <link rel="up" href="index.html" title="Server Operations Guide">
+      <link rel="prev" href="ch03.html" title="Chapter&nbsp;3.&nbsp;Admin Tools">
+      <link rel="next" href="ch05.html" title="Chapter&nbsp;5.&nbsp;Fault Tolerance"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;4.&nbsp;Watcher (Web Interface)</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch05.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Watcher_Web_Interface"></a>Chapter&nbsp;4.&nbsp;Watcher (Web Interface)
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>A Watcher is a general mechanism that exposes internal operational
+                 parameters of a running BigWorld Server, so that an administrator can view
+                 and change them.
+            </p>
+            <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+               <h3 class="title">Note</h3>
+               <p>As of BigWorld 1.8, this tool is replaced by the new tool
+                      WebConsole. For details, see <a href="ch03.html#xref_WebConsole" title="3.1.&nbsp;WebConsole">WebConsole</a>.
+               </p>
+            </div>
+            <p>The Watcher web interface process collects watcher data and publishes
+                 it through an HTTP interface. It is mainly used to diagnose and rectify an
+                 isolated problem once it has been discovered. For details on how to
+                 instrument your own server processes and extensions, see Server Programming
+                 Guide, chapter The Watcher Interface.
+            </p>
+            <p>Located on bigworld/tools/server, the watcher process listens for UDP
+                 broadcast messages from the server components containing announcements of
+                 new sources of watchers. It then publishes this information via an HTTP
+                 interface. When links are clicked on, the interface performs deeper watcher
+                 requests on behalf of the user.
+            </p>
+            <p>To start a watcher process, execute the following command on any
+                 machine in the server cluster:
+            </p><pre class="programlisting">$MF_ROOT/bigworld/tools/server/watcher &amp;</pre><p>The watcher process listens for HTTP requests on port 20017. To view
+                 watcher information, just open a browser (on Windows or Linux) on address
+                 http://yourhostname:20017. The hyperlinks give you access to the watcher
+                 tree.
+            </p>
+            <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+               <h3 class="title">Note</h3>
+               <p>Each watcher only shows the components registered under the UID that
+                      was used to start the watcher process &#8212; client machines are shown on all
+                      watchers, since they run on Windows boxes, and therefore do not have Unix
+                      UIDs.
+               </p>
+               <p>You can run multiple watcher processes on the network.</p>
+            </div>
+            <p>The illustrations below display a watcher tree being traversed on a
+                 web browser:
+            </p>
+            <div class="informalfigure">
+               <div class="mediaobject"><img src="images/web_page_with_cellappmgrs_loadsmootingbias_watcher.png"><span class="caption">
+                     <p>Web page with CellAppMgr's
+                              <span class="literal">loadSmoothingBias</span> watcher
+                     </p></span></div>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch03.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch05.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;3.&nbsp;Admin Tools&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;5.&nbsp;Fault Tolerance</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

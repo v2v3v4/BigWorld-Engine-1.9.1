@@ -1,0 +1,196 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;18.&nbsp;Sounds</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Client Programming Guide">
+      <link rel="up" href="index.html" title="Client Programming Guide">
+      <link rel="prev" href="ch17.html" title="Chapter&nbsp;17.&nbsp;Graphical User Interface (GUI)">
+      <link rel="next" href="ch19.html" title="Chapter&nbsp;19.&nbsp;3D Engine (Moo)"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;18.&nbsp;Sounds</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch17.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch19.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Sounds"></a>Chapter&nbsp;18.&nbsp;Sounds
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch18.html#d0e6407">18.1. Usage overview</a></span></dt>
+                  <dt><span class="sect1"><a href="ch18.html#d0e6441">18.2. Updating the FMOD libraries</a></span></dt>
+               </dl>
+            </div>
+            <p>BigWorld provides sound support via the third-party FMOD sound library
+               (www.fmod.org). A license to use FMOD is not included with BigWorld, and if
+                 you want to release a title using FMOD, a separate licensing agreement with
+                 Firelight Technologies needs to be entered into.
+            </p>
+            <p>Whilst FMOD is enabled in the BigWorld FantasyDemo, it is disabled in
+                 the shipped BigWorld source by default. To enable FMOD, edit
+                 <span class="literal">src/lib/fmodsound/fmod_config.hpp</span> and enable the
+                 <span class="literal">#define</span>.
+            </p>
+            <p>It should be noted that the BigWorld sound API is very much in an
+                 alpha state at the moment, and will expand and/or change in the future.
+                 Likely features for a future BigWorld release include:
+            </p>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>
+                     <p>Turn-key support for reloading soundbanks in-game
+                              (<em class="emphasis">i.e.</em>, loading sound designer changes in-game
+                              without needing to restart the client).
+                     </p>
+                  </li>
+                  <li>
+                     <p>Sound support in the content tools.</p>
+                  </li>
+                  <li>
+                     <p>API support for the FMOD::EventCategory class (which provides
+                              pseudo group-channel functionality).
+                     </p>
+                  </li>
+                  <li>
+                     <p>API support for stereo/5.1 panning, reverb, and other audio
+                              parameters/effects.
+                     </p>
+                  </li>
+               </ul>
+            </div>
+            <p>This documentation provides only an overview of the BigWorld sound
+                 API, which is essentially a thin interface to the FMOD Designer API. For
+                 documentation related to general FMOD design principles and sound issues,
+                 please see the FMOD documentation itself.
+            </p>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e6407"></a>18.1.&nbsp;Usage overview
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>To implement sounds in your game, an FMOD soundbank needs to be
+                      built with the FMOD Designer tool (available from the FMOD
+                      website).
+               </p>
+               <p>A very small example project is included in
+                      fantasydemo/audio/fd_sound.fdp. Instructions on how to use the FMOD
+                      Designer are beyond the scope of this document &#8212; for that purpose, we
+                      recommend the PDF user manual shipped with the tool.
+               </p>
+               <p>Once you have a compiled soundbank, you need to edit the soundMgr
+                      section of &lt;engine_config&gt;.xml to refer to your file &#8212; for details
+                      on this file, see <a href="ch01.html#xref_File_engine_config_xml" title="1.3.2.&nbsp;File <engine_config&gt;.xml">File
+                           <span class="literal"><em class="replaceable"><code>&lt;engine_config&gt;</code></em>.xml</span></a>.
+               </p>
+               <p>Simple 2D and 3D sound playback can now be triggered via
+                      script:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>2D sound support is provided by
+                                   <span class="literal">BigWorld.playSound</span> and
+                                   <span class="literal">BigWorld.getSound</span>.
+                        </p>
+                     </li>
+                     <li>
+                        <p>3D sound support is provided by
+                                   <span class="literal">PyModel.playSound</span> and
+                                   <span class="literal">PyModel.getSound</span>.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <p>The aforementioned API calls return a PySound instance, which can be
+                      used to stop, re-trigger, or adjust parameters on the sound. For details
+                      on the sound API calls, see the Python API documentation.
+               </p>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e6441"></a>18.2.&nbsp;Updating the FMOD libraries
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>BigWorld includes in src/lib/fmod all FMOD libraries needed to build
+                      the client with sound support. These libraries are up-to-date at the time
+                      of the release of a particular BigWorld version.
+               </p>
+               <p>To use a more recent version of the FMOD libraries (which is
+                      recommended for elaborate sound work), follow the steps below:
+               </p>
+               <div class="orderedlist">
+                  <ol type="1">
+                     <li>
+                        <p>Delete the <span class="literal">src/lib/fmod</span> folder (otherwise,
+                                   .vcproj files will try to use that folder first).
+                        </p>
+                     </li>
+                     <li>
+                        <p>Configure the global Visual C++ folders to point to the FMOD
+                                   folder (probably <span class="literal">C:\Program Files\FMOD
+                                      SoundSystem\...</span>).
+                        </p>
+                     </li>
+                     <li>
+                        <p>Copy the <span class="literal">fmodex.dll</span> and
+                                   <span class="literal">fmod_event.dll</span> files from your FMOD folder to your
+                                   game's executable folder.
+                        </p>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch17.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch19.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;17.&nbsp;Graphical User Interface (GUI)&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;19.&nbsp;3D Engine (Moo)</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

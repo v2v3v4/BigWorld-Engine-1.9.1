@@ -1,0 +1,148 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;2.&nbsp;User Input</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Client Programming Guide">
+      <link rel="up" href="index.html" title="Client Programming Guide">
+      <link rel="prev" href="ch01.html" title="Chapter&nbsp;1.&nbsp;Overview">
+      <link rel="next" href="ch03.html" title="Chapter&nbsp;3.&nbsp;Cameras"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;2.&nbsp;User Input</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch01.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch03.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_User_Input"></a>Chapter&nbsp;2.&nbsp;User Input
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>The BigWorld client uses DirectInput 8. It reads
+                 <span class="literal">keyUp</span> and <span class="literal">keyDown</span> events from the
+                 keyboard, and button and mouse movement events from the mouse. It also reads
+                 button and axis movement events from joysticks.
+            </p>
+            <p>The DirectInput devices are used in exclusive foreground mode. When
+                 the client is in the foreground, it has exclusive access (excepting
+                 <span class="literal">Alt</span>+<span class="literal">Tab</span> and
+                 <span class="literal">Ctrl</span>+<span class="literal">Alt</span>+<span class="literal">Delete</span>) to
+                 the hardware. During development you can choose to run in non-exclusive
+                 mode, this makes it easier to debug, and to use other applications while
+                 running the client. To change this setting, alter the &lt;inputDevices&gt;
+                 &lt;exclusive&gt; setting in your engine_config.xml file.
+            </p>
+            <p>When the client switches back in after having been switched out, it
+                 reads the whole state from the devices and generates any appropriate
+                 key/button events.
+            </p>
+            <p>In order to simplify event handling, the user input module always
+                 emulates a joystick, even if one is not attached or if the attached joystick
+                 is not selected. It does this by using keys (set by other parts of the
+                 application) to influence the joystick direction. This means that the
+                 application only needs to be concerned about the exported joystick class to
+                 determine movement, instead of having different modes depending on attached
+                 hardware and user choices.
+            </p>
+            <p>Currently, the user can select the hardware joystick for movement with
+                 the <span class="literal">J</span> key, and switch back to the keyboard with the
+                 <span class="literal">K</span> key. The eventual client will allow the user to set up
+                 the game controls in whatever manner he desires (as is standard practice in
+                 games).
+            </p>
+            <p>The output from the user input module is processed by a number of
+                 other modules, which take it in turn to examine events, then either consume
+                 or ignore them. If an event is not consumed by any module then it is
+                 discarded. The order of modules that get a turn at the events is as
+                 follows:
+            </p>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>
+                     <p><em class="emphasis">Debug</em> &#8212; Special keys, consoles,
+                              etc...
+                     </p>
+                  </li>
+                  <li>
+                     <p><em class="emphasis">Personality</em> &#8212; Global keys.
+                     </p>
+                  </li>
+                  <li>
+                     <p><em class="emphasis">Camera</em> &#8212; To move it
+                              around.
+                     </p>
+                  </li>
+                  <li>
+                     <p><em class="emphasis">Application</em> &#8212; Hard-coded keys
+                              such as <span class="literal">QUIT</span>.
+                     </p>
+                  </li>
+                  <li>
+                     <p><em class="emphasis">Player script</em> &#8212; The rest, which
+                              is the major part of the processing.
+                     </p>
+                  </li>
+               </ul>
+            </div>
+            <p>Note that the GUI system does not automatically receive input, instead
+                 it is up to the script write to choose when. This could be either in the
+                 personality script, or in the player script. The most obvious place is in
+                 the personality script callbacks, for example in the personality script's
+                 handleKeyEvent, you should call GUI.handleKeyEvent() and check the return
+                 value.
+            </p>
+            <p>The BigWorld client performs event matching to ensure consistent
+                 module behaviour. If a <span class="literal">keyDown</span> (or
+                 <span class="literal">buttonDown</span>) event is consumed by a module, that module's
+                 identifier is recorded as the sink of the event's key number. When the
+                 corresponding <span class="literal">keyUp</span> event arrives, it is delivered
+                 directly to that module. For example, if a chat console is brought up (and
+                 inserted into the list) while the player is running, and the user
+                 subsequently releases the run key, then the player script will still get the
+                 <span class="literal">keyUp</span> event for that key, and be able to stop the run
+                 action.
+            </p>
+            <p>For more details on how to capture and process input events, see <a href="ch17.html#xref_Input_Events" title="17.5.&nbsp;Input events">Input events</a>.
+            </p>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch01.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch03.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;1.&nbsp;Overview&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;3.&nbsp;Cameras</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

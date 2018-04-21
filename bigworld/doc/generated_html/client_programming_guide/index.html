@@ -1,0 +1,549 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/DTD/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Client Programming Guide</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Client Programming Guide">
+      <link rel="next" href="ch01.html" title="Chapter&nbsp;1.&nbsp;Overview"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Client Programming Guide</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left">&nbsp;</td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch01.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="book" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h1 class="title"><a name="Client_Programming_Guide"></a>Client Programming Guide
+                     </h1>
+                  </div>
+                  <div>
+                     <p class="releaseinfo">BigWorld Technology 1.9.1. Released 2008.</p>
+                  </div>
+                  <div>
+                     <p class="copyright">Copyright &copy; 1999-2008 BigWorld Pty Ltd. All rights reserved. </p>
+                  </div>
+                  <div>
+                     <div class="legalnotice"><a name="d0e17"></a><p>This document is proprietary commercial in confidence and access
+                           is restricted to authorised users. This document is protected by
+                           copyright laws of Australia, other countries and international treaties.
+                           Unauthorised use, reproduction or distribution of this document, or any
+                             portion of this document, may result in the imposition of civil and
+                             criminal penalties as provided by law.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="chapter"><a href="ch01.html">1. Overview</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch01.html#d0e35">1.1. Client in context</a></span></dt>
+                        <dt><span class="sect1"><a href="ch01.html#d0e64">1.2. Outline</a></span></dt>
+                        <dt><span class="sect1"><a href="ch01.html#xref_Configuration_Files">1.3. Configuration files</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch01.html#xref_File_resources_xml">1.3.1. File <span class="literal">resources.xml</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch01.html#xref_File_engine_config_xml">1.3.2. File
+                                             <span class="literal"><em class="replaceable"><code>&lt;engine_config&gt;</code></em>.xml</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch01.html#xref_File_scripts_config_xml">1.3.3. File
+                                             <span class="literal"><em class="replaceable"><code>&lt;scripts_config&gt;</code></em>.xml</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch01.html#xref_File_preferences_xml">1.3.4. File
+                                             <span class="literal"><em class="replaceable"><code>&lt;preferences&gt;</code></em>.xml</span></a></span></dt>
+                           </dl>
+                        </dd>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch02.html">2. User Input</a></span></dt>
+                  <dt><span class="chapter"><a href="ch03.html">3. Cameras</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch03.html#d0e430">3.1. The Cursor Camera</a></span></dt>
+                        <dt><span class="sect1"><a href="ch03.html#d0e441">3.2. The Free Camera</a></span></dt>
+                        <dt><span class="sect1"><a href="ch03.html#d0e446">3.3. The FlexiCam</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch04.html">4. Terrain</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch04.html#d0e458">4.1. Advanced Terrain</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch04.html#d0e461">4.1.1. Overview</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e466">4.1.2. Key Features</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e501">4.1.3. Texturing</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e509">4.1.4. Lighting</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e515">4.1.5. Shadows</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e523">4.1.6. LOD</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e559">4.1.7. Memory footprint</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#xref_terrain2_section">4.1.8. <span class="literal">terrain2</span> resources</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#xref_Space_terrain_section">4.1.9. <span class="literal">terrain</span> section in
+                                             <span class="literal">space.settings</span></a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch04.html#d0e1420">4.2. Classic Terrain</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch04.html#d0e1423">4.2.1. Key features</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e1457">4.2.2. Overview</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e1465">4.2.3. Chunking</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e1470">4.2.4. Disk footprint</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e1543">4.2.5. Memory footprint</a></span></dt>
+                              <dt><span class="sect2"><a href="ch04.html#d0e1550">4.2.6. Texture spacing</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch04.html#xref_TerrainSpecular">4.3. Terrain specular lighting</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch05.html">5. Cloud shadows</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch05.html#d0e1736">5.1. Requirements</a></span></dt>
+                        <dt><span class="sect1"><a href="ch05.html#d0e1741">5.2. Implementation</a></span></dt>
+                        <dt><span class="sect1"><a href="ch05.html#d0e1753">5.3. Effect File Implementation</a></span></dt>
+                        <dt><span class="sect1"><a href="ch05.html#xref_Tweaking">5.4. Tweaking</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch06.html">6. Chunks</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch06.html#d0e1867">6.1. Definitions</a></span></dt>
+                        <dt><span class="sect1"><a href="ch06.html#xref_Implementation_Files">6.2. Implementation files</a></span></dt>
+                        <dt><span class="sect1"><a href="ch06.html#xref_Details_And_Notes">6.3. Details and notes</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch06.html#d0e2010">6.3.1. Includes</a></span></dt>
+                              <dt><span class="sect2"><a href="ch06.html#d0e2028">6.3.2. Models</a></span></dt>
+                              <dt><span class="sect2"><a href="ch06.html#d0e2035">6.3.3. Entities</a></span></dt>
+                              <dt><span class="sect2"><a href="ch06.html#xref_Boundaries_And_Portals">6.3.4. Boundaries and portals</a></span></dt>
+                              <dt><span class="sect2"><a href="ch06.html#d0e2057">6.3.5. Transforms</a></span></dt>
+                              <dt><span class="sect2"><a href="ch06.html#d0e2062">6.3.6. Other items</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch06.html#d0e2086">6.4. Loading and ejecting</a></span></dt>
+                        <dt><span class="sect1"><a href="ch06.html#d0e2096">6.5. Focus grid</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch06.html#d0e2107">6.5.1. Hull tree</a></span></dt>
+                              <dt><span class="sect2"><a href="ch06.html#d0e2117">6.5.2. Quad tree</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch06.html#d0e2124">6.6. Collisions</a></span></dt>
+                        <dt><span class="sect1"><a href="ch06.html#xref_Sway_Items">6.7. Sway items</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch07.html">7. Entities</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch07.html#xref_Entities_Are_Python_Script_Objects">7.1. Entities are Python script objects</a></span></dt>
+                        <dt><span class="sect1"><a href="ch07.html#d0e2279">7.2. Exposing the client</a></span></dt>
+                        <dt><span class="sect1"><a href="ch07.html#d0e2292">7.3. Script entry points</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch07.html#d0e2299">7.3.1. prerequisites()</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch07.html#d0e2314">7.4. Entity Manager</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch08.html">8. User Data Objects</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch08.html#xref_UDOs_Are_Python_Script_Objects">8.1. .1. User Data Objects are Python script objects</a></span></dt>
+                        <dt><span class="sect1"><a href="ch08.html#xref_UDOs_client_access">8.2. .2. Accessing from the Client</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch09.html">9. Scripting</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch09.html#xref_Functional_Components">9.1. Functional components</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch09.html#d0e2495">9.1.1. Entity skeleton</a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e2504">9.1.2. Python script object</a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e2511">9.1.3. Model management</a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#xref_Filters">9.1.4. Filters</a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#xref_Action_Queue">9.1.5. Action Queue</a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#xref_Action_Matcher">9.1.6. Action Matcher</a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3189">9.1.7. Trackers</a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3271">9.1.8. Timers and Traps</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch09.html#xref_Personality_Script">9.2. Personality script</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch09.html#xref_init">9.2.1. <span class="literal">init</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3515">9.2.2. <span class="literal">fini</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3535">9.2.3. <span class="literal">handleKeyEvent</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3587">9.2.4. <span class="literal">handleMouseEvent</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3607">9.2.5. <span class="literal">onChangeEnvironments</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3623">9.2.6. <span class="literal">onGeometryMapped</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3635">9.2.7. <span class="literal">onRecreateDevice</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3654">9.2.8. <span class="literal">onTimeOfDayLocalChange</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch09.html#d0e3666">9.2.9. <span class="literal">start</span></a></span></dt>
+                           </dl>
+                        </dd>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch10.html">10. Models</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch10.html#d0e3705">10.1. Performance</a></span></dt>
+                        <dt><span class="sect1"><a href="ch10.html#xref_Hard_Points">10.2. Hard Points</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch10.html#d0e3773">10.2.1. Naming scheme</a></span></dt>
+                              <dt><span class="sect2"><a href="ch10.html#d0e3851">10.2.2. How it works</a></span></dt>
+                              <dt><span class="sect2"><a href="ch10.html#d0e3858">10.2.3. Syntax</a></span></dt>
+                              <dt><span class="sect2"><a href="ch10.html#d0e3875">10.2.4. Data</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch10.html#xref_SuperModel">10.3. SuperModel</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch10.html#d0e3950">10.3.1. Design</a></span></dt>
+                              <dt><span class="sect2"><a href="ch10.html#d0e3966">10.3.2. SuperModel classes</a></span></dt>
+                           </dl>
+                        </dd>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch11.html">11. Animation System</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch11.html#d0e4039">11.1. Basic keyframed animations</a></span></dt>
+                        <dt><span class="sect1"><a href="ch11.html#d0e4055">11.2. Animation layering and blending</a></span></dt>
+                        <dt><span class="sect1"><a href="ch11.html#d0e4095">11.3. Animation data files</a></span></dt>
+                        <dt><span class="sect1"><a href="ch11.html#d0e4129">11.4. Animation data streaming</a></span></dt>
+                        <dt><span class="sect1"><a href="ch11.html#d0e4154">11.5. Actions</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch12.html">12. Server Communications</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch12.html#d0e4235">12.1. Login</a></span></dt>
+                        <dt><span class="sect1"><a href="ch12.html#d0e4260">12.2. Online</a></span></dt>
+                        <dt><span class="sect1"><a href="ch12.html#d0e4348">12.3. Firewalls</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch13.html">13. Particles</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch13.html#d0e4371">13.1. Particle Systems</a></span></dt>
+                        <dt><span class="sect1"><a href="ch13.html#d0e4433">13.2. Particle Actions</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch13.html#d0e4463">13.2.1. Source actions</a></span></dt>
+                              <dt><span class="sect2"><a href="ch13.html#d0e4472">13.2.2. Movement actions</a></span></dt>
+                              <dt><span class="sect2"><a href="ch13.html#d0e4484">13.2.3. Sink actions</a></span></dt>
+                              <dt><span class="sect2"><a href="ch13.html#d0e4500">13.2.4. Alteration actions</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch13.html#d0e4505">13.3. Particle types</a></span></dt>
+                        <dt><span class="sect1"><a href="ch13.html#d0e4525">13.4. Attaching particle systems to bones</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch14.html">14. Detail Objects</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch14.html#d0e4650">14.1. Flora</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch14.html#d0e4668">14.1.1. Placement</a></span></dt>
+                              <dt><span class="sect2"><a href="ch14.html#d0e4714">14.1.2. Implementation</a></span></dt>
+                              <dt><span class="sect2"><a href="ch14.html#d0e4744">14.1.3. Frame coherency</a></span></dt>
+                              <dt><span class="sect2"><a href="ch14.html#d0e4751">14.1.4. Animation</a></span></dt>
+                              <dt><span class="sect2"><a href="ch14.html#d0e4758">14.1.5. Lighting</a></span></dt>
+                              <dt><span class="sect2"><a href="ch14.html#d0e4765">14.1.6. File format</a></span></dt>
+                           </dl>
+                        </dd>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch15.html">15. Water</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch15.html#d0e4812">15.1. Code overview</a></span></dt>
+                        <dt><span class="sect1"><a href="ch15.html#d0e4932">15.2. Scene generation</a></span></dt>
+                        <dt><span class="sect1"><a href="ch15.html#xref_Render_Settings">15.3. Render settings</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch15.html#xref_Setting_The_Quality">15.3.1. Setting the quality</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch15.html#xref_Simulation">15.4. Simulation</a></span></dt>
+                        <dt><span class="sect1"><a href="ch15.html#d0e5136">15.5. Rain</a></span></dt>
+                        <dt><span class="sect1"><a href="ch15.html#d0e5141">15.6. Water depth</a></span></dt>
+                        <dt><span class="sect1"><a href="ch15.html#d0e5154">15.7. Watchers</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch16.html">16. BigWorld Umbra integration</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch16.html#d0e5278">16.1. Building BigWorld with Umbra enabled</a></span></dt>
+                        <dt><span class="sect1"><a href="ch16.html#d0e5305">16.2. Integration details</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch16.html#d0e5308">16.2.1. Modes of operation</a></span></dt>
+                              <dt><span class="sect2"><a href="ch16.html#d0e5347">16.2.2. Chunk items</a></span></dt>
+                              <dt><span class="sect2"><a href="ch16.html#d0e5354">16.2.3. Umbra proxies</a></span></dt>
+                           </dl>
+                        </dd>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch17.html">17. Graphical User Interface (GUI)</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch17.html#xref_C_GUI_Support">17.1. C++ GUI support</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5419">17.1.1. SimpleGUIComponent</a></span></dt>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5430">17.1.2. GUIShader</a></span></dt>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5450">17.1.3. SimpleGUI</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch17.html#xref_Python_GUI_Support">17.2. Python GUI support</a></span></dt>
+                        <dt><span class="sect1"><a href="ch17.html#d0e5503">17.3. XML</a></span></dt>
+                        <dt><span class="sect1"><a href="ch17.html#xref_XML_And_Python">17.4. XML and Python</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5543">17.4.1. <span class="literal">onLoad(self,section)</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5556">17.4.2. <span class="literal">onBound(self)</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5576">17.4.3. <span class="literal">onSave(self,section)</span></a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch17.html#xref_Input_Events">17.5. Input events</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5696">17.5.1. Keyboard Events</a></span></dt>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5760">17.5.2. Axis Events</a></span></dt>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5810">17.5.3. Mouse Events</a></span></dt>
+                              <dt><span class="sect2"><a href="ch17.html#d0e5987">17.5.4. Drag-and-drop events</a></span></dt>
+                              <dt><span class="sect2"><a href="ch17.html#d0e6184">17.5.5. Component PyGUI</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch17.html#xref_Mouse_Cursor">17.6. Mouse cursor</a></span></dt>
+                        <dt><span class="sect1"><a href="ch17.html#xref_Fonts">17.7. Fonts</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch17.html#d0e6320">17.7.1. Creating new fonts</a></span></dt>
+                           </dl>
+                        </dd>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch18.html">18. Sounds</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch18.html#d0e6407">18.1. Usage overview</a></span></dt>
+                        <dt><span class="sect1"><a href="ch18.html#d0e6441">18.2. Updating the FMOD libraries</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch19.html">19. 3D Engine (Moo)</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch19.html#xref_Features">19.1. Features</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch19.html#d0e6517">19.1.1. D3DXEffects vertex and pixel shader support</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e6524">19.1.2. Cubic environment maps</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e6529">19.1.3. Render targets</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#xref_Lighting">19.1.4. Lighting</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e6656">19.1.5. Normal mapping/bump mapping</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e6661">19.1.6. Terrain</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e6666">19.1.7. Animation</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e6671">19.1.8. Vertex morphing</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch19.html#d0e6678">19.2. Supported video cards</a></span></dt>
+                        <dt><span class="sect1"><a href="ch19.html#d0e6711">19.3. Hardware requirements for special effects</a></span></dt>
+                        <dt><span class="sect1"><a href="ch19.html#d0e6844">19.4. Visual</a></span></dt>
+                        <dt><span class="sect1"><a href="ch19.html#xref_EffectMaterial">19.5. EffectMaterial</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch19.html#xref_EffectMaterial_Format">19.5.1. Format</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#xref_Automatic_Variables_Globals">19.5.2. Automatic variables/Globals</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#xref_Artist_Editable_Tweakable_Variables">19.5.3. Artist-editable/tweakable variables</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e7656">19.5.4. Multiple-layered effects per material</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e7666">19.5.5. Recording material states</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e7690">19.5.6. Using BigWorld <span class="literal">.fx</span> files with 3ds Max</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch19.html#d0e7755">19.6. Visual channels</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch19.html#d0e7788">19.6.1. Sorted channel</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e7800">19.6.2. Internal sorted channel</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e7809">19.6.3. Shimmer channel</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e7816">19.6.4. Sorted shimmer channel</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e7826">19.6.5. Distortion channel</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch19.html#xref_Textures">19.7. Textures</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch19.html#xref_Texture_Details_Levels_Compression">19.7.1. Texture detail levels/compression</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e8020">19.7.2. Animated textures</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e8083">19.7.3. Applying a code-generated texture to a character</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch19.html#d0e8262">19.8. Vertex declaration</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch19.html#d0e8277">19.8.1. File format</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch19.html#xref_Graphics_Settings">19.9. Graphics settings</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch19.html#xref_Customising_Options">19.9.1. Customising options</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e9282">19.9.2. Using settings</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch19.html#xref_High_Resolution_Screenshots">19.10. High-resolution screenshots</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch19.html#d0e9460">19.10.1. The backBufferWidthOverride watcher</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e9492">19.10.2. How to take a high resolution screenshot</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e9518">19.10.3. Troubleshooting</a></span></dt>
+                              <dt><span class="sect2"><a href="ch19.html#d0e9630">19.10.4. Hardware recommendations</a></span></dt>
+                           </dl>
+                        </dd>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch20.html">20. Full-screen Filters</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch20.html#xref_Bloom">20.1. Bloom</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch20.html#d0e9672">20.1.1. How the bloom filter works</a></span></dt>
+                              <dt><span class="sect2"><a href="ch20.html#d0e9681">20.1.2. How to use bloom</a></span></dt>
+                              <dt><span class="sect2"><a href="ch20.html#d0e9700">20.1.3. Tweaking bloom</a></span></dt>
+                              <dt><span class="sect2"><a href="ch20.html#xref_Blurring_The_Scene">20.1.4. Blurring the scene</a></span></dt>
+                              <dt><span class="sect2"><a href="ch20.html#d0e9803">20.1.5. Making the bloom permanent</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch20.html#xref_Heat_Shimmer">20.2. Heat shimmer</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch20.html#d0e9832">20.2.1. How to use heat shimmer</a></span></dt>
+                              <dt><span class="sect2"><a href="ch20.html#d0e9863">20.2.2. Tweaking heat shimmer</a></span></dt>
+                           </dl>
+                        </dd>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch21.html">21. Debugging</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch21.html#d0e9900">21.1. Build configuration &#8212; conditional feature inclusion</a></span></dt>
+                        <dt><span class="sect1"><a href="ch21.html#xref_Watchers">21.2. Watchers</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch21.html#d0e9927">21.2.1. Watcher types</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e9938">21.2.2. Using watchers</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e9953">21.2.3. Watcher Console</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e9965">21.2.4. Remote watcher access</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch21.html#d0e9981">21.3. Memory tracking</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch21.html#d0e9986">21.3.1. ResourceCounters overview</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e10008">21.3.2. Memory allocation taxonomy</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e10039">21.3.3. Case studies</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e10666">21.3.4. Displaying the memory tracking console</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch21.html#d0e10709">21.4. Scripts</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch21.html#d0e10716">21.4.1. Python Console</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#xref_Remote_Python_Console">21.4.2. Remote Python Console</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e10985">21.4.3. Script reloading</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e11000">21.4.4. Common errors</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch21.html#d0e11088">21.5. Script interactive debugging</a></span></dt>
+                        <dt><span class="sect1"><a href="ch21.html#xref_Client_Access_Tool_CAT">21.6. Client Access Tool (CAT)</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch21.html#d0e11203">21.6.1. Connecting to the client</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e11219">21.6.2. CAT Scripts</a></span></dt>
+                              <dt><span class="sect2"><a href="ch21.html#d0e11303">21.6.3. Creating scripts for CAT</a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch21.html#d0e11666">21.7. Timing</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch22.html">22. Releasing The Game</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch22.html#d0e11684">22.1. Compile the game executable</a></span></dt>
+                        <dt><span class="sect1"><a href="ch22.html#xref_Prepare_The_Assets">22.2. Prepare the assets</a></span></dt>
+                        <dd>
+                           <dl>
+                              <dt><span class="sect2"><a href="ch22.html#d0e11791">22.2.1. Run <span class="literal">bin_convert.py</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch22.html#xref_Run_res_packer">22.2.2. Run <span class="literal">res_packer</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch22.html#d0e12091">22.2.3. Processing done in <span class="literal">bin_convert</span> and
+                                             <span class="literal">res_packer</span></a></span></dt>
+                              <dt><span class="sect2"><a href="ch22.html#d0e12283">22.2.4. Files and folders that do not need to be shipped to the end
+                                             user</a></span></dt>
+                              <dt><span class="sect2"><a href="ch22.html#d0e12358">22.2.5. Font Licensing issues with <span class="literal">bin_convert</span> and
+                                             <span class="literal">res_packer</span></a></span></dt>
+                           </dl>
+                        </dd>
+                        <dt><span class="sect1"><a href="ch22.html#d0e12374">22.3. Zip assets and specify paths</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="chapter"><a href="ch23.html">23. Simplified Server Usage</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect1"><a href="ch23.html#d0e12511">23.1. Setting up the windows share</a></span></dt>
+                        <dt><span class="sect1"><a href="ch23.html#d0e12580">23.2. Mounting the Windows share on Linux</a></span></dt>
+                        <dt><span class="sect1"><a href="ch23.html#d0e12688">23.3. Caveats</a></span></dt>
+                     </dl>
+                  </dd>
+               </dl>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left">&nbsp;</td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch01.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">&nbsp;</td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;1.&nbsp;Overview</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

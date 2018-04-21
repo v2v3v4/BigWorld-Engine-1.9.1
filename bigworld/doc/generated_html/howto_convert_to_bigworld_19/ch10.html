@@ -1,0 +1,86 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;10.&nbsp;Client Script Changes</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="up" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="prev" href="ch09.html" title="Chapter&nbsp;9.&nbsp;Migrating the Game Database (MySQL)"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;10.&nbsp;Client Script Changes</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch09.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;</td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Client_Script_Changes"></a>Chapter&nbsp;10.&nbsp;Client Script Changes
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>A few changes have been made to folder names, script paths and script
+               	functions in BigWorld 1.9 that will need to be changed.
+            </p>
+            <div class="orderedlist">
+               <ol type="1">
+                  <li>
+                     <p> The folder for scripts files has been renamed from <code class="filename">entities</code> to <code class="filename">scripts</code>.
+                     </p>
+                  </li>
+                  <li>
+                     <p> The folder for entity definitions has been renamed from <code class="filename">defs</code> to <code class="filename">entity_defs</code>.
+                     </p>
+                  </li>
+                  <li>
+                     <p> The <code class="filename">keys.py</code> python script has been renamed to <code class="filename">Keys.py</code> and moved to <code class="filename">bigworld/res/scripts/client</code>.
+                        			This demonstrates where all global python scripts should be located.
+                     </p>
+                  </li>
+                  <li>
+                     <p> The callback function definition for <em class="emphasis">BigWorld.connect()</em> has been changed so the status argument is
+                        			a string and not an int. Refer to client python documentation for more information.
+                     </p>
+                  </li>
+               </ol>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch09.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;</td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;9.&nbsp;Migrating the Game Database (MySQL)&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

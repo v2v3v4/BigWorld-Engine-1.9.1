@@ -1,0 +1,443 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="bigworld.css" rel="stylesheet" type="text/css">
+	<title>BigWorld Client Installation and Quick Start Guide</title>
+	<script type="text/javascript" src="bigworld.js"></script>
+</head>
+<body onLoad="loader();">
+<div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"/></div>
+
+<div class="titlepage">
+<!-- BIGWORLD CLIENT INSTALLATION AND QUICKSTART GUIDE -->
+<h1>BigWorld Client Installation and QuickStart Guide</h1>
+
+<!-- TABLE OF CONTENTS -->
+<hr>
+<div class="toc">
+  <p><b>Table of Contents</b></p>
+  <dl>
+    <dt><span class="chapter"><a href="#ClientMachineRequirements"        >1. Client and Tools Machine Requirements</a></span></dt>
+    <dt><span class="chapter"><a href="#InstallingTheRequiredFiles"       >2. Installing the Required Files</a></span></dt>
+    <dt><span class="chapter"><a href="#SettingUpTheResourcePath"         >3. Setting Up the Resource Path</a></span></dt>
+    <dt><span class="chapter"><a href="#RunningFantasyDemo"               >4. Running FantasyDemo</a></span></dt>
+    <dt><span class="chapter"><a href="#QuickStartGuideToModelEditor"     >5. QuickStart Guide to ModelEditor</a></span></dt>
+    <dt><span class="chapter"><a href="#QuickStartGuideToWorldEditor"     >6. QuickStart Guide to the WorldEditor</a></span></dt>
+    <dt><span class="chapter"><a href="#QuickStartGuideToRunningTheServer">7. QuickStart Guide to Running the Server</a></span></dt>
+    <dt><span class="chapter"><a href="#WorkingWithAVCS"                   >8. Committing files to a Version Control System</a></span></dt>
+  </dl>
+</div>
+<hr>
+
+<!-- CLIENT MACHINE REQUIREMENTS -->
+<h2><a name="ClientMachineRequirements">1. Client and Tools Machine Requirements</a></h2>
+<div class="itemizedlist">
+<ul>
+<li><p> Minimum for New Terrain 
+    <ul>
+    <li><p>GeForce 6600 128 MB or Radeon 9600 128 MB
+    <li><p>2 GHz CPU
+    <li><p>512MB RAM
+    <li><p>Windows XP Home Edition 32bit
+    </ul>
+<li><p> Recommended for New Terrain
+    <ul>
+    <li><p>GeForce 7600 or ATI Radeon x1600
+    <li><p>2 GHz CPU
+    <li><p>1 GB RAM (2GB if running Vista)
+    <li><p>Windows XP Home 32bit or Vista Home 32bit
+    </ul>
+<li><p> Minimum for Classic Terrain
+    <ul>
+    <li><p>GeForce4 MX or ATI Radeon 7 Series cards
+    <li><p>2 GHz CPU
+    <li><p>512 MB RAM
+    <li><p>Windows XP Home 32bit
+    </ul>    
+<li><p> Recommended for Classic Terrain
+    <ul>
+    <li><p>GeForce4 Ti or ATI Radeon 9500
+    <li><p>2 GHz CPU
+    <li><p>1 GB RAM
+    <li><p>Windows XP Home/Pro 32bit Vista Home 32bit
+    </ul> 
+<li><p> Minimum Spec for Tools 
+    <ul>
+    <li><p>GeForce NVIDIA GeForce 7900 GT OR ATi X1800XT
+    <li><p>AMD Athlon 64 Dual Core CPU 3800+ OR Intel Pentium D 820  
+    <li><p>2 GB DDR2 
+    <li><p>Windows XP pro SP2 32bit OR Vista Ultimate 32bit 
+    </ul>
+<li><p> Recommended Spec for Tools 
+    <ul>
+    <li><p>GeForce NVIDIA GeForce 8800 GTX OR ATi HD 3870
+    <li><p>AMD Athlon 64 Dual Core CPU 4200+ OR Intel Pentium T4200 
+    <li><p>2 GB DDR2
+    <li><p>Windows XP pro SP2 32bit OR Vista Ultimate 32bit
+</ul> 
+</ul>
+</div>
+
+<!-- INSTALLING THE REQUIRED FILES -->
+<h2><a name="InstallingTheRequiredFiles">2. Installing the Required Files</a></h2>
+
+<p><b>If you are installing from the SVN distribution:</b>
+<div class="itemizedlist">
+<ul>
+<li><p>Please review the instructions at <a href="https://svn01.bigworldtech.com/docs/">https://svn01.bigworldtech.com/docs/</a>.
+<li><p>A number of the client tools, such as CAT (Client Access Tool) and 
+   <code>asset_processor</code>, require Python to be installed.
+   <p>Python can be downloaded from 
+   <a href="http://www.python.org">http://www.python.org</a>.
+   Python 2.5.2 or greater is recommended. 
+<li><p>SpaceViewer and CAT require wxPython, a GUI toolkit for Python.
+    <p>wxPython can be downloaded from 
+   <a href="http://www.wxpython.org">http://www.wxpython.org</a>.
+
+<p style="margin-left:45pt; text-indent:-40pt">
+<b>NOTE</b>: Executables require DirectX and VC80 runtimes to be installed. Redistributable
+   installations for both are included in the <code>directx-redist</code> and 
+	<code>vc80-redist</code> folders at the root of BigWorld package. 
+</ul>
+</div>
+
+<p><b>If you are installing using the Setup Wizard (eval package):</b>
+<div class="itemizedlist">
+<ul>
+<li><p>To install, run the setup executable and follow the prompts.
+<li><p>To uninstall, run the uninstaller, either from the Start Menu or from the Add or Remove Programs Utility.
+
+<p style="margin-left:45pt; text-indent:-40pt">
+<b>NOTE</b>: Executables require DirectX and VC80 runtimes. During the setup 
+   process, the wizard will prompt about whether you want to install them.
+</ul>
+</div>
+
+<!-- SETTING UP THE RESOURCE PATH -->
+<h2><a name="SettingUpTheResourcePath">3. Setting Up the Resource Path</a></h2>
+
+<p><b>This section is only relevant if you are installing from SVN.</b>
+	 
+<p>The client and tools require the resource search path to be set before
+they can run. Depending on how you expect to be using them, choose one of 
+these two ways to set up the resource search path:
+<div class="itemizedlist">
+<ul>
+    <li><p>If you plan to run the client and tools with the FantasyDemo's game 
+	 resources only, edit paths.xml to point to FantasyDemo's and BigWorld's resource
+	 directories. See example below:
+	 <pre>&lt;root&gt;
+   &lt;Paths&gt;
+      &lt;Path&gt; c:/mf/fantasydemo/res &lt;/Path&gt;
+      &lt;Path&gt; c:/mf/bigworld/res    &lt;/Path&gt;
+   &lt;/Paths&gt;
+&lt;/root&gt;</pre>
+    <li><p>If you plan to run the client and tools with your own game resources,
+	 in addition to FantasyDemo's game resources, you are better off creating a 
+	 shortcut to the client and tools pointing to each of the resource paths
+	 to be used. The resource search path can be passed to the programs via command
+	 line arguments by using the <code>--res</code> switch. See the example below:
+	   <ul>
+	   <li><p>To run the client with FantasyDemo resources:
+		  <pre>fantasydemo.exe --res c:/mf/fantasydemo/res;c:/mf/bigworld/res</pre>
+	   <li><p>To run the client with YourGame resources:
+		   <pre>fantasydemo.exe --res c:/mf/yourgame/res;c:/mf/bigworld/res</pre>
+	   <li><p>To run WorldEditor with YourGame resources:
+		   <pre>worldeditor.exe --res c:/mf/yourgame/res;c:/mf/bigworld/res</pre>
+      </ul>
+  </ul>
+	 <p>For details on how to set the resource search path, see <b>Starting the Tools</b> in the
+     <b>Content Tools Reference Guide</b>.
+</div>
+	 
+
+<!-- RUNNING FANTASYDEMO -->
+<h2><a name="RunningFantasyDemo">4. Running FantasyDemo</a></h2>
+
+<p><b>NOTE</b>: For a list of keyboard shortcuts available in FantasyDemo, press
+             <code>F1</code>.</p>
+
+<p>To run FantasyDemo, follow the steps below:
+<div class="itemizedlist">
+   <ul>
+   <li><p>Use Windows Explorer to navigate to folder <code>fantasydemo\game</code>.
+   <li><p>Run the executable <code>fantasydemo.exe</code>.
+   <li><p>You should be able to connect to our online demo server (by 
+       selecting the option 
+       <code><b>'Connect to Demo Server'</b></code> in the main 
+       menu).
+          <ul>
+          <li><p>You can explore the demo in offline mode by selecting the option 
+              <code><b>'Explore Space Offline'</b></code> from the main menu.
+              When offline, however, there will be no entities for you to 
+              interact with.</li>
+          <li><p>If you have difficulties connecting, then please email BigWorld 
+              Technical Support at 
+              <a href="mailto:support@bigworldtech.com">support@bigworldtech.com</a>.</li>
+          </ul>
+   <li><p>The world models day and night cycles, so when you start it, it may be 
+       night time, in which case the visibility will be low.
+       <p>For the purposes of the demo, we allow you to alter the world time:
+      <ul>
+          <li><p>To move forward through the daytime, hold <code>CAPS LOCK</code> and press 
+              <code>[</code> (LEFT BRACKET).</li>
+          <li><p>To move backward through the daytime, hold <code>CAPS LOCK</code> and press 
+              <code>]</code> (RIGHT BRACKET).</li>
+      </ul>
+          <p>You can also hold <code>SHIFT</code> to speed up time.
+          <p>Please note that game time is set to run much faster than real-time.
+   </ul>
+</div>
+
+<!-- RUNNING FANTASYDEMO - BEGINNING OF COLLABORATION -->
+<h3>Collaboration</h3>
+<div class="itemizedlist">
+   <ul>
+   <li><p>Get a colleague to install the demo and log in.
+   <li><p>Target your colleague, and press <code>NUMPAD DELETE</code> to initiate 
+        a handshake.
+        <p>The other player can accept a handshake by doing the same, or by 
+        clicking while having your avatar targeted.
+   <li><p>Press <code>ENTER</code> to bring up the chat console.
+       <p>Pressing <code>ENTER</code> again without typing anything will close the 
+       window.
+       <p>Several console commands are available during chat mode (type 
+       <code>/help</code> to list them).
+   </ul>
+</div>
+
+<!-- QUICKSTART GUIDE TO MODELEDITOR -->
+<h2><a name="QuickStartGuideToModelEditor">5. QuickStart Guide to ModelEditor</a></h2>
+
+<p>To run ModelEditor, follow the steps below:
+<div class="itemizedlist">
+   <ul>
+   <li><p>Use Windows Explorer to navigate to folder 
+       <code>bigworld\tools\modeleditor</code>.
+   <li><p>Run the executable <code>modeleditor.exe</code>.
+   <li><p>Select a model:
+       <ul>
+       <li><p>In the Asset Browser, select the models folder 
+           <code>characters/npc/striff</code>.
+       <li><p>In the list of thumbnails, double-click the file 
+           <code>ranger_body</code>.
+           <p>The second button on the toolbar performs "Zoom extents". This is 
+           helpful if you want to view the whole model, or if the camera is lost.
+       </ul>
+   <li><p>Manipulate the camera:
+       <ul>
+       <li><p>To swivel the camera, move the mouse while pressing the right button.
+       <li><p>To move the camera, press the <code>WASDQE</code> keys.
+       </ul>
+   <li><p>Click the third button in the toolbar ("Orbit camera") to spin the camera 
+       around the model.
+   <li><p>Play an animation on the model:
+       <ul>
+       <li><p>Select the Animations tab.
+       <li><p>In the Animations drop-down list, select an entry. 
+       <li><p>Vary the fields Pause Before Loop and Frame Rate.
+       </ul>
+   </ul>
+</div>
+
+<p>For more details on ModelEditor, see 
+   <a href="content_tools_reference_guide.pdf">Content Tools Reference Guide</a>,
+   section ModelEditor.
+
+<!-- QUICKSTART GUIDE TO WORLDEDITOR  -->
+<h2><a name="QuickStartGuideToWorldEditor">6. QuickStart Guide to the WorldEditor</a></h2>
+
+<p>To run WorldEditor, follow the steps below:
+<div class="itemizedlist">
+   <ul>
+   <li><p>Use Windows Explorer to navigate to folder 
+       <code>bigworld\tools\worldeditor</code>.
+   <li><p>Run the executable <code>worldeditor.exe</code>.
+   <li><p>Manipulate the camera:
+       <ul>
+       <li><p>To swivel the camera, move the mouse while pressing the right button.
+       <li><p>To move the camera, press the <code>WASDQE</code> keys.
+       </ul>
+   <li><p>On the toolbar, locate the drop-down list Selection Filter (the last 
+       field to the right of the toolbar), and select entry All.
+   <li><p>Move the cursor over an object until WorldEditor displays its blue bounding 
+       box.
+   <li><p>Left-click the item to select it.
+   <li><p>While pressing <code>CTRL</code>, move the cursor over other objects, 
+       until WorldEditor displays their blue bounding boxes.
+       <p>Left-clicking will add them to the list of selected items.
+   <li><p>Try the gizmos:
+       <ul>
+       <li><p><i><b>Position gizmo</b></i>
+           <p>Drag any of the axes in the gizmo to move the selected item in that 
+           direction.
+           <p>The selected item will move, according to the Alignment specified 
+           in the toolbar (set by buttons Free Positioning, Terrain Lock, and 
+           Obstacle Lock).   
+           <p>To drag items along the terrain, select the toolbar button 
+           Terrain Lock. 
+       <li><p><i><b>Rotation gizmo</b></i>
+           <p>Activate the item's <i>rotation gizmo</i> by pressing 
+           <code>SHIFT</code> while it is selected.
+           <p>Drag any of the circles of the 3D gizmo to rotate the selected item 
+           in that orientation.
+       <li><p><i><b>Scale gizmos</b></i>
+           <p>Activate the item's <i>scale gizmos</i> by pressing <code>ALT</code> 
+           while one of them is selected.
+           <ul>
+           <li><p><i><b>Regular (non-uniform) scale gizmo</b></i>
+               <p>Drag any axis of the 3D gizmo to resize any one 
+               dimension of the selected item.
+           <li><p><i><b>Uniform scale gizmo</b></i>
+               <p>Drag the circle around the selected item inwards or outwards to 
+               uniformly resize all dimensions of the item. 
+           </ul>
+       </ul>
+   <li><p>Test the chunk visualisation modes.
+       <p>Press <code>F6</code> to cycle through the following modes:
+       <ul>
+       <li><p><b>Chunk borders</b>&mdash;Overlays a continuous white line around 
+           the border of the chunk (measuring 100m x 100m) over which the mouse 
+           is positioned.
+       <li><p><b>Pole markers</b>&mdash;Divides the chunk over which the mouse is 
+           positioned into 25 squares (measuring 4m x 4m each), and overlays pole 
+           marker icons on the corner of each one.
+       <li><p><b>Wireframe</b>&mdash;Divides the chunk over which the mouse is 
+           positioned into 25 squares (measuring 4m x 4m each), and overlays the 
+           wireframe grid indicator over each one.
+       <li><p><b>Normal</b>&mdash;Displays the terrain as it will be rendered in 
+           the scene. No overlay is applied on the interface.     
+       </ul>
+   <li><p>Test the terrain texture brush.
+       <ul>
+       <li>
+         <p>Click the Paint terrain textures tool (2).
+         <li><p>Double click on a texture from the asset locator.
+         <li>
+         <p>Specify the values for the brush's Size and Strength.
+         <li><p>Left-click the area over which you want to apply the selected texture.
+       </ul>
+   <li><p>Test the terrain drawing.
+       <ul>
+       <li>
+         <p>Click the Change Terrain height tool (3).
+         <li><p>Specify the values for brush's Size and Strength.
+       <li><p>Set the value of field Explicit Height.
+       <li><p>Change the terrain's height:
+           <ul>
+           <li><p><code>Middle-click</code> the terrain to lower it.
+           <li><p><code>Left-click</code> the terrain to raise it.
+           <li><p><code>Left-click</code> the terrain while pressing 
+               <code>LEFT CTRL</code> to set it to a specified height. 
+           </ul>
+       </ul>
+   </ul>
+</div>
+
+<p>For more details on WorldEditor, see 
+   <a href="content_tools_reference_guide.pdf">Content Tools Reference Guide</a>,
+   section WorldEditor.
+
+
+<!-- QUICKSTART GUIDE TO RUNNING THE SERVER -->
+<h2><a name="QuickStartGuideToRunningTheServer">7. QuickStart Guide to Running the Server</a></h2>
+
+<p>To run the server (SVN distribution),follow the steps below:
+<div class="itemizedlist">
+   <ul>
+   <li><p>Install the server according to the
+       <a href="server_installation_guide.html">Server Installation Guide</a>.
+   <li><p>Start BWPanel.
+       <p>For details on BWPanel, see <a href="server_operations_guide.pdf">Server
+       Operations Guide</a>, section Admin Tools, BWPanel.
+   <li><p>In BWPanel, click <code>Start the World - Brief</code>.
+   <li><p>Use the client's "Search for servers in LAN" function to locate and log 
+       into your own world.
+   </ul>
+</div>
+
+
+<!-- INSTALLING TO A VERSION CONTROL SYSTEM -->
+<h2><a name="WorkingWithAVCS">8. Committing files to a Version Control System</a></h2>
+
+<p>In general, every file included in your package may be checked into a version
+   control system such as CVS, SVN or Perforce.  However if the repository you
+   are using uses a lock-before-editing system such (i.e. files are read-only on
+   your hard-disk before use), then there are some files you should leave out.
+   And regardless of whether the repository marks files as read-only by default,
+   there are also some other types of files that are better left uncomitted.
+   To install BigWorld into any version control system, please read the following
+   guide to which files you should commit, and which files you should leave out:</p>
+ <h3>Do not commit these files!</h3>
+ <p>The files below contain user preferences, and are automatically
+   saved to disk on the local user's machine.  You don't want these files checked
+   into your repository due to the conflicts that may occur if people accidentally
+   check in these files.  Additionally if your repository marks the files as
+   read-only, then the user preferences may not be saved out by the application unless
+   you have unlocked them first - this will affect custom layout of your gui panels,
+   your graphics and video display preferences.  </p> 
+<div class="itemizedlist">
+   <ul>   
+   <li><p>bigworld/tools/worldeditor/options.xml</p></li>
+   <li><p>bigworld/tools/worldeditor/graphics_preferences.xml</p></li>
+   <li><p>bigworld/tools/particleeditor/options.xml</p></li>
+   <li><p>bigworld/tools/modeleditor/options.xml</p></li>
+   <li><p>fantasydemo/game/preferences.xml  </p></li>   
+   </ul>
+</div>
+ <p>The Asset Browser will also generate additional files for the tools to 
+    store the history of assets used in those tools and your favourites. These
+    do not need to be commited into the repository either.</p>
+ <div class="itemizedlist">
+   <ul>   
+   <li><p>bigworld/tools/worldeditor/resources/ual/history.xml</p></li>
+   <li><p>bigworld/tools/worldeditor/resources/ual/favourites.xml</p></li>
+   <li><p>bigworld/tools/particleeditor/resources/ual/history.xml</p></li>
+   <li><p>bigworld/tools/particleeditor/resources/ual/favourites.xml</p></li>
+   <li><p>bigworld/tools/modeleditor/resources/ual/history.xml</p></li>
+   <li><p>bigworld/tools/modeleditor/resources/ual/favourites.xml</p></li>
+   </ul>
+</div>
+ <p>Once you run an application, various log files may be created (such as python.log,
+ or worldeditor.log).  These should not be committed either</p>
+ <div class="itemizedlist">
+   <ul>   
+   <li><p>*.log</p></li>
+   </ul>
+</div> 
+ <p>The next set of files are created when you create a space in WorldEditor.  They
+ refer to local changes to a space and are not meant to be checked into the
+ repository.
+<div class="itemizedlist">
+   <ul>   
+   <li><p>your_game_name/res/spaces/your_space_name/space.localsettings   </p></li>
+   </ul>
+</div>
+ <p>When you run the game client or the tools, some resources will be created on-disk,
+ as 'processed' or 'compiled' versions of source files.  These files are regenerated on
+ demand based on comparing the timestamp of the source with the timestamp of the
+ automatically generated file.  If you cannot guarantee that your version control
+ system retains the modified date of files across multiple users' machines, then you
+ should not check in the following types of files : 
+<div class="itemizedlist">
+   <ul>   
+   <li><p>compressed texture map files (.dds)</p></li>
+   <li><p>compressed animation files (.anca)</p></li>
+   <li><p>generated font bitmaps or processed font files (font/*.dds;*.font)</p></li>
+   </ul>
+</div>
+<h3>Commit these files!</h3>
+Everything else that comes in your package may be committed to your version control system.
+Additionally, some files that are generated during use may also be committed (these are optional).
+<div class="itemizedlist">
+   <ul>  
+   <li><p>The following two files must be committed together, or not at all : </p></li>
+   <li><p>- your_game_name/res/spaces/your_space_name/space.thumbnail.dds </p></li>
+   <li><p>- your_game_name/res/spaces/your_space_name/space.thumbnail.timestamps </p></li>
+   </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;16.&nbsp;Clock</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Server Operations Guide">
+      <link rel="up" href="index.html" title="Server Operations Guide">
+      <link rel="prev" href="ch15.html" title="Chapter&nbsp;15.&nbsp;Common Log Messages"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;16.&nbsp;Clock</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch15.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;</td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Clock"></a>Chapter&nbsp;16.&nbsp;Clock
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch16.html#d0e11642">16.1. BigWorld Timing Methods</a></span></dt>
+                  <dt><span class="sect1"><a href="ch16.html#xref_Clock_source">16.2. Linux Clock Source</a></span></dt>
+               </dl>
+            </div>
+            <p>
+               	The BigWorld server relies heavily on having an accurate clock for timers
+               	and load calculation. Unstable clocks (clocks that may move backward)
+               	can cause undesired behaviour and even crashes. Therefore properly 
+               	configuring how BigWorld reads the time is essential for a stable,
+               	efficient server.
+                 
+            </p>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e11642"></a>16.1.&nbsp;BigWorld Timing Methods
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                  	  BigWorld provides three timing methods to select between.
+                  	  This can be configured by editing the file 
+                  	  <code class="filename">/etc/bwmachined.conf</code>
+                  	  For example, to use the <code class="code">gettime</code> timing method, include a 
+                  	  section like this:
+                  
+               </p><pre class="programlisting">
+[TimingMethod]
+gettime
+</pre><p>
+                  	
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li><code class="code">rdtsc</code> reads the time stamp counter register on the CPU. 
+                        		It is by far 
+                        		the fastest and least stable method of deducing the current time. It is
+                        		known to become unstable in multi-cored machines where a process moves 
+                        		between cores or if frequency scaling is used. In many systems however 
+                        		is completely stable and could therefore be used.
+                        	  
+                     </li>
+                     <li><code class="code">gettime</code> uses the kernel's clock driver to access the 
+                        		current time.
+                        		It is far slower than rdtsc but has the ability to draw on multiple
+                        		time sources to ensure a good compromise between speed, accuracy and 
+                        		stability is reachable. For additional system level configuration see:
+                        		<a href="ch16.html#xref_Clock_source" title="16.2.&nbsp;Linux Clock Source">Linux Clock Source</a></li>
+                     <li><code class="code">gettimeofday</code> is a deprecated timing method. It is 
+                        		similar to gettime but has a lower theoretical maximum resolution and 
+                        		may be disrupted by NTP.
+                        	  
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Clock_source"></a>16.2.&nbsp;Linux Clock Source
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                  	  Linux should automatically select an appropriate clock driver for its
+                  	  internal timekeeping, however at times the sysadmin may need to select
+                  	  a different one. If gettime is used as the timing method this will have
+                  	  a direct impact to how BigWorld behaves.
+                  	
+               </p>
+               <p>
+                  	A user may check which clocksource they are using with the following command run as root:
+                  	
+               </p><pre class="programlisting">#cat /sys/devices/system/clocksource/clocksource0/current_clocksource</pre><p>
+                  	You may check which options available with:
+                  	
+               </p><pre class="programlisting">#cat /sys/devices/system/clocksource/clocksource0/available_clocksource</pre><p>
+                  	
+               </p>
+               <p>
+                  	<code class="code">tsc</code> and <code class="code">jiffies</code> are known to be sometimes unstable and <code class="code">acpi_pm</code> will 
+                  	also be unstable with some motherboard chipsets. We suggest you use <code class="code">hpet</code>
+                  	if it is available and if it isn't you should try <code class="code">acpi_pm</code>.
+                  	
+               </p>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch15.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;</td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;15.&nbsp;Common Log Messages&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

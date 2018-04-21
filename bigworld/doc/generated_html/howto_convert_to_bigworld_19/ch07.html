@@ -1,0 +1,105 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;7.&nbsp;Watcher Network Protocol v2</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="up" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="prev" href="ch06.html" title="Chapter&nbsp;6.&nbsp;File Format Changes">
+      <link rel="next" href="ch08.html" title="Chapter&nbsp;8.&nbsp;Migrating WebConsole and other server tools"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;7.&nbsp;Watcher Network Protocol v2</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch06.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch08.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Watcher_Protocol_Changes"></a>Chapter&nbsp;7.&nbsp;Watcher Network Protocol v2
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch07.html#d0e547">7.1. Watcher Network Protocol v1</a></span></dt>
+               </dl>
+            </div>
+            <p>BigWorld 1.9 introduces a new version of the Watcher network
+               	protocol (referred to here-after as Watcher protocol version 2). Prior
+               	to BigWorld 1.9 the Watcher protocol was entirely string based which
+               	limited the ability of sending complex data via Watchers. Version 2
+               	of the protocol sends watcher requests and responses in a binary format
+               	to facilitate more complex watcher interactions.
+            </p>
+            <p>As a result of the Watcher protocol changes most components of
+               	BigWorld that interact with Watchers have been modified to interact with
+               	the new protocol.
+            </p>
+            <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+               <h3 class="title">Note</h3>
+               <p>Due to the protocol changes, the server tools (ie: WebConsole,
+                  	cluster_control.py, bop_op.py) are not backwards compatible with prior
+                  	BigWorld releases (1.8.x and prior).
+               </p>
+               <p>BigWorld 1.9 servers however still support Watcher protocol version
+                  	1. This means that 1.8.x and prior tools can communicate with 1.9 servers.
+                  	
+               </p>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e547"></a>7.1.&nbsp;Watcher Network Protocol v1
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Please be aware that while BigWorld servers currently still support
+                       protocol version 1 requests, this feature may be deprecated in future
+                       releases. We advise that any custom programs or reliance on the Watcher
+                       protocol is modified to interact with Watcher protocol version 2.
+               </p>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch06.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch08.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;6.&nbsp;File Format Changes&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;8.&nbsp;Migrating WebConsole and other server tools</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

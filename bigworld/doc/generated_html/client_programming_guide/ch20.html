@@ -1,0 +1,469 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;20.&nbsp;Full-screen Filters</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Client Programming Guide">
+      <link rel="up" href="index.html" title="Client Programming Guide">
+      <link rel="prev" href="ch19.html" title="Chapter&nbsp;19.&nbsp;3D Engine (Moo)">
+      <link rel="next" href="ch21.html" title="Chapter&nbsp;21.&nbsp;Debugging"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;20.&nbsp;Full-screen Filters</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch19.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch21.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Full_Screen_Filters"></a>Chapter&nbsp;20.&nbsp;Full-screen Filters
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch20.html#xref_Bloom">20.1. Bloom</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect2"><a href="ch20.html#d0e9672">20.1.1. How the bloom filter works</a></span></dt>
+                        <dt><span class="sect2"><a href="ch20.html#d0e9681">20.1.2. How to use bloom</a></span></dt>
+                        <dt><span class="sect2"><a href="ch20.html#d0e9700">20.1.3. Tweaking bloom</a></span></dt>
+                        <dt><span class="sect2"><a href="ch20.html#xref_Blurring_The_Scene">20.1.4. Blurring the scene</a></span></dt>
+                        <dt><span class="sect2"><a href="ch20.html#d0e9803">20.1.5. Making the bloom permanent</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="sect1"><a href="ch20.html#xref_Heat_Shimmer">20.2. Heat shimmer</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect2"><a href="ch20.html#d0e9832">20.2.1. How to use heat shimmer</a></span></dt>
+                        <dt><span class="sect2"><a href="ch20.html#d0e9863">20.2.2. Tweaking heat shimmer</a></span></dt>
+                     </dl>
+                  </dd>
+               </dl>
+            </div>
+            <p>The BigWorld 3D engine has two full-screen filters used for
+                 specialised rendering effects. Bloom is used to improve the lighting, and
+                 heat shimmer is used for simulating heat, and other special effects.
+            </p>
+            <p>Both are described in the following sections.</p>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Bloom"></a>20.1.&nbsp;Bloom
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Blooming is a way to simulate the high dynamic range of lighting, by
+                      producing an automatic glow around very bright objects.
+               </p>
+               <p>Extra brightness can be alluded to on the computer screen by having
+                      the light from an object bleed around the edges of objects in front, a
+                      technique similar to lens flare. With lens flares, you have to specify the
+                      position of the lens flare manually, and it can only represent a point
+                      light source. However, you can have secondary flaring, as well as choosing
+                      a custom texture for each flare.
+               </p>
+               <p>When blooming is turned on, it occurs automatically wherever there
+                      are very bright objects in the scene. Because it works at the pixel level,
+                      you can have arbitrarily shaped blooms, and there is no performance
+                      penalty for having many objects that bloom (instead, there is a constant
+                      cost to perform the full-screen bloom effect).
+               </p>
+               <p>Additionally, blooming works well with dynamic objects, for example
+                      capturing moving glints from specular highlights, or by using animated
+                      textures.
+               </p>
+               <p>There are many papers on the Internet describing this, and more
+                      advanced implementations. To find them search for the terms 'Frame Buffer
+                      Post-Processing', or 'High Dynamic Range Rendering'.
+               </p>
+               <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+                  <h3 class="title">Note</h3>
+                  <p>The bloom filter can be disabled by the via the
+                           <span class="literal">BLOOM_FILTER</span> graphic setting (for details, see <a href="ch19.html#xref_Customising_Options" title="19.9.1.&nbsp;Customising options">Customising options</a>).
+                  </p>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e9672"></a>20.1.1.&nbsp;How the bloom filter works
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>After the scene is drawn, a copy is made to an off-screen texture.
+                           During this process, the colours are put through a power function in a
+                           pixel shader, so that only the very bright areas remain, and the darker
+                           ones become black.
+                  </p>
+                  <p>This texture is then down-sampled onto a small texture (one
+                           quarter the size of the back buffer). This texture is then blurred a
+                           number of times using a Gaussian blur function in a pixel shader. It is
+                           this blurring that allows the colour to bleed around the edges of
+                           objects.
+                  </p>
+                  <p>Once the blurring is complete, the texture containing the blurred,
+                           bright portions of the screen is added back over the original back
+                           buffer.
+                  </p>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e9681"></a>20.1.2.&nbsp;How to use bloom
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>Since blooming occurs automatically as a full-screen effect within
+                           the engine, all you have to do to observe its effect is to make sure
+                           there are bright pixels in the scene and that blooming is turned
+                           on.
+                  </p>
+                  <p>To get bright pixels in the scene sometimes it is not enough to
+                           just make sure that textures include bright areas; even bright textures
+                           appear dark if the lighting is insufficient.
+                  </p>
+                  <p>There are other ways to make sure bright areas are rendered in the
+                           scene, as described below:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p>Use the self-illumination property of materials to simulate an
+                                        emissive material. Self-illuminated materials are not darkened by
+                                        the scene lighting, and therefore can achieve a brightness that
+                                        allows blooming to occur.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Add an additive texture layer (a glow map) to an existing
+                                        material. This is similar to using self-illuminated materials,
+                                        except in that the emissiveness is controlled at the texel level.
+                                        This method is even more flexible, because you can use rolling UVs,
+                                        or even an animated texture.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Blooming occurs naturally with specular bump mapping, because
+                                        specular highlights are often very bright, and reflected lighting is
+                                        additive.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e9700"></a>20.1.3.&nbsp;Tweaking bloom
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>There are a number of watchers in 'Client Settings/fx/Bloom' that
+                           you can tweak to change the look of the bloom filter.
+                  </p>
+                  <p>The list below describes these watchers:</p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p><em class="emphasis"><span class="literal">bloom and
+                                              blur</span></em></p>
+                           <p>Specifies if brightness capture is to be done.</p>
+                           <p>If set to <span class="literal">FALSE</span>, then the brightness
+                                        capture is turned off, meaning the blooming code just blurs the
+                                        original scene.
+                           </p>
+                           <p>When turned off, the blurred scene is not drawn back over the
+                                        back buffer, so the scene is unaffected, but access to the blurred
+                                        texture is possible (for details, see <a href="ch20.html#xref_Blurring_The_Scene" title="20.1.4.&nbsp;Blurring the scene">Blurring the scene</a>).
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><span class="literal">enable</span></em></p>
+                           <p>Toggles the bloom filter. Possible values: 0 and 1.</p>
+                           <p>The bloom filter is turned off is value is set to 0.</p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><span class="literal">colour
+                                              attenuation</span></em></p>
+                           <p>Affects the brightness of the resultant bloom effect.</p>
+                           <p>This value is very sensitive, and values between 0.95 and 1.05
+                                        produce reasonable results for the 4x4 filter.
+                           </p>
+                           <p>This value is also affected by num passes and
+                                        filterMode.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><span class="literal">filterMode</span></em></p>
+                           <p>Selects a 4x4 Gaussian filter (1), or a 24x24 Gaussian filter
+                                        (3).
+                           </p>
+                           <p>The 24x24 mode produces a slightly better result, but involves
+                                        more rendering passes and is therefore slower than the 4x4
+                                        mode.
+                           </p>
+                           <p>Note that if you use the 24x24 filter you will need to
+                                        dramatically reduce the colour attenuation value to around
+                                        0.2.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><span class="literal">num
+                                              passes</span></em></p>
+                           <p>Selects the number of blur passes to be performed.</p>
+                           <p>Increasing the number of passes produces a smoother result,
+                                        but will use more GPU time.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><span class="literal">smooth</span></em></p>
+                           <p>Selects the blending mode used during the blurring stage.
+                                        Possible values: 0 or 1.
+                           </p>
+                           <p>Subtle variation on the blurring effect.</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="xref_Blurring_The_Scene"></a>20.1.4.&nbsp;Blurring the scene
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>As a side effect of the bloom code, it is possible to turn bloom
+                           off, but leave the blur code running. The blurred scene is not drawn
+                           back over the back buffer; the results are left in an off-screen render
+                           target.
+                  </p>
+                  <p>This render target is set as a texture feed called
+                           <span class="literal">bloom2</span>, which can be retrieved in the following
+                           ways:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p>From C++, call
+                                        <span class="literal">TextureFeeds::instance().get("bloom2")</span>.
+                           </p>
+                        </li>
+                        <li>
+                           <p>From Python, call
+                                        <span class="literal">BigWorld.getTextureFeed("bloom2")</span>.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <p>The blurred version of the screen can be assigned to GUI
+                           components, and you can achieve a variety of effects with this.
+                  </p>
+                  <p>An alternative way to set the blurring mode on is to call
+                           <span class="literal">BigWorld.selectBloomPreset(1)</span> from Python. This
+                           selects a set of predefined values for blurring that gives reasonable
+                           results.
+                  </p>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e9803"></a>20.1.5.&nbsp;Making the bloom permanent
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>Once the desired look has been achieved, you will probably leave
+                           it turned on all the time, without variations.
+                  </p>
+                  <p>The simplest way to make permanent your selected values is to
+                           modify the C++ function <span class="literal">app.cpp::selectBloomPreset()</span>,
+                           changing the default values or adding more presets for your game. You
+                           may find it useful, for example, to turn the blur mode on when entering
+                           in full-screen menu mode, leaving the game running behind the menus as a
+                           blurry backdrop.
+                  </p>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Heat_Shimmer"></a>20.2.&nbsp;Heat shimmer
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Heat shimmer was originally intended as a full-screen depth-based
+                      effect for desert scenes. However, it has ended up as a special effect
+                      more suited to simulating the diffraction from a moving water surface or
+                      bubbles, and localised heat-haze effects.
+               </p>
+               <p>Areas of the scene are designated as 'shimmering' by drawing a
+                      brightness value into the alpha channel of the back buffer. This alpha
+                      channel is then used to blend a wobbly copy of the back buffer over the
+                      top of itself.
+               </p>
+               <p>The shimmer effect itself is created in a vertex shader by simply
+                      modifying the UV coordinates of a fairly dense mesh by sending a couple of
+                      sine and cosine waves through it. The vertex shader outputs two sets of UV
+                      coordinates: the original unperturbed coordinates, and the displaced ones.
+                      A pixel shader then simply uses the alpha channel of the back buffer to
+                      select between UV coordinate 1 and UV coordinate 2.
+               </p>
+               <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+                  <h3 class="title">Note</h3>
+                  <p>The heat shimmer can be disabled by the via the
+                           <span class="literal">HEAT_SHIMMER</span> graphics setting.
+                  </p>
+                  <p>For details, see <a href="ch19.html#xref_Customising_Options" title="19.9.1.&nbsp;Customising options">Customising options</a>.
+                  </p>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e9832"></a>20.2.1.&nbsp;How to use heat shimmer
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>Shimmer occurs wherever the alpha is set on the back buffer. In
+                           order to output alpha, you must turn the shimmer flag of a material on,
+                           and make the material output alpha (<em class="emphasis">i.e.</em>, it should
+                           not be disabled, as the final stage of the material must output
+                           alpha).
+                  </p>
+                  <p>If the shimmer flag is not set, then alpha writes are disabled,
+                           and therefore the shimmer effect will not be applied, even if the
+                           material outputs alpha.
+                  </p>
+                  <p>The amount of alpha determines how much that part of the screen is
+                           shimmering, via a simple blend between the shimmered and non-shimmered
+                           back buffer.
+                  </p>
+                  <p>An example of a shimmer effect is the heat haze above a flame.
+                           There are two ways to achieve this effect, as described below:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p>Create an invisible cylinder mesh above the flame, by setting
+                                        the material channel to shimmer and outputting alpha.
+                           </p>
+                           <p>It is recommended to have soft edges on the cylinder (achieved
+                                        by projecting a falloff map onto the cylinder using front
+                                        camera-normal projection on the second texture stage of the
+                                        material). Make sure that the falloff map is projecting alpha, and
+                                        not colour, since only the alpha affects the amount of
+                                        shimmer.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Use a particle system. In your flame particle system, add a
+                                        second sub-system that outputs particles that are fairly large and
+                                        rise much higher than the flame itself.
+                           </p>
+                           <p>The texture must have an alpha component, and the
+                                        <span class="literal">materialFX</span> of that particle system should be set
+                                        to <span class="literal">FX_SHIMMER</span>.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e9863"></a>20.2.2.&nbsp;Tweaking heat shimmer
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>The inputs to the vertex shader are quite involved, so there are
+                           three preset shimmer styles (set with the Python function
+                           <span class="literal">BigWorld.setShimmerStyle</span>), which are described
+                           below:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p><em class="emphasis"><span class="literal">0</span></em></p>
+                           <p>A fairly subtle effect, that introduces a 1-pixel offset. This
+                                        means that while a slight shimmer is visible, the border of the
+                                        shimmer region is still noticeable. This can be used for
+                                        invisibility or cloaking effects on characters.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><span class="literal">1</span></em></p>
+                           <p>A very obvious effect, that shimmers greatly. This can be used
+                                        for shockwave effects.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><span class="literal">2</span></em></p>
+                           <p>A subtle effect that has no pixel offset. This is useful in
+                                        the general cases, for simulating the changing diffraction on the
+                                        surface of water (the shimmer looks similar to the wave like
+                                        undulation of water), simulating the effect of bubbles in a glass
+                                        tank of water, or heat haze above bonfires and weapon
+                                        discharges.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch19.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch21.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;19.&nbsp;3D Engine (Moo)&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;21.&nbsp;Debugging</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,251 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;12.&nbsp;DBMgr MySQL Support</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Server Operations Guide">
+      <link rel="up" href="index.html" title="Server Operations Guide">
+      <link rel="prev" href="ch11.html" title="Chapter&nbsp;11.&nbsp;Multiple BigWorld Servers in a Single LAN">
+      <link rel="next" href="ch13.html" title="Chapter&nbsp;13.&nbsp;RPM"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;12.&nbsp;DBMgr MySQL Support</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch11.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch13.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_DBMgr_MySQL_Support"></a>Chapter&nbsp;12.&nbsp;DBMgr MySQL Support
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch12.html#xref_Compiling_DBMgr_With_MySQL_Support">12.1. Compiling DBMgr with MySQL Support</a></span></dt>
+                  <dt><span class="sect1"><a href="ch12.html#d0e10850">12.2. Update <code class="filename">bw.xml</code> To Use MySQL</a></span></dt>
+                  <dt><span class="sect1"><a href="ch12.html#d0e10888">12.3. Initialise Database With Entity Definitions</a></span></dt>
+                  <dt><span class="sect1"><a href="ch12.html#xref_Disabling_Schema_Modifying_Capability">12.4. Disabling Schema-Modifying Capability</a></span></dt>
+                  <dt><span class="sect1"><a href="ch12.html#xref_Enabling_Secondary_Databases">12.5. Enabling Secondary Databases</a></span></dt>
+               </dl>
+            </div>
+            <p>Following is described the minimal set of steps required to enable
+                 MySQL support for a server cluster. They assume that a MySQL database has
+                 been installed and configured as outlined in the Server Installation Guide,
+                 section Installing the BigWorld Server, Configure MySQL server.
+            </p>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Compiling_DBMgr_With_MySQL_Support"></a>12.1.&nbsp;Compiling DBMgr with MySQL Support
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>The DBMgr binary provided with the default BigWorld package does not
+                      have MySQL support built-in. This allows users to quickly start using
+                      BigWorld without having to configure a production database to test a
+                      simple package.
+               </p>
+               <p>First, to enable compilation of DBMgr, make sure that the MySQL
+                      development files are installed on the build system. To do this, as root,
+                      issue:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>On Fedora:</p><pre class="programlisting">yum install mysql-devel</pre></li>
+                  </ul>
+               </div>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>On Debian</p><pre class="programlisting">apt-get install libmysql++-dev</pre></li>
+                  </ul>
+               </div>
+               <p>Next, the DBMgr makefile needs to be modified, to enable MySQL
+                      support. Edit <code class="filename">bigworld/src/server/dbmgr/Makefile</code> and
+                      change the variable definition from <em class="emphasis"><span class="literal">USE_MYSQL=0</span></em> to <em class="emphasis"><span class="literal">USE_MYSQL=1</span></em>
+                      (<span class="literal">USE_XML</span> can be left on, without any side
+                      effects).
+               </p>
+               <p>After these alterations, it will be possible to rebuild DBMgr. From
+                      within the <code class="filename">bigworld/src/server/dbmgr</code> folder, issue the
+                      command <span><strong class="command">make</strong></span>.
+               </p>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e10850"></a>12.2.&nbsp;Update <code class="filename">bw.xml</code> To Use MySQL
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Once DBMgr has been compiled to communicate with a MySQL server, the
+                      game resource configuration file
+                      <code class="filename"><em class="replaceable"><code>&lt;res&gt;</code></em>/server/bw.xml</code>
+                      needs to be updated with details on <code class="property">username</code>,
+                      <code class="property">password</code> and the <code class="property">host</code> machine
+                      the MySQL server is running on.
+               </p>
+               <p>The example below illustrates FantasyDemo configuration (via
+                      <code class="filename">fantasydemo/res/server/bw.xml</code>):
+               </p><pre class="programlisting">&lt;dbMgr&gt;
+    &lt;type&gt;     mysql                     &lt;/type&gt;
+    &lt;host&gt;     my_mysql_server_machine &lt;/host&gt;
+    &lt;username&gt; bigworld &lt;/username&gt;
+    &lt;password&gt; my_pass &lt;/password&gt;
+    &lt;databaseName&gt;     fantasydemo &lt;/databaseName&gt;
+&lt;/dbMgr&gt;</pre><p><span class="citetitle">Example
+                         <code class="filename">fantasydemo/res/server/bw.xml</code></span></p>
+               <p>For details on these fields and other relevant configuration options
+                      for your production environment, see <a href="ch02.html" title="Chapter&nbsp;2.&nbsp;Server Configuration with bw.xml"><i xmlns:xlink="http://www.w3.org/1999/xlink">Server Configuration with <span class="literal">bw.xml</span></i></a>.
+               </p>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e10888"></a>12.3.&nbsp;Initialise Database With Entity Definitions
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>DBMgr requires the MySQL database table structure to exactly match
+                      the current entity definitions.
+               </p>
+               <p>To initialise the MySQL database with the correct structure, go to
+                      the folder containing the server binaries (<em class="emphasis">e.g.</em>,
+                      <code class="filename">mf/bigworld/bin/Hybrid</code>), then run
+                      DBMgr with the appropriate argument:
+               </p><pre class="programlisting">$ ./dbmgr --sync-tables-to-defs</pre><p>When run with the <code class="option">--sync-tables-to-defs</code> option,
+                      DBMgr updates the table structure and terminates, to allow the server to
+                      be started normally.
+               </p>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Disabling_Schema_Modifying_Capability"></a>12.4.&nbsp;Disabling Schema-Modifying Capability
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>By default, DBMgr has the ability to alter the database schema
+                      through the <code class="option">--sync-tables-to-defs</code> command-line option or
+                      the <code class="property">&lt;dbMgr&gt;/&lt;syncTablesToDefs&gt;</code>
+                      configuration option. This feature may be undesirable in a production
+                      environment where the data in the database is highly valuable. Accidental
+                      use of the sync-tables-to-defs feature may result in data loss. For
+                      example, if the entity definition files were deleted, it will cause DBMgr
+                      to remove the corresponding tables in the database.
+               </p>
+               <p>The schema-modifying capability of the DBMgr can be removed by
+                      recompiling it after setting the variable
+                      <span class="literal"><code class="option">ENABLE_TABLE_SCHEMA_ALTERATIONS</code></span> to
+                      <span class="literal">0</span> in
+                      <code class="filename">bigworld/src/server/dbmgr/Makefile</code>. The resulting
+                      DBMgr executable will no longer have the ability to modify the table
+                      schema. Use of the <code class="option">--sync-tables-to-defs</code> command-line
+                      option or the <code class="property">&lt;dbMgr&gt;/&lt;syncTablesToDefs&gt;</code>
+                      configuration option will result in a warning. The DBMgr will fail to
+                      start if the database table schema does not match the entity
+                      definitions.
+               </p>
+               <p>The new DBMgr executable will be able to connect to a database with
+                      just the <span class="literal">SELECT</span>, <span class="literal">INSERT</span>,
+                      <span class="literal">UPDATE</span> and <span class="literal">DELETE</span> privileges. Please
+                      note that the original DBMgr executable required the <span class="literal">CREATE
+                         TABLE</span> privilege even when sync-tables-to-defs feature is not
+                      used. This is because the original DBMgr executable automatically creates
+                      and modifies BigWorld internal tables (tables with names starting with
+                      "bigworld").
+               </p>
+               <p>It is likely that the original DBMgr executable with the
+                      sync-tables-to-defs feature will still be useful since manually updating
+                      the table schema to match the entity definition is a time consuming task.
+                      A copy of the original DBMgr executable can be kept at a location where it
+                      is not likely to be invoked in the day-to-day operations of a production
+                      server.
+               </p>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Enabling_Secondary_Databases"></a>12.5.&nbsp;Enabling Secondary Databases
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Secondary databases can only be enabled when MySQL support is
+                      enabled. Please see the document <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Server Programming Guide</span>'s
+                      chapter <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Secondary Databases</span> for
+                      details about secondary databases.
+               </p>
+               <p>To enable secondary database support, you must:</p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>Enable MySQL support (see above).</p>
+                     </li>
+                     <li>
+                        <p>Build the data consolidation tool by issuing the
+                                     <span><strong class="command">make</strong></span> command from within the <code class="filename">bigworld/src/server/tools/consolidate_dbs</code>
+                                     directory.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Set the <code class="filename">bw.xml</code> option
+                                     <code class="property">&lt;baseApp&gt;/&lt;secondaryDB&gt;/&lt;enable&gt;</code>
+                                     to <span class="literal">true</span>.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch11.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch13.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;11.&nbsp;Multiple BigWorld Servers in a Single LAN&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;13.&nbsp;RPM</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

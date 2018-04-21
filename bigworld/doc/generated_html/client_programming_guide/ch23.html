@@ -1,0 +1,327 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;23.&nbsp;Simplified Server Usage</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Client Programming Guide">
+      <link rel="up" href="index.html" title="Client Programming Guide">
+      <link rel="prev" href="ch22.html" title="Chapter&nbsp;22.&nbsp;Releasing The Game"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;23.&nbsp;Simplified Server Usage</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch22.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;</td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Simplified_Server_Usage"></a>Chapter&nbsp;23.&nbsp;Simplified Server Usage
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch23.html#d0e12511">23.1. Setting up the windows share</a></span></dt>
+                  <dt><span class="sect1"><a href="ch23.html#d0e12580">23.2. Mounting the Windows share on Linux</a></span></dt>
+                  <dt><span class="sect1"><a href="ch23.html#d0e12688">23.3. Caveats</a></span></dt>
+               </dl>
+            </div>
+            <p>For anyone not familiar with both Windows and Linux, running a
+               BigWorld server on a Linux box to test game scripts and/or assets can be
+                 intimidating and error prone. Additionally, since designers and artists
+                 typically do most of their work on Windows, the process of synchronising
+                 files between the Windows and Linux machines can be tedious.
+            </p>
+            <p>The solution presented here aims to simplify this task by having all
+                 assets and game scripts reside on the Windows machine, with a Linux box
+                 (which can be shared among multiple users) hosting and running the BigWorld
+                 server binaries.
+            </p>
+            <p>Basically, the solution proposes the following:</p>
+            <div class="orderedlist">
+               <ol type="1">
+                  <li>
+                     <p>User exports the root BigWorld directory (<em class="emphasis">i.e.</em>,
+                              the directory containing <code class="filename">bigworld</code>,
+                              <code class="filename">fantasydemo</code>, and <code class="filename">src</code> folders) as a
+                              Windows share.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Linux box mounts the relevant
+                              <code class="filename"><em class="replaceable"><code>&lt;res&gt;</code></em></code> directories inside
+                              the <code class="filename">bigworld</code> folder on the Linux filesystem.
+                     </p>
+                  </li>
+               </ol>
+            </div>
+            <p>This makes game development easy for a Windows-based developer/artist,
+                 since all editable files reside on the machine they are working on.
+            </p>
+            <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+               <h3 class="title">Note</h3>
+               <p>The solution intentionally keeps the server binaries on the Linux
+                      box.
+               </p>
+               <p>Running server executables pulled from SAMBA-mounted filesystems
+                      causes unexpected problems, and is not recommended.
+               </p>
+               <p>Running server binaries from NFS-mounted filesystems, however, works
+                      correctly.
+               </p>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e12511"></a>23.1.&nbsp;Setting up the windows share
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>To share the <code class="filename">mf</code> directory on the Windows machine, follow the steps
+                      below:
+               </p>
+               <div class="orderedlist">
+                  <ol type="1">
+                     <li>
+                        <p>Select the <code class="filename">mf</code> directory and right-click
+                                   it.
+                        </p>
+                     </li>
+                     <li>
+                        <p>In the context menu, select the <em class="emphasis">Sharing
+                                      and Security...</em> menu item.
+                        </p>
+                     </li>
+                     <li>
+                        <p>On the <em class="emphasis">mf Properties</em> dialog
+                                   box, select the <em class="emphasis">Share This Folder</em>
+                                   option button.
+                        </p>
+                     </li>
+                     <li>
+                        <p>In the <em class="emphasis">Share Name</em> field, type
+                                   the name to share the folder by (in our example, <em class="emphasis">mf-win</em>).
+                        </p>
+                     </li>
+                     <li>
+                        <p>Click the <em class="emphasis">Permissions</em>
+                                   button.
+                        </p>
+                     </li>
+                     <li>
+                        <p>In the <em class="emphasis">Permission For mf</em> dialog
+                                   box's <em class="emphasis">Group or User Names</em> list box,
+                                   select the <em class="emphasis">Everyone</em> item.
+                        </p>
+                     </li>
+                     <li>
+                        <p>In the <em class="emphasis">Permissions For Everyone</em>
+                                   list box's <em class="emphasis">Full Control</em> entry, select
+                                   the <em class="emphasis">Allow</em> check box.
+                        </p>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e12580"></a>23.2.&nbsp;Mounting the Windows share on Linux
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>To assist the process of mounting the Windows share, BigWorld
+                      provides the script
+                      <code class="filename">bigworld/tools/server/install/setup_win_dev.py</code>.
+               </p>
+               <p>Please note, however, that it was designed for developers working at
+                      BigWorld, and hence it uses default values appropriate for BigWorld as
+                      well. Before artists and game programmers use it, a sysadmin or programmer
+                      should edit this file to change the defaults to values appropriate for
+                      your development environment.
+               </p>
+               <p>This script works on the following assumptions:</p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>You are using CVS <span class="symbol">&#8208;</span> if you wish to use this script in a
+                                   Subversion-based environment, then a search-and-replace should be
+                                   done.
+                        </p>
+                     </li>
+                     <li>
+                        <p>The server binaries are stored in the CVS repository.</p>
+                     </li>
+                     <li>
+                        <p>Your username on the Windows box is the same as your username on
+                                   the Linux box.
+                        </p>
+                     </li>
+                     <li>
+                        <p>You are using Fedora Core 5 or later (this script has not been
+                                   tested on Debian).
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <p>The script displays a list of prerequisites upon startup, which are
+                      reproduced here for convenience:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>You have been entered in the <span class="literal">sudoers</span> file
+                                   (for details, issue the <span><strong class="command">man sudoers</strong></span> command) on the
+                                   Linux box.
+                        </p>
+                     </li>
+                     <li>
+                        <p>You know the appropriate <code class="envar">$CVSROOT</code> for your
+                                   environment.
+                        </p>
+                     </li>
+                     <li>
+                        <p>You know where your home directory will be on the Linux
+                                   box.
+                        </p>
+                     </li>
+                     <li>
+                        <p>You have shared the root BigWorld directory on your Windows
+                                   box.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <p>Once these requirements have been met and/or the necessary
+                      modifications have been made for your environment, running
+                      <code class="filename">setup_win_dev.py</code> will perform the following
+                      actions:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>Create your home directory on the Linux machine if it does not
+                                   already exist.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Mount your Windows share using Samba and patch
+                                   <span class="literal">/etc/fstab</span> (so it can be easily mounted in the
+                                   future).
+                        </p>
+                     </li>
+                     <li>
+                        <p>Detect the
+                                   <code class="filename"><em class="replaceable"><code>&lt;res&gt;</code></em></code> folder in
+                                   your Windows share and ask you which ones should be symlinked into the
+                                   Linux BigWorld folder.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Request the order in which the
+                                   <code class="filename"><em class="replaceable"><code>&lt;res&gt;</code></em></code> folder
+                                   should appear in your <code class="envar">$BW_RES_PATH</code>.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Set up your <code class="filename">~/.bwmachined.conf</code> file.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Fetch the server binaries from CVS.</p>
+                     </li>
+                  </ul>
+               </div>
+               <p>Once the actions above have been performed, you can use WebConsole
+                      from your Windows box to:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>Start and stop a server.</p>
+                     </li>
+                     <li>
+                        <p>View server output.</p>
+                     </li>
+                     <li>
+                        <p>Connect to the Python Console of a running server
+                                   process.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Perform other administrative functions.</p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e12688"></a>23.3.&nbsp;Caveats
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>At present, <code class="filename">setup_win_dev.py</code> does not insert your
+                      Windows password into the <code class="filename">/etc/fstab</code> entry. This is
+                      because the file is world-readable by default, which would expose the
+                      passwords.
+               </p>
+               <p>The downside to this approach is that the Linux box will not be able
+                      to automatically remount any Windows shares at boot time <span class="symbol">&#8208;</span> the shares have
+                      to be manually mounted via the shell, and each user's password must be
+                      entered. If the Linux box is rebooted often, then this can be time
+                      consuming.
+               </p>
+               <p>If you consider your internal security robust enough to have your
+                      Windows passwords in <code class="filename">/etc/fstab</code>, then you can add the
+                      passwords in the options section of the relevant mounts in
+                      <code class="filename">/etc/fstab</code>.
+               </p>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch22.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;</td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;22.&nbsp;Releasing The Game&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,328 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;6.&nbsp;File Format Changes</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="up" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="prev" href="ch05.html" title="Chapter&nbsp;5.&nbsp;Advanced Terrain Server Usage">
+      <link rel="next" href="ch07.html" title="Chapter&nbsp;7.&nbsp;Watcher Network Protocol v2"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;6.&nbsp;File Format Changes</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch05.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch07.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_File_Format_Changes"></a>Chapter&nbsp;6.&nbsp;File Format Changes
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch06.html#d0e187">6.1. Converted <span class="literal">Entity</span> Format</a></span></dt>
+                  <dt><span class="sect1"><a href="ch06.html#d0e296">6.2. Converted <span class="literal">Patrol Node</span> To <span class="literal">User Data
+                                  Object</span></a></span></dt>
+                  <dt><span class="sect1"><a href="ch06.html#d0e521">6.3. Space settings</a></span></dt>
+               </dl>
+            </div>
+            <p>This chapter describes changes made to BigWorld's file formats between
+                 this version and the previous version.
+            </p>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e187"></a>6.1.&nbsp;Converted <span class="literal">Entity</span> Format
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>A sample BigWorld pre-1.9 Entity section looks like this (sections
+                      that remain the same have been omitted):
+               </p><pre class="programlisting">&lt;entity&gt;
+   &lt;properties&gt;
+      &lt;patrolList&gt; <em class="replaceable"><code>graph_id</code></em> &lt;/patrolList&gt;
+      &lt;patrolPathNode&gt; <em class="replaceable"><code>node_id</code></em> &lt;/patrolPathNode&gt;
+   &lt;/properties&gt;
+&lt;/entity&gt;</pre><div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">patrolList</span>
+                                      (section<span class="literal"> properties</span>)</em></p>
+                        <p>The ID of the graph which the node belongs to.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">patrolPathNode</span> (section
+                                      <span class="literal">properties</span>)</em></p>
+                        <p>The ID of the node which the entity links to.</p>
+                     </li>
+                  </ul>
+               </div>
+               <p>The new BigWorld 1.9 Entity section using <em class="emphasis">User
+                         Data Objects</em> for the same entity looks like this:
+               </p><pre class="programlisting">&lt;entity&gt;
+   &lt;properties&gt;
+      &lt;<em class="replaceable"><code>linkName</code></em>&gt;
+         &lt;guid&gt; <em class="replaceable"><code>node_id </code></em>&lt;/guid&gt;
+         &lt;chunkId&gt; <em class="replaceable"><code>chunk_id </code></em>&lt;/chunkId&gt;
+      &lt;/<em class="replaceable"><code>linkName</code></em>&gt;
+   &lt;/properties&gt;
+&lt;/entity&gt;</pre><div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">linkName</span> (section
+                                      <span class="literal">properties</span>)</em></p>
+                        <p>The name of the link as defined by the entitiy's definition
+                                   file, for more information on definition files see the document <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Server Programming
+                                      Guide</span>'s section <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">????</span>
+                                   <span class="symbol">&#8594;</span> <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">????</span>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">guid</span> (section
+                                      <span class="literal">linkName</span>)</em></p>
+                        <p>The ID of the PatrolNode User Data Object which the entity links
+                                   to.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">chunkId</span> (section
+                                      <span class="literal">linkName</span>)</em></p>
+                        <p>The ID of the chunk which the PatrolNode User Data Object that
+                                   the entity links to resides in.
+                        </p>
+                        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+                           <h3 class="title">Note</h3>
+                           <p>The <em class="emphasis"><span class="literal">chunkId</span></em> section is only
+                                        used by the editor.
+                           </p>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e296"></a>6.2.&nbsp;Converted <span class="literal">Patrol Node</span> To <span class="literal">User Data
+                                  Object</span></h2>
+                     </div>
+                  </div>
+               </div>
+               <p>A BigWorld pre-1.9 Patrol Node section in a chunk file looks like
+                      this:
+               </p><pre class="programlisting">&lt;station&gt;
+   &lt;id&gt; <em class="replaceable"><code>patrol_node_id</code></em> &lt;/id&gt;
+   &lt;position&gt; <em class="replaceable"><code>float float float </code></em>&lt;/position&gt;
+   &lt;graph&gt; <em class="replaceable"><code>graph_id </code></em>&lt;g/graph&gt;
+   &lt;userString&gt; <em class="replaceable"><code>string </code></em>&lt;/userString&gt;
+   &lt;link&gt;
+      &lt;to&gt; <em class="replaceable"><code>node_id </code></em>&lt;/to&gt;
+      &lt;traversable&gt; [true|false] &lt;/traversable&gt;
+   &lt;/link&gt;
+&lt;/station&gt;</pre><div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">id</span></em></p>
+                        <p>The ID of the patrol node.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">position</span></em></p>
+                        <p>The position in the chunk of the patrol node.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">graph</span></em></p>
+                        <p>The ID of the graph which the node is part of.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">userString</span></em></p>
+                        <p>A user defined string</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">link</span></em></p>
+                        <p>A link to or from another patrol node or entity.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">to</span> (section
+                                      <span class="literal">link</span>)</em></p>
+                        <p>The ID of the patrol node or entity which this patrol node links
+                                   to or is linked from.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">traversable</span> (section
+                                      <span class="literal">link</span>)</em></p>
+                        <p>Specifies whether this is a forward link (true) or a back link
+                                   (false).
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <p>The new BigWorld 1.9 Patrol Node User Data Object section inside a
+                      chunk file looks like this:
+               </p><pre class="programlisting">&lt;UserDataObject&gt;
+   &lt;type&gt; PatrolNode &lt;/type&gt;
+   &lt;Domain&gt; 2 &lt;/Domain&gt;
+   &lt;transform&gt; <em class="replaceable"><code>matrix</code></em> &lt;/transform&gt;
+   &lt;guid&gt; <em class="replaceable"><code>patrol_node_id </code></em>&lt;/guid&gt;
+   &lt;properties&gt;
+      &lt;patrolLinks&gt;
+         &lt;item&gt;
+            &lt;guid&gt; <em class="replaceable"><code>node_id </code></em>&lt;/guid&gt;
+            &lt;chunkId&gt; <em class="replaceable"><code>chunk_id </code></em>&lt;/chunkId&gt;
+         &lt;/item&gt;
+      &lt;/patrolLinks&gt;  
+   &lt;/properties&gt;
+   &lt;backLinks&gt;
+      &lt;link&gt;
+         &lt;guid&gt; <em class="replaceable"><code>node_id</code></em> &lt;/guid&gt;
+         &lt;chunkId&gt; <em class="replaceable"><code>chunk_id </code></em>&lt;/chunkId&gt;
+      &lt;/link&gt;
+   &lt;/backLinks&gt;
+&lt;/UserDataObject&gt;</pre><div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">type</span></em></p>
+                        <p>The type of the User Data Object. When replacing old the Patrol
+                                   Paths, they get replaced by User Data Objects of type
+                                   PatrolNode.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">Domain</span></em></p>
+                        <p>This value specifies whether the PatrolNode User Data Object
+                                   should be created by the server or the client. It is defined in the
+                                   <code class="filename">PatrolNode.def</code> file.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">transform</span></em></p>
+                        <p>The position of the PatrolNode User Data Object in the
+                                   chunk.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">guid</span></em></p>
+                        <p>The ID of the PatrolNode User Data Object.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">patrolLinks</span> (section
+                                      <span class="literal">properties</span>)</em></p>
+                        <p>This section holds information about all forward links. It is
+                                   defined as a array of UDO_REF property in the
+                                   <code class="filename">PatrolNode.def</code> file.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">item</span> (section
+                                      <span class="literal">patrolLinks</span>)</em></p>
+                        <p>A single link to another PatrolNode User Data Object, stored as
+                                   a UDO_REF.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">guid</span> (section
+                                      <span class="literal">item</span>)</em></p>
+                        <p>The ID of the PatrolNode User Data Object that this PatrolNode
+                                   User Data Object links to.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">chunkId</span> (section
+                                      <span class="literal">item</span>)</em></p>
+                        <p>The ID of the chunk which the linked PatrolNode User Data Object
+                                   resides in.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis">backLinks</em></p>
+                        <p>Internal editor use only. This section holds information about
+                                   the back links.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">link</span> (section
+                                      <span class="literal">backLinks</span>)</em></p>
+                        <p>Internal editor use only. Links from other PatrolNode User Data
+                                   Objects.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">guid</span> (section
+                                      <span class="literal">link</span>)</em></p>
+                        <p>Internal editor use only. The ID of the PatrolNode User Data
+                                   Objects that links to this node.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">chunkId</span> (section
+                                      <span class="literal">link</span>)</em></p>
+                        <p>Internal editor use only. The ID of the chunk which the linked
+                                   PatrolNode User Data Object resides in.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e521"></a>6.3.&nbsp;Space settings
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>The <span class="literal">space.settings</span> file now has an additional
+                      section called <span class="literal">&lt;terrain&gt;</span>. This section contains
+                      version information, and for new terrain only - per-space terrain
+                      configuration values. For more information on these values, see "Client
+                      Programming Guide", Chapter 4. Note that spaces without a <span class="literal">&lt;terrain&gt;</span>
+                      section are assumed to be classic (simple) terrain.
+               </p>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch05.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch07.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;5.&nbsp;Advanced Terrain Server Usage&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;7.&nbsp;Watcher Network Protocol v2</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

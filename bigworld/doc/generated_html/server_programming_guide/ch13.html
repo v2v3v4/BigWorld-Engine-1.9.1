@@ -1,0 +1,305 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;13.&nbsp;Fault Tolerance</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Server Programming Guide">
+      <link rel="up" href="pt01.html" title="Part&nbsp;I.&nbsp;Server Scripting Guide">
+      <link rel="prev" href="ch12.html" title="Chapter&nbsp;12.&nbsp;XML Data File Access">
+      <link rel="next" href="ch14.html" title="Chapter&nbsp;14.&nbsp;Disaster Recovery"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;13.&nbsp;Fault Tolerance</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch12.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">Part&nbsp;I.&nbsp;Server Scripting Guide</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch14.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Fault_Tolerance"></a>Chapter&nbsp;13.&nbsp;Fault Tolerance
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch13.html#d0e10565">13.1. CellApp Fault Tolerance</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect2"><a href="ch13.html#d0e10568">13.1.1. Overview</a></span></dt>
+                        <dt><span class="sect2"><a href="ch13.html#d0e10581">13.1.2. Restoration process</a></span></dt>
+                        <dt><span class="sect2"><a href="ch13.html#d0e10634">13.1.3. Example</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="sect1"><a href="ch13.html#d0e10665">13.2. BaseApp Fault Tolerance</a></span></dt>
+               </dl>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e10565"></a>13.1.&nbsp;CellApp Fault Tolerance
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e10568"></a>13.1.1.&nbsp;Overview
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>Periodically, a complete copy of each cell entity is backed up on
+                           the base entity. Only cell entities with an associated base entity are
+                           fault tolerant. The CellApp backup period specifies how often cell
+                           entities are backed up to their base entities, and is specified in the
+                           <code class="filename">bw.xml</code> option
+                           &lt;<span class="literal">cellApp/backupPeriod</span>&gt;.
+                  </p>
+                  <p>Should a CellApp process become unavailable, the real entities
+                           located on the cells residing on that process will be restored by their
+                           corresponding base entities to other CellApps. The state of the cell data
+                           of the restored cell entities is the same state as was given from the most
+                           recent backup from the cell entity to the base entity.
+                  </p>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e10581"></a>13.1.2.&nbsp;Restoration process
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>The CellApp restoration process typically follows these
+                           steps:
+                  </p>
+                  <div class="orderedlist">
+                     <ol type="1">
+                        <li>
+                           <p>A CellApp process becomes unavailable.</p>
+                        </li>
+                        <li>
+                           <p>Base entities that have cell entities on the now unavailable
+                                        CellApp process restore their corresponding real entities to other
+                                        CellApps.
+                           </p>
+                        </li>
+                        <li>
+                           <p>Restored cell entities have the
+                                        <code class="methodname">onRestore</code>() callback called on them. Because
+                                        the restored cell data is taken from the last time the cell entity
+                                        backed up to the base, this copy can be up to twice the backup period.
+                                        This callback should check that the entity's properties are in a
+                                        consistent state.
+                           </p>
+                        </li>
+                        <li>
+                           <p>For player cell entities, their corresponding client-side player
+                                        entities have the <code class="methodname">onRestore</code>() callback called
+                                        on them.
+                           </p>
+                        </li>
+                     </ol>
+                  </div>
+                  <p>The callback <code class="methodname">onRestore</code>() is invoked on the
+                           cell entity to inform it that it is being restored.
+                  </p>
+                  <p>The code fragment below illustrates its implementation on the cell
+                           entity:
+                  </p><pre class="programlisting">class <em class="emphasis"><em class="replaceable"><code>SomeEntity</code></em></em>( BigWorld.Entity ):
+  ...
+  def <em class="emphasis">__init__</em>( self ):
+    # set up initial property values
+  ...
+  def <em class="emphasis">onRestore</em>( self ):
+    # check that property values are consistent, and
+    # perform any cleanups that need to occur
+  ...</pre><p><span class="citetitle">Example file
+                              <code class="filename"><em class="replaceable"><code>&lt;res&gt;</code></em>/scripts/cell/<em class="replaceable"><code>SomeEntity</code></em>.py</code></span></p>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e10634"></a>13.1.3.&nbsp;Example
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="figure"><a name="d0e10637"></a><p class="title"><b>Figure&nbsp;13.1.&nbsp;CellApp Fault Tolerance Example</b></p>
+                     <div class="figure-contents">
+                        <div class="mediaobject"><object data="images/fault_tolerance_overview_example.svg" type="image/svg+xml" width="592" height="420"></object></div>
+                     </div>
+                  </div><br class="figure-break"><p>The above diagram shows a space divided into three cells, the top
+                           cell residing on CellApp 4, the bottom-left cell residing on CellApp 3
+                           (not shown) and the bottom-right cell residing on CellApp 8 (not shown).
+                           In the cell that CellApp 4 has in this space, it has the cell entities
+                           with IDs 4156, 5712 and 2114, all within the same spatial region. The
+                           entities 4156 and 2114 have corresponding base entities that reside on
+                           BaseApp 1 and 2 respectively. Entity 5712 does not have a base entity, and
+                           is a cell-only entity.
+                  </p>
+                  <p>Cell entities back up their data to their corresponding base
+                           entities. So in this example, entities 4156 and 2114 send a copy of
+                           themselves to their corresponding base entities. The rate at which they do
+                           this can be configured by changing the backup period, using the
+                           <code class="filename">bw.xml</code> option
+                           &lt;<span class="literal">cellApp/backupPeriod</span>&gt; (see the <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">????</span> for more details).
+                           When a single CellApp goes down, cell entities are restored from the
+                           backup data sent to their base entities. Any cell entities that do not
+                           have corresponding base entities will not have been backed up, and so will
+                           not be restored.
+                  </p>
+                  <p>If CellApp 4 was to go down, the cell entities for 4156 and 2114
+                           will be restored onto other CellApps from their base entities. Entity 5712
+                           will not be restored, as it has no corresponding base entity.
+                  </p>
+                  <p>It is important to note that when restoring cell entities, the cell
+                           data that is used will be whatever data was present at the time of the
+                           last cell entity backup. Thus, any modification to the cell entity data
+                           since the last backup is lost, and the state of that cell entity may be
+                           inconsistent when it is restored. For example, a backup of a cell entity
+                           may be made in the middle of a multi-step transaction. The script callback
+                           <code class="classname">Entity</code>.<code class="methodname">onRestore</code>() can be
+                           used to check the state of outstanding transactions, and the decision to
+                           either roll them back or continue them can be made in script.
+                  </p>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="d0e10665"></a>13.2.&nbsp;BaseApp Fault Tolerance
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>With BaseApp fault tolerance, BaseApps back up the base entity data
+                      and cell backup data of all their base entities to other BaseApp processes
+                      periodically:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis">Distributed BaseApp Backup</em></p>
+                        <p>Each BaseApp backs up its entities on other (more than one)
+                                   regular BaseApps.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis">Non-distributed BaseApp
+                                      Backup</em></p>
+                        <p>Regular BaseApps back up all their entities on dedicated Backup
+                                   BaseApps.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+                  <h3 class="title">Note</h3>
+                  <p>As of BigWorld 1.9, non-distributed BaseApp is deprecated. It is
+                           planned that support for this feature will be removed in BigWorld
+                           2.0.
+                  </p>
+                  <p>BigWorld recommends the Distributed BaseApp Backup method, for the
+                           following reasons:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p>No need for dedicated Backup BaseApps.</p>
+                        </li>
+                        <li>
+                           <p>Backup load is distributed over a period of time.</p>
+                        </li>
+                        <li>
+                           <p>No need for IP switching, which might not be allowed by
+                                        operating system and/or router. This also makes cluster management
+                                        easier.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <p>Should the primary BaseApp become unavailable, then all its entities
+                      are restored from the backup process. In this case, the BaseApp invokes the
+                      callback <code class="methodname">onRestore</code> on the base or proxy entity, in
+                      a process similar to the one for CellApp restoration. This callback should
+                      ensure that all properties on the entity are in a consistent state.
+               </p>
+               <p>It should be noted that in the Distributed BaseApp Backup method,
+                      entities that were on the same BaseApp before its death, might be restored
+                      to different BaseApps. Care should be taken when writing scripts, to avoid
+                      assumptions that a Base entity is local. When performing an entity backup,
+                      Base entity properties are streamed using their description in the
+                      definition file (if there is one). For properties that are not specified in
+                      the definition file, these are pickled. Each entity is backed up
+                      individually, so if two entities refer to the same object, on restoration
+                      they will likely each have a copy of that object. An option is available to
+                      prevent properties not specified in the definition file from being backed
+                      up. To disable backing up undefined properties set the
+                      <code class="filename">bw.xml</code> option
+                      <code class="property">&lt;baseApp/backUpUndefinedProperties&gt;</code> to
+                      <span class="literal">false</span>. For more information on this option refer to the
+                      <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">????</span> section <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">????</span>.
+               </p>
+               <p>For more details regarding Fault Tolerance, see the document <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Server Operations Guide</span>'s
+                      chapter <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Fault Tolerance</span>, and the document
+                      <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Server Overview</span>'s section <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Server
+                         Components</span> <span class="symbol">&#8594;</span> <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">BaseApp</span> <span class="symbol">&#8594;</span> <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Fault
+                         tolerance</span>.
+               </p>
+               <p>The backup method is determined by <span class="literal">bw.xml</span>'s
+                      configuration option <span class="literal">baseAppMgr/useNewStyleBackup</span>. For
+                      details, see the document <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Server
+                         Operations Guide</span>'s section <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Software Configuration
+                         with bw.xml</span> <span class="symbol">&#8594;</span> <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink"> BaseAppMgr configuration
+                         options</span>.
+               </p>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch12.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center"><a accesskey="u" href="pt01.html">Up</a></td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch14.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;12.&nbsp;XML Data File Access&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;14.&nbsp;Disaster Recovery</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

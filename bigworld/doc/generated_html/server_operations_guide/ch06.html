@@ -1,0 +1,516 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;6.&nbsp;Backups and Disaster Recovery</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="Server Operations Guide">
+      <link rel="up" href="index.html" title="Server Operations Guide">
+      <link rel="prev" href="ch05.html" title="Chapter&nbsp;5.&nbsp;Fault Tolerance">
+      <link rel="next" href="ch07.html" title="Chapter&nbsp;7.&nbsp;Controlled Startup and Shutdown"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;6.&nbsp;Backups and Disaster Recovery</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch05.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch07.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Backups_And_Disaster_Recovery"></a>Chapter&nbsp;6.&nbsp;Backups and Disaster Recovery
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch06.html#xref_Disaster_Recovery">6.1. Disaster Recovery</a></span></dt>
+                  <dt><span class="sect1"><a href="ch06.html#xref_Database_Snapshot_Tool">6.2. Database Snapshot Tool</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect2"><a href="ch06.html#xref_Snapshot_Tool_Configuration">6.2.1. Configuration</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="sect1"><a href="ch06.html#xref_Data_Consolidation_Tool">6.3. Data Consolidation Tool</a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect2"><a href="ch06.html#xref_Skipping_Data_Consolidation">6.3.1. Skipping Data Consolidation</a></span></dt>
+                        <dt><span class="sect2"><a href="ch06.html#xref_Ignoring_SQLite_Errors">6.3.2. Ignoring SQLite Errors</a></span></dt>
+                     </dl>
+                  </dd>
+               </dl>
+            </div>
+            <p>BigWorld's fault tolerance ensures that the server continues to
+                 operate if a single process is lost. The server also provides a second level
+                 of fault tolerance known as disaster recovery that comes into play when
+                 multiple server components fail at once and the server needs to be shut
+                 down.
+            </p>
+            <p>For additional protection against exploits or bugs the database should
+                 be backed up regularly. The snapshot tool facilitates making backups of the
+                 database.
+            </p>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Disaster_Recovery"></a>6.1.&nbsp;Disaster Recovery
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>The server's state can be written periodically to the database. In
+                      case the entire server fails, then it can be restarted using this
+                      information. To enable the periodic archiving of entities, an archive
+                      period needs to be set via the configuration option
+                      <code class="property">archivePeriod</code> for BaseApp and CellAppMgr processes.
+                      For more details, see <a href="ch02.html#xref_BaseApp_Configuration_Options" title="2.7.&nbsp;BaseApp Configuration Options">BaseApp Configuration Options</a>, and <a href="ch02.html#xref_CellAppMgr_Configuration_Options" title="2.11.&nbsp;CellAppMgr Configuration Options">CellAppMgr Configuration Options</a>.
+               </p>
+               <p>Disaster recovery only works when the underlying database is MySQL &#8212;
+                      it does not work when the XML version is used. Please see <a href="ch12.html" title="Chapter&nbsp;12.&nbsp;DBMgr MySQL Support"><i xmlns:xlink="http://www.w3.org/1999/xlink">DBMgr MySQL Support</i></a> for more information about about
+                      enabling MySQL support in BigWorld.
+               </p>
+               <p>Starting the server using recovery information from the database is
+                      the same as starting it from a controlled shutdown. For more details, see
+                      <a href="ch07.html" title="Chapter&nbsp;7.&nbsp;Controlled Startup and Shutdown"><i xmlns:xlink="http://www.w3.org/1999/xlink">Controlled Startup and Shutdown</i></a>.
+               </p>
+               <p>For details on the scripting API related to disaster recovery, see
+                      the document <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink"> Server
+                         Programming Guide</span>'s chapter <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">
+                         Disaster Recovery</span>.
+               </p>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Database_Snapshot_Tool"></a>6.2.&nbsp;Database Snapshot Tool
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>For background information on the need for the snapshot tool see
+                      <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink"> Server Programming
+                         Guide</span>'s chapter <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink"> Database Snapshot</span>.
+               </p>
+               <p>The snapshot tool is a Python script that facilitates making a
+                      backup copy of the database that combines information from the primary
+                      database and secondary databases. It is located in <code class="filename">bigworld/tools/server/snapshot/snapshot.py</code>.
+                      In its current form, it should be considered as example code. It should be
+                      reviewed and customised for each environment.
+               </p>
+               <p>The snapshot tool should be run on a separate machine to avoid
+                      interfering with the normal operation of the server. The snapshot tool can
+                      use a significant amount of CPU and disk resources and does so in a fairly
+                      spiky manner. We will refer to the machine running the snapshot tool as
+                      the snapshot machine.
+               </p>
+               <p>The snapshot tool performs the following sequence of
+                      operations:
+               </p>
+               <div class="orderedlist">
+                  <ol type="1">
+                     <li>
+                        <p>Runs the <span><strong class="command">transfer_db</strong></span> command on each BaseApp.
+                                   <span><strong class="command">transfer_db</strong></span> performs a snapshot of the secondary
+                                   database and sends the snapshot to the snapshot machine using the
+                                   <span><strong class="command">rsync</strong></span> command.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Runs the <span><strong class="command">transfer_db</strong></span> command on the primary
+                                   database's MySQL server. <span><strong class="command">transfer_db</strong></span> performs an
+                                   LVM snapshot of the primary database and sends the LVM snapshot to the
+                                   snapshot machine using the <span><strong class="command">rsync</strong></span> command.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Starts a MySQL server on the snapshot machine and specifies its
+                                   data directory to be the copy of the primary database.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Runs the data consolidation tool on copies of the primary and
+                                   secondary databases.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Archives the consolidated snapshot.</p>
+                     </li>
+                  </ol>
+               </div>
+               <p>The snapshot tool logs all messages to
+                      <span><strong class="command">message_logger</strong></span>. A snapshot should be considered invalid
+                      if there is an error.
+               </p>
+               <p>The snapshot tool accepts a single command-line argument and command
+                      line options. The snapshot tools help message is below:
+               </p><pre class="programlisting">Usage: snapshot.py [options] SNAPSHOT_DIR
+
+Options:
+  -h, --help            show this help message and exit
+  -b BWLIMIT_KBPS, --bwlimit-kbps=BWLIMIT_KBPS
+                        file transfer bandwidth limit in kbps, default is unlimited
+  -n, --no-consolidate  skip consolidation, default is false</pre><p>The list below provides some common examples of using the snapshot
+                      tool:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span><strong class="command">snapshot.py
+                                            /home/bwtools/snapshots</strong></span></em></p>
+                        <p>Takes a snapshot. The snapshot is archived to<code class="filename">/home/bwtools/snapshots</code>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span><strong class="command">snapshot.py
+                                            /home/bwtools/snapshots
+                                            --bwlimit-kbps=5000</strong></span></em></p>
+                        <p>Takes a snapshot. The snapshot is archived to<code class="filename">/home/bwtools/snapshots</code>. Each secondary
+                                   and primary database is transferred with a 5000 kbps bandwidth
+                                   limit.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span><strong class="command">snapshot.py
+                                            /home/bwtools/snapshots --no-consolidate</strong></span></em></p>
+                        <p>Takes a snapshot. The unconsolidated snapshot is archived
+                                   to<code class="filename">/home/bwtools/snapshots</code>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span><strong class="command">snapshot.py
+                                            /home/bwtools/snapshots -n -b5000</strong></span></em></p>
+                        <p>Takes a snapshot. The unconsolidated snapshot is archived
+                                   to<code class="filename">/home/bwtools/snapshots</code>. Each
+                                   secondary and primary database is transferred with a 5000 kbps
+                                   bandwidth limit.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="xref_Snapshot_Tool_Configuration"></a>6.2.1.&nbsp;Configuration
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>For the snapshot tool to work, the following conditions must be
+                           met:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p><span><strong class="command">bwmachined</strong></span> must be running on the primary
+                                        database machine. For background information see <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Server Overview</span>'s chapter <span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">Server Components</span><span class="symbol">&#8594;</span><span xmlns:xlink="http://www.w3.org/1999/xlink" class="olink">BWMachined</span>.
+                           </p>
+                        </li>
+                        <li>
+                           <p>All the entity scripts and entity definition files must be
+                                        present on the snapshot server.
+                                        <code class="filename">.bwmachined.conf</code> must be configured correctly
+                                        for the user running the snapshot tool.
+                           </p>
+                        </li>
+                        <li>
+                           <p>The snapshot section in
+                                        <code class="filename">/etc/bigworld.conf</code> must be configured correctly
+                                        on the primary database machine.
+                           </p>
+                        </li>
+                        <li>
+                           <p>The primary database is stored in an LVM volume and there is
+                                        sufficient unpartitioned space on the primary database machine to
+                                        perform an LVM snapshot.
+                           </p>
+                        </li>
+                        <li>
+                           <p>The directory the LVM volume is to be mounted to exists and
+                                        has no other devices mounted to it.
+                           </p>
+                        </li>
+                        <li>
+                           <p>The snapshot user must be able to connect to the snapshot
+                                        machine using <span><strong class="command">ssh</strong></span> from the primary database
+                                        machine and BaseApp machines without a password. For a user whose
+                                        <span><strong class="command">$HOME</strong></span> directory is on a NFS, this can be done via
+                                        the command-line as below:
+                           </p><pre class="programlisting">$ ssh-keygen -t dsa
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</pre></li>
+                        <li>
+                           <p><span><strong class="command">lvcreate</strong></span>, <span><strong class="command">lvremove</strong></span>,
+                                        <span><strong class="command">mount</strong></span>, <span><strong class="command">unmount</strong></span> and
+                                        <span><strong class="command">chmod</strong></span> must be installed and on the path of the
+                                        primary database machine.
+                           </p>
+                        </li>
+                        <li>
+                           <p><span><strong class="command">mysqld_multi</strong></span> must be installed and on the
+                                        path of the snapshot machine.
+                           </p>
+                        </li>
+                        <li>
+                           <p><span><strong class="command">rsync</strong></span> must be installed and be on the path
+                                        of the snapshot, the primary database and all the BaseApp
+                                        machines.
+                           </p>
+                        </li>
+                        <li>
+                           <p>The <code class="filename"><span><strong class="command">snapshot_helper</strong></span></code>
+                                        utility must be built. To build <span><strong class="command">snapshot_helper</strong></span>,
+                                        MySQL development files must be installed. Please see <a href="ch12.html#xref_Compiling_DBMgr_With_MySQL_Support" title="12.1.&nbsp;Compiling DBMgr with MySQL Support">Compiling DBMgr with MySQL Support</a> for details on
+                                        how to install MySQL development files. After installing MySQL
+                                        development files, issue the <span><strong class="command">make</strong></span> command from
+                                        within the <code class="filename">bigworld/src/server/tools/snapshot_helper</code>
+                                        directory.
+                           </p>
+                        </li>
+                        <li>
+                           <p><span><strong class="command">snapshot_helper</strong></span> has its setuid attribute
+                                        set so user ID is root upon execution on the primary database
+                                        machine. This can be done via the command-line as below:
+                           </p><pre class="programlisting"># chown root:root $MF_ROOT/bigworld/tools/server/snapshot/snapshot_helper
+# chmod 4511 $MF_ROOT/bigworld/tools/server/snapshot/snapshot_helper</pre></li>
+                     </ul>
+                  </div>
+                  <p>For security, all privileged commands
+                           (<span><strong class="command">lvcreate</strong></span>, <span><strong class="command">lvremove</strong></span>,
+                           <span><strong class="command">mount</strong></span>, <span><strong class="command">unmount</strong></span> and
+                           <span><strong class="command">chmod</strong></span>) are invoked via
+                           <span><strong class="command">snapshot_helper</strong></span> which reads command arguments from
+                           the trusted <code class="filename">/etc/bigworld.conf. </code></p>
+                  <p>The keywords in the <code class="filename">/etc/bigworld.conf</code> are
+                           described in the list below:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p><em class="emphasis"><code class="property">datadir</code>
+                                           </em></p>
+                           <p>The primary database MySQL server's data directory.</p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><code class="property">lvgroup</code>
+                                           </em></p>
+                           <p>The name of the LVM volume group in which the primary database
+                                        belongs to. The LVM snapshot volume will also belong to this
+                                        group.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><code class="property">lvorigin</code>
+                                           </em></p>
+                           <p>The name of the origin LVM volume snapshotted. The MySQL data
+                                        directory should be on this volume.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><code class="property">lvsnapshot</code>
+                                           </em></p>
+                           <p>The name of the LVM snapshot volume that will be created and
+                                        deleted by the snapshot tool. This name is also use to generate the
+                                        snapshot volume mount path, <code class="filename">/mnt/lvsnapshot</code>, which must already
+                                        exists.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis"><code class="property">lvsizegb</code>
+                                           </em></p>
+                           <p>The size of the LVM snapshot volume in gigabytes. The snapshot
+                                        does not need the same amount of storage the origin has as only the
+                                        modified files are copied, in a typical scenario, 15-20% might be
+                                        enough. If the LVM snapshot volume becomes full it will be dropped
+                                        ,so it is important to allocate enough space.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <p>Below is an example <code class="filename">/etc/bigworld.conf</code>
+                           configuration file:
+                  </p><pre class="programlisting">[snapshot]
+datadir = /var/lib/mysql
+lvgroup = VolGroup00
+lvorigin = LogVol00
+lvsnapshot = bwsnapshot
+lvsizegb = 2</pre><p><em class="emphasis">Note</em>: The snapshot tool also
+                           reads
+                           <code class="filename"><em class="replaceable"><code>&lt;res&gt;</code></em>/server/bw.xml</code>
+                           for the <code class="property">dbMgr/host</code>,
+                           <code class="property">dbMgr/username</code>, <code class="property">dbMgr/password</code>
+                           and <code class="property">dbMgr/databaseName.</code></p>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_Data_Consolidation_Tool"></a>6.3.&nbsp;Data Consolidation Tool
+                        </h2>
+                     </div>
+                  </div>
+               </div>
+               <p>The data consolidation tool is used to incorporate data from
+                      secondary databases into the primary database. It is called
+                      <span><strong class="command">consolidate_dbs</strong></span> and is located in <code class="filename">bigworld/bin/Hybrid/commands</code>. This tool is
+                      only provided in source code form and must be built before use. Please see
+                      <a href="ch12.html#xref_Enabling_Secondary_Databases" title="12.5.&nbsp;Enabling Secondary Databases">Enabling Secondary Databases</a> for details on how to
+                      build the data consolidation tool.
+               </p>
+               <p>Once this tool is built, it will be automatically run during system
+                      shutdown or during system start-up if the system was not shutdown
+                      correctly. There should be no need to manually run this tool except for
+                      consolidating backups created by the snapshot tool (see <a href="ch06.html#xref_Database_Snapshot_Tool" title="6.2.&nbsp;Database Snapshot Tool">Database Snapshot Tool</a>). This tool logs messages to
+                      Message Logger which can be viewed using the Log Viewer tool in Web
+                      Console.
+               </p>
+               <p>This tool will accept two command-line arguments:</p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"> Primary Database</em></p>
+                        <p>The parameters required to connect to the primary database
+                                   should be specified in the form<code class="option">
+                                      <em class="replaceable"><code>host</code></em>;<em class="replaceable"><code>username</code></em>;<em class="replaceable"><code>password</code></em>;<em class="replaceable"><code>database_name</code></em></code>.
+                                   When specifying this on the command-line, it is necessary to quote the
+                                   entire parameter to prevent the shell from treating it as multiple
+                                   commands.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis">Secondary Databases </em></p>
+                        <p>A file containing a newline separated list of fully qualified
+                                   paths to secondary database files.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <p>When run without command line arguments, it will use DBMgr's
+                      configuration options located in
+                      <code class="filename"><em class="replaceable"><code>&lt;res&gt;</code></em>/server/bw.xml</code>
+                      to connect to the primary database. It will use the data in the
+                      <span class="literal">bigworldSecondaryDatabase</span> table to retrieve the
+                      secondary databases.
+               </p>
+               <p>The data consolidation tool uses the <span><strong class="command">transfer_db</strong></span>
+                      utility located in located in <code class="filename">bigworld/bin/Hybrid/command</code> to transfer the
+                      secondary database files from the BaseApp machines to the machine where
+                      the data consolidation tool is running. The <span><strong class="command">transfer_db</strong></span>
+                      utility will be launched (via <span><strong class="command">bwmachined</strong></span>) on each
+                      machine that contains a secondary database file. The
+                      <span><strong class="command">transfer_db</strong></span> utility then opens a TCP connection to the
+                      data consolidation tool through which it will send the secondary database
+                      file.
+               </p>
+               <p>The data consolidation tool will store the secondary databases
+                      locally in the directory specified by the
+                      <code class="property">&lt;dbMgr&gt;/&lt;consolidation&gt;/&lt;directory&gt;</code>
+                      configuration option. It will incorporate the data from the secondary
+                      databases into the primary database once all the secondary database files
+                      have been transfered to its local machine. If the data consolidation
+                      process is sucessful, both the local and remote copies of the secondary
+                      databases will be deleted, and the
+                      <span class="literal">bigworldSecondaryDatabase</span> table will be cleared. If the
+                      data consolidation process is unsuccessful, only the local copy of
+                      secondary database files are deleted.
+               </p>
+               <p>The data consolidation tool logs to Message Logger under the
+                      <span class="literal">ConsolidateDBs</span> process. Under most circumstances, the
+                      data consolidation tool will log errors from
+                      <span><strong class="command">transfer_db</strong></span> as well. However, under some circumstances,
+                      <span><strong class="command">transfer_db</strong></span> errors will appear under the
+                      <span class="literal">Tools</span> process. The <span><strong class="command">bwmachined</strong></span> logs,
+                      in <code class="filename">/var/log/messages</code> on each
+                      machine where secondary databases are located, can help to diagnose
+                      problems, especially those related to the failure to run
+                      <span><strong class="command">transfer_db</strong></span>.
+               </p>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="xref_Skipping_Data_Consolidation"></a>6.3.1.&nbsp;Skipping Data Consolidation
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>If, for some reason, there is a problem with the data
+                           consolidation tool and the server refuses to start, the
+                           <span class="literal">bigworldSecondaryDatabase</span> table can be manually
+                           cleared to skip the data consolidation process. Alternatively,
+                           <span><strong class="command">consolidate_dbs</strong></span> can be run with the command-line
+                           parameter <code class="option">--clear</code> to achieve the same result.
+                  </p>
+                  <p>While skipping the data consolidation process may allow the server
+                           to start again, the data in the secondary databases that were not
+                           consolidated is essentially lost. Though the secondary database files
+                           still exists, it is not recommended to try to consolidate the data after
+                           the server is restarted since the data in the primary database may be
+                           more recent than the data in the left over secondary databases.
+                  </p>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="xref_Ignoring_SQLite_Errors"></a>6.3.2.&nbsp;Ignoring SQLite Errors
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>When <span><strong class="command">consolidate_dbs</strong></span> encounters an error in
+                           reading a secondary database file, it will abort the entire data
+                           consolidation process. Such errors should be investigated and,
+                           hopefully, corrected. However, if a secondary database file is genuinely
+                           corrupted and cannot be repaired, then it may be preferable for
+                           <span><strong class="command">consolidate_dbs</strong></span> to read as much data from the
+                           corrupted secondary database and then proceed to consolidate the rest of
+                           the secondary databases. When the
+                           <code class="option">--ignore-sqlite-errors</code> command-line option is
+                           specified, <span><strong class="command">consolidate_dbs</strong></span> will proceed to
+                           consolidating the next secondary database when it encounters an error
+                           instead of aborting the consolidation process.
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch05.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch07.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;5.&nbsp;Fault Tolerance&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;7.&nbsp;Controlled Startup and Shutdown</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,2300 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;37.&nbsp;.xml</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="File Grammar Guide">
+      <link rel="up" href="index.html" title="File Grammar Guide">
+      <link rel="prev" href="ch36.html" title="Chapter&nbsp;36.&nbsp;visual_rules.xml"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;37.&nbsp;<span class="literal">.xml</span></th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch36.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;</td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="d0e19248"></a>Chapter&nbsp;37.&nbsp;<span class="literal">.xml</span></h2>
+                  </div>
+               </div>
+            </div>
+            <div class="toc">
+               <p><b>Table of Contents</b></p>
+               <dl>
+                  <dt><span class="sect1"><a href="ch37.html#xref_effect_xml">37.1. <span class="literal"><em class="replaceable"><code>&lt;effect&gt;</code></em>.xml</span></a></span></dt>
+                  <dt><span class="sect1"><a href="ch37.html#xref_enumeration_xml">37.2. <span class="literal"><em class="replaceable"><code>&lt;enumeration&gt;</code></em>.xml</span></a></span></dt>
+                  <dt><span class="sect1"><a href="ch37.html#xref_flora_xml">37.3. <span class="literal"><em class="replaceable"><code>&lt;flora&gt;</code></em>.xml</span></a></span></dt>
+                  <dt><span class="sect1"><a href="ch37.html#xref_graphics_settings_xml">37.4. <span class="literal"><em class="replaceable"><code>&lt;graphics_settings&gt;</code></em>.xml</span></a></span></dt>
+                  <dt><span class="sect1"><a href="ch37.html#xref_light_xml">37.5. <span class="literal"><em class="replaceable"><code>&lt;light&gt;</code></em>.xml</span></a></span></dt>
+                  <dt><span class="sect1"><a href="ch37.html#xref_mouse_cursors_xml">37.6. <span class="literal"><em class="replaceable"><code>&lt;mouse_cursors&gt;</code></em>.xml</span></a></span></dt>
+                  <dt><span class="sect1"><a href="ch37.html#xref_particle_xml">37.7. <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></a></span></dt>
+                  <dd>
+                     <dl>
+                        <dt><span class="sect2"><a href="ch37.html#d0e20937">37.7.1. Sub system components</a></span></dt>
+                        <dt><span class="sect2"><a href="ch37.html#d0e21872">37.7.2. Particle renderers</a></span></dt>
+                        <dt><span class="sect2"><a href="ch37.html#d0e22100">37.7.3. Position/velocity vector generators</a></span></dt>
+                     </dl>
+                  </dd>
+                  <dt><span class="sect1"><a href="ch37.html#xref_sky_xml">37.8. <span class="literal"><em class="replaceable"><code>&lt;sky&gt;</code></em>.xml</span></a></span></dt>
+               </dl>
+            </div>
+            <p>Various BigWorld files use the XML format, and this chapter
+                   describes the grammar of the following ones:
+            </p>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>
+                     <p>Lens effect configuration files &#8212; For details, see <a href="ch37.html#xref_effect_xml" title="37.1.&nbsp;<effect&gt;.xml"><span class="literal"><em class="replaceable"><code>&lt;effect&gt;</code></em>.xml</span></a>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Enumeration files &#8212; For details, see <a href="ch37.html#xref_enumeration_xml" title="37.2.&nbsp;<enumeration&gt;.xml"><span class="literal"><em class="replaceable"><code>&lt;enumeration&gt;</code></em>.xml</span></a>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Flora configuration files &#8212; For details, see <a href="ch37.html#xref_flora_xml" title="37.3.&nbsp;<flora&gt;.xml"><span class="literal"><em class="replaceable"><code>&lt;flora&gt;</code></em>.xml</span></a>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Graphics settings configuration files &#8212; For details, see <a href="ch37.html#xref_graphics_settings_xml" title="37.4.&nbsp;<graphics_settings&gt;.xml"><span class="literal"><em class="replaceable"><code>&lt;graphics_settings&gt;</code></em>.xml</span></a>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Light configuration files &#8212; For details, see <a href="ch37.html#xref_light_xml" title="37.5.&nbsp;<light&gt;.xml"><span class="literal"><em class="replaceable"><code>&lt;light&gt;</code></em>.xml</span></a>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Mouse cursor configuration files &#8212; For details, see <a href="ch37.html#xref_mouse_cursors_xml" title="37.6.&nbsp;<mouse_cursors&gt;.xml"><span class="literal"><em class="replaceable"><code>&lt;mouse_cursors&gt;</code></em>.xml</span></a>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Particle system files &#8212; For details, see <a href="ch37.html#xref_particle_xml" title="37.7.&nbsp;<particle&gt;.xml"><span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></a>.
+                     </p>
+                  </li>
+                  <li>
+                     <p>Sky configuration files &#8212; For details, see <a href="ch37.html#xref_sky_xml" title="37.8.&nbsp;<sky&gt;.xml"><span class="literal"><em class="replaceable"><code>&lt;sky&gt;</code></em>.xml</span></a>.
+                     </p>
+                  </li>
+               </ul>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_effect_xml"></a>37.1.&nbsp;<span class="literal"><em class="replaceable"><code>&lt;effect&gt;</code></em>.xml</span></h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Used by the client engine to configure lens effects, these files
+                        are located under
+                        <span class="literal">fantasydemo/res/environments/fx</span>.
+               </p>
+               <p>The grammar of
+                        <span class="literal"><em class="replaceable"><code>&lt;effect&gt;</code></em>.xml</span> files
+                        is listed below:
+               </p><pre class="programlisting">&lt;root&gt;
+   &lt;maxDistance&gt; <em class="replaceable"><code>float</code></em>  &lt;/maxDistance&gt;
+   &lt;area&gt;        <em class="replaceable"><code>float</code></em>  &lt;/area&gt;
+   &lt;fadeSpeed&gt;   <em class="replaceable"><code>float</code></em>  &lt;/fadeSpeed&gt;
+
+  *&lt;Flare&gt;
+      &lt;occlusionLevel&gt; <em class="replaceable"><code>float</code></em>                   &lt;/occlusionLevel&gt;
+      &lt;type&gt;           <em class="replaceable"><code>folder/file</code></em>             &lt;/type&gt;
+      &lt;size&gt;           <em class="replaceable"><code>float</code></em>                   &lt;/size&gt;
+      &lt;width&gt;          <em class="replaceable"><code>float</code></em>                   &lt;/width&gt;
+      &lt;height&gt;         <em class="replaceable"><code>float</code></em>                   &lt;/height&gt;
+      &lt;depth&gt;          <em class="replaceable"><code>float</code></em>                   &lt;/depth&gt;
+      &lt;rgba&gt;           <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> &lt;/rgba&gt;
+
+     ?&lt;secondaries&gt;
+        *&lt;Flare&gt;
+            &lt;type&gt;   <em class="replaceable"><code>folder/file</code></em>             &lt;/type&gt;
+            &lt;size&gt;   <em class="replaceable"><code>float</code></em>                   &lt;/size&gt;
+            &lt;depth&gt;  <em class="replaceable"><code>float</code></em>                   &lt;/depth&gt;
+            &lt;rgba&gt;   <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> &lt;/rgba&gt;
+         &lt;/Flare&gt;
+      &lt;/secondaries&gt;
+
+   &lt;/Flare&gt;
+
+&lt;/root&gt;</pre><p><span class="citetitle">Grammar of
+                           <span class="literal">fantasydemo/res/environments/fx/<em class="replaceable"><code>&lt;effect&gt;</code></em>.xml</span></span></p>
+               <p>The list below describes the tags in
+                        <span class="literal"><em class="replaceable"><code>&lt;effect&gt;</code></em>.xml</span>:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">area</span></em></p>
+                        <p>Radius in pixels of the flare that will be used for occlusion
+                                     calculations.
+                        </p>
+                        <p>By default, this value is 1, as used for point lens effects.
+                                     Area lens effects such as the sun require a larger value.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">depth</span></em></p>
+                        <p>Distance along the vector from the light source to the centre
+                                     of the screen.
+                        </p>
+                        <p>If set to 1.0, the flare will be displayed directly on the
+                                     light source.&nbsp;If set to anything less than 1.0, flare will be moved
+                                     somewhere along the vector.
+                        </p>
+                        <p>Values below 0.0 are valid, and will place the flare on the
+                                     other side of the pivot point (0.0, the centre of the
+                                     screen).
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">fadeSpeed</span></em></p>
+                        <p>Speed in which the lens effect's flares will fade in/out.
+                                     Larger numbers result in slower fade in/out speeds.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">Flare</span></em></p>
+                        <p>The flares to use for the lens effect.</p>
+                        <p>If multiple flares are specified, then the flare which
+                                     <span class="literal">occlusionLevel</span> most closely matches the current
+                                     visibility will be rendered on the screen.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">height</span></em></p>
+                        <p><em class="emphasis"><span class="literal">size</span> sets both height and width,
+                                        therefore set either size or both height and
+                                        width.</em></p>
+                        <p><em class="emphasis">Clip Coordinates range from (-1,-1) to (1,1) so a
+                                        size of 2.0 represents the entire screen.</em></p>
+                        <p>Height of the lens flare in clip coordinates. Clip coordinates
+                                     range from (-1,-1) to (1,1), and so a height of 2.0 represents the
+                                     entire screen.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">maxDistance</span></em></p>
+                        <p>Distance up to which flare will still be seen. This value also
+                                     applies to secondary flares.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">occlusionLevel</span></em></p>
+                        <p>Value between 0.0 and 1.0 specifying the percentage of the
+                                     lens effect that needs to be visible in order for this flare to be
+                                     rendered.
+                        </p>
+                        <p>All <span class="literal">occlusionLevel</span> values between flares
+                                     must be unique &#8212; flares with duplicate
+                                     <span class="literal">occlusionLevel</span> values are not loaded.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">rgba</span></em></p>
+                        <p>Colour value to tint the lens flare's texture map. This colour
+                                     is multiplied by the values in the texture.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">secondaries</span></em></p>
+                        <p>Tag for section specifying secondary flares. Secondary flares
+                                     are displayed whenever the primary flare is displayed. Set the depth
+                                     value for secondary flares to something other than 1.0 for the best
+                                     results (although a value of 1.0 is still valid).
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">size</span></em></p>
+                        <p><em class="emphasis"><span class="literal">size</span> sets both height and width,
+                                        therefore set either size or both height and
+                                        width.</em></p>
+                        <p><em class="emphasis">Clip Coordinates range from (-1,-1) to (1,1) so a
+                                        size of 2.0 represents the entire screen.</em></p>
+                        <p>Size (height and width) of the lens flare in clip
+                                     coordinates.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">type</span></em></p>
+                        <p>Material generated by ModelEditor used to describe the flare.
+                                     For details on grammar of materials, see <a href="ch20.html" title="Chapter&nbsp;20.&nbsp;.mfm"><i xmlns:xlink="http://www.w3.org/1999/xlink"><span class="literal">.mfm</span></i></a>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">width</span></em></p>
+                        <p><em class="emphasis"><span class="literal">size</span> sets both height and width,
+                                        therefore set either size or both height and
+                                        width.</em></p>
+                        <p><em class="emphasis">Clip Coordinates range from (-1,-1) to (1,1) so a
+                                        size of 2.0 represents the entire screen.</em></p>
+                        <p>Width of the lens flare in clip coordinates.</p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_enumeration_xml"></a>37.2.&nbsp;<span class="literal"><em class="replaceable"><code>&lt;enumeration&gt;</code></em>.xml</span></h2>
+                     </div>
+                  </div>
+               </div>
+               <p>BigWorld's enumeration files (<span class="literal">dxenum.xml</span> and
+                        <span class="literal"><em class="replaceable"><code>&lt;enumeration&gt;</code></em>.xml</span>)
+                        provide descriptions for enumerated values defined in DirectX, so that
+                        they can be used in source files (such as FX files) and BigWorld tools
+                        (such as ModelEditor).
+               </p>
+               <p>BigWorld uses the enumeration file specified in
+                        <span class="literal"><em class="replaceable"><code>&lt;res&gt;</code></em>/resources.xml</span>'s
+                        section <span class="literal">system/dxenum</span> (for details on this file, see
+                        the document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                           Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Overview</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Configuration files</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">File
+                           <span class="literal">resources.xml</span></a>). It is initially set to
+                        <span class="literal">system/data/dxenum.xml</span>, which is the file shipped
+                        with BigWorld.
+               </p>
+               <p>For details on the implementation of enumeration for material
+                        properties in WorldEditor and ModelEditor, see the document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                           Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">3D Engine (Moo)</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Textures</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Texture detail
+                           levels/compression</a>.
+               </p>
+               <p>The grammar for the enumeration file is described below:</p><pre class="programlisting">&lt;root&gt;
+
+  +&lt;<em class="replaceable"><code>enum_name</code></em>&gt;
+    +&lt;ENTRY&gt;
+       &lt;NAME&gt;   <em class="replaceable"><code>string</code></em>  &lt;/NAME&gt;
+       &lt;VALUE&gt;  <em class="replaceable"><code>number</code></em>  &lt;/VALUE&gt;
+       &lt;DESC&gt;   <em class="replaceable"><code>string</code></em>  &lt;/DESC&gt;
+     &lt;/ENTRY&gt;
+   &lt;/<em class="replaceable"><code>enum_name</code></em>&gt;
+
+  *&lt;<em class="replaceable"><code>enum_alias</code></em>&gt;
+     &lt;ALIAS&gt;  <em class="replaceable"><code>enum_name</code></em>  &lt;/ALIAS&gt;
+   &lt;/<em class="replaceable"><code>enum_alias</code></em>&gt;
+
+&lt;/root&gt;</pre><p><span class="citetitle">Grammar of enumeration file</span></p>
+               <p>The list below describes the tags in the enumeration file:</p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">ALIAS</span></em></p>
+                        <p>Name of the enumeration which entries the current
+                                     <span class="literal">enum_alias</span> will use.
+                        </p>
+                        <p>Value must be the enum_name of another enumeration specified
+                                     in the file.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">DESC</span></em></p>
+                        <p>Description of the entry.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">ENTRY</span></em></p>
+                        <p>Tag for section specifying a value entry for the
+                                     enumeration.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal"><em class="replaceable"><code>enum_alias</code></em></span></em></p>
+                        <p>Name of an enumeration for which the entries have already been
+                                     specified as part of another enumeration.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal"><em class="replaceable"><code>enum_name</code></em></span></em></p>
+                        <p>Name by which to refer to the enumeration.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">NAME</span></em></p>
+                        <p>Name by which to refer to the enumeration entry.</p>
+                        <p>For example, <span class="literal">FALSE</span> for
+                                     <span class="literal">VALUE</span> of <span class="literal">1</span>, or
+                                     <span class="literal">BLENDFACTOR</span> for <span class="literal">VALUE</span> of
+                                     <span class="literal">14</span>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">VALUE</span></em></p>
+                        <p>Numeric value of the entry.</p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_flora_xml"></a>37.3.&nbsp;<span class="literal"><em class="replaceable"><code>&lt;flora&gt;</code></em>.xml</span></h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Flora configuration files have their location set by the
+                        <span class="literal">floraXML</span> tag in
+                        <span class="literal"><em class="replaceable"><code>&lt;res&gt;</code></em>/resources.xml</span>.
+               </p>
+               <p>The XML flora file defines among other things, the light map to be
+                        used, plus the ecotypes and noise generation functions.
+               </p>
+               <p>For details on flora light maps, see the document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                           Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">3D Engine (Moo)</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Features</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Lighting</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Flora light map</a>.
+               </p>
+               <p>For more details on
+                        <span class="literal"><em class="replaceable"><code>&lt;res&gt;</code></em>/resources.xml</span>,
+                        see the document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                           Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Overview</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Configuration files</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">File
+                           <span class="literal">resources.xml</span></a>.
+               </p>
+               <p>The format of this file is described below:</p><pre class="programlisting">&lt;flora.xml&gt;
+
+  ?LightMapSection   <a name="co2043"></a><img src="../images/callouts/1.png" alt="1" border="0">
+
+   &lt;vb_size&gt;        <em class="replaceable"><code>integer</code></em>  &lt;/vb_size&gt;
+   &lt;texture_width&gt;  <em class="replaceable"><code>integer</code></em>  &lt;/texture_width&gt;
+   &lt;texture-height&gt; <em class="replaceable"><code>integer</code></em>  &lt;/texture_height&gt;
+
+   &lt;ecotypes&gt;        
+
+    ?&lt;empty&gt;
+      *&lt;texture&gt;   <em class="replaceable"><code>file</code></em>    &lt;/texture&gt;
+      ?&lt;sound_tag&gt; <em class="replaceable"><code>string</code></em>  &lt;/sound_tag&gt;  
+     &lt;/empty&gt;
+
+    *&lt;<em class="replaceable"><code>ecotype</code></em>&gt;  
+     
+      *&lt;texture&gt;   <em class="replaceable"><code>file</code></em>  &lt;/texture&gt;  
+       &lt;sound_tag&gt; <em class="replaceable"><code>tag</code></em>   &lt;/sound_tag&gt;
+      *&lt;visual&gt;    <em class="replaceable"><code>file</code></em> 
+        ?&lt;flex&gt;    <em class="replaceable"><code>float</code></em> &lt;/flex&gt;
+       &lt;/visual&gt;
+
+      [<em class="emphasis">GeneratorSection</em>|<em class="emphasis">VisualSection</em>]
+
+     &lt;/<em class="replaceable"><code>ecotype</code></em>&gt;
+   &lt;/ecotypes&gt;
+&lt;/flora.xml&gt;</pre><p><span class="citetitle">Grammar of the flora configuration
+                           file</span></p>
+               <div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co2043"><img src="../images/callouts/1.png" alt="1" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch18.html" title="Chapter&nbsp;18.&nbsp;LightMapSection"><i xmlns:xlink="http://www.w3.org/1999/xlink">LightMapSection</i></a>.
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+               <p>The grammar for the <em class="emphasis">GeneratorSection</em> is described below:
+               </p><pre class="programlisting"> &lt;generator&gt;  [empty | visual<a name="co2082"></a><img src="../images/callouts/1.png" alt="1" border="0"> | chooseMax]
+
+   &lt;! If empty !&gt;
+   &lt;empty&gt; &lt;/empty&gt;
+
+   &lt;! If visual !&gt;
+   <em class="emphasis">VisualSection</em>
+
+   &lt;! If chooseMax !&gt;
+  *[<em class="emphasis">NoiseSection</em> | <em class="emphasis">RandomSection</em> | <em class="emphasis">FixedSection</em>]
+
+ &lt;/generator&gt;</pre><p><span class="citetitle">Grammar of flora configuration file's <em class="emphasis">GeneratorSection</em></span></p>
+               <div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co2082"><img src="../images/callouts/1.png" alt="1" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>Please note that the keyword <span class="literal">visual</span> may
+                                        appear as a value for the <span class="literal">generator</span> section (see
+                                        the grammar above), or as a regular tag (see the grammar for
+                                        <em class="emphasis">VisualSection</em> below)
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+               <p>The grammar for the <em class="emphasis">VisualSection</em>
+                        is described below:
+               </p><pre class="programlisting">*&lt;visual&gt;<a name="co2111"></a><img src="../images/callouts/1.png" alt="1" border="0"> <em class="replaceable"><code>file</code></em> 
+  ?&lt;flex&gt; <em class="replaceable"><code>float</code></em> &lt;/flex&gt;
+ &lt;/visual&gt;</pre><p><span class="citetitle">Grammar of flora configuration file's <em class="emphasis">VisualSection</em></span></p>
+               <p>The grammar for the <em class="emphasis">NoiseSection</em>
+                        is described below:
+               </p><pre class="programlisting">*&lt;noise&gt;
+  &lt;frequency&gt; <em class="replaceable"><code>float</code></em> &lt;/frequency&gt;
+  <em class="emphasis">GeneratorSection</em>
+ &lt;/noise&gt;</pre><p><span class="citetitle">Grammar of flora configuration file's <em class="emphasis">NoiseSection</em></span></p>
+               <p>The grammar for the <em class="emphasis">RandomSection</em>
+                        is described below:
+               </p><pre class="programlisting">&lt;random&gt; <em class="replaceable"><code>float_btwn_0_and_1</code></em> &lt;/random&gt;</pre><p><span class="citetitle">Grammar of flora configuration file's <em class="emphasis">RandomSection</em></span></p>
+               <p>The grammar for the <em class="emphasis">FixedSection</em>
+                        is described below:
+               </p><pre class="programlisting">&lt;fixed&gt; <em class="replaceable"><code>float_btwn_0_and_1</code></em> &lt;/fixed&gt;</pre><p><span class="citetitle">Grammar of flora configuration file's <em class="emphasis">FixedSection</em></span></p>
+               <p>The list below describes the tags in the flora configuration
+                        file:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">chooseMax</span></em></p>
+                        <p>One of the possible values for tag generator.</p>
+                        <p>If this type is specified, then it will define one more value
+                                     sub-generators (possible values: noise, random, and fixed).
+                        </p>
+                        <p>Section specifying functions that generate values between 0
+                                     and 1.
+                        </p>
+                        <p>The one that generates the highest value will be used.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">ecotype</span></em></p>
+                        <p>Arbitrary name identifying the ecotype.</p>
+                        <p>More than one texture can be associated with the
+                                     ecotype.
+                        </p>
+                        <p>An ecotype might have a sound_tag associated with it, as well
+                                     as a detail object (returned by generator section).
+                        </p>
+                        <p>The ecotype of a part of the terrain is determined by the
+                                     texture with the highest blend applied to it.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">ecotypes</span></em></p>
+                        <p>List of ecotypes.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">fixed</span></em></p>
+                        <p>One of the possible value sub-generators that can be specified
+                                     if generator is chooseMax.
+                        </p>
+                        <p>Value would normally be between 0 and 1, although higher
+                                     values can be specified to make sure that this generator is always
+                                     chosen.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">flex</span></em></p>
+                        <p>Amount of flexion to be applied for visual, in relation to
+                                     standard shader amount.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">frequency</span></em></p>
+                        <p>Perlin noise frequency. Value must be between 0 and 1.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">generator</span></em></p>
+                        <p>Specifies the parameters for choosing the detail objects to be
+                                     randomly placed and oriented over the ecotype.
+                        </p>
+                        <p>Script bigworld/tools/WorldEditor/resources/scripts/
+                                     Ecotypes.py can be used to specify the rules of placement (i.e., how
+                                     steep should the terrain be before the object is not placed,
+                                     etc...).
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis">LightMapSection</em></p>
+                        <p>For details, see <a href="ch18.html" title="Chapter&nbsp;18.&nbsp;LightMapSection"><i xmlns:xlink="http://www.w3.org/1999/xlink">LightMapSection</i></a>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">noise</span></em></p>
+                        <p>One of the possible value sub-generators that can be specified
+                                     if generator is chooseMax.
+                        </p>
+                        <p>Higher output value produces larger and fewer patches.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">random</span></em></p>
+                        <p>One of the possible value sub-generators that can be specified
+                                     if generator is chooseMax.
+                        </p>
+                        <p>This returns a random value between 0 and 1.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">sound_tag</span></em></p>
+                        <p>Identifies the movement sound that should be played by a 3rd
+                                     party engine.
+                        </p>
+                        <p>Please note that currently BigWorld does not support
+                                     sounds.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">texture</span></em></p>
+                        <p>One of a list of terrain textures that will produce the given
+                                     ecotype.
+                        </p>
+                        <p>Note that it should be a DDS file, as this is the type of file
+                                     stored in the terrain data.
+                        </p>
+                        <p>Script bigworld/tools/WorldEditor/resources/scripts/
+                                     Ecotypes.py uses these entries to match terrain textures with
+                                     ecotypes.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">texture_height</span></em></p>
+                        <p>Maximum height of flora visuals.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">texture_width</span></em></p>
+                        <p>Maximum width of flora visuals.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">vb_size</span></em></p>
+                        <p>Size of the vertex buffer (in bytes).</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">visual</span></em></p>
+                        <div class="itemizedlist">
+                           <ul type="circle">
+                              <li>
+                                 <p><em class="emphasis">As tag</em></p>
+                                 <p>File containing information about one of a list of flora
+                                                  visuals that is to be used for this ecotype.
+                                 </p>
+                                 <p>Ecotypes may contain more than one visual. In this case,
+                                                  visuals are used on a rotating basis, starting at the top of the
+                                                  list.
+                                 </p>
+                                 <p>For more details, see <a href="ch35.html" title="Chapter&nbsp;35.&nbsp;.visual"><i xmlns:xlink="http://www.w3.org/1999/xlink"><span class="literal">.visual</span></i></a>.
+                                 </p>
+                              </li>
+                              <li>
+                                 <p><em class="emphasis">As value for
+                                                     <span class="literal">generator</span> section</em></p>
+                                 <p>One of the possible value sub-generators that can be
+                                                  specified if generator is chooseMax.
+                                 </p>
+                                 <p>Specifies that visuals will be used as flora objects. It
+                                                  may contain a list of visuals, which are used on a rotating
+                                                  basis, starting at the top of the list.
+                                 </p>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_graphics_settings_xml"></a>37.4.&nbsp;<span class="literal"><em class="replaceable"><code>&lt;graphics_settings&gt;</code></em>.xml</span></h2>
+                     </div>
+                  </div>
+               </div>
+               <p>The graphics settings configuration files have their location set
+                        by the <span class="literal">graphicsSettingsXML</span> tag in
+                        <span class="literal">resources.xml</span> (for details, see the document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                           Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Overview</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Configuration files</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">File
+                           <span class="literal">resources.xml</span></a>).
+               </p>
+               <p>The XML graphics settings file hosts the customisable options of
+                        the client's graphics settings feature &#8212; for details, see the document
+                        <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                           Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">3D Engine (Moo)</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Graphics settings</a>.
+               </p>
+               <p>The grammar of this
+                        <span class="literal"><em class="replaceable"><code>&lt;graphics_settings&gt;</code></em>.xml</span>
+                        is described below:
+               </p><pre class="programlisting">&lt;graphics_settings.xml&gt;
+
+   &lt;flora&gt;
+    +&lt;option&gt;
+       &lt;label&gt; <em class="replaceable"><code>string</code></em> &lt;/label&gt;
+       &lt;value&gt; <em class="replaceable"><code>float</code></em>  &lt;/value&gt;
+     &lt;/option&gt;
+   &lt;/flora&gt;
+
+   &lt;farPlane&gt;
+    +&lt;option&gt;
+       &lt;label&gt; <em class="replaceable"><code>string</code></em> &lt;/label&gt;
+       &lt;value&gt; <em class="replaceable"><code>float</code></em>  &lt;/value&gt;
+     &lt;/option&gt;
+   &lt;/farPlane&gt;
+
+&lt;/graphics_settings.xml&gt;</pre><p><span class="citetitle">Grammar of
+                           <span class="literal"><em class="replaceable"><code>&lt;graphics_settings&gt;</code></em>.xml</span>
+                           configuration file</span></p>
+               <p>The list below describes the tags in
+                        <span class="literal"><em class="replaceable"><code>&lt;graphics_settings&gt;</code></em>.xml</span>:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">flora</span></em></p>
+                        <p>Section for setting flora density labels and distance from
+                                     camera.
+                        </p>
+                        <p>For details, see the document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                                        Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">3D Engine (Moo)</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Graphics settings</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Customising options</a>
+                                     <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">FLORA_DENSITY</a>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">farPlane</span></em></p>
+                        <p>Section for setting far plane labels and distance from
+                                     camera.
+                        </p>
+                        <p>For details, see the document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                                        Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">3D Engine (Moo)</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Graphics settings</a>. <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Customising options</a>
+                                     <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">FAR_PLANE</a>.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_light_xml"></a>37.5.&nbsp;<span class="literal"><em class="replaceable"><code>&lt;light&gt;</code></em>.xml</span></h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Mentioned in:</p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p>Document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Content Tools
+                                        Reference Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">WorldEditor</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Assets</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Lights</a>.
+                        </p>
+                     </li>
+                     <li>
+                        <p>Document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Content
+                                        Creation Manual</a>'s lesson <em class="emphasis">Add Lights to
+                                        the World</em>.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <p>The grammar for the XML light configuration files for ambient
+                        lights is described below:
+               </p><pre class="programlisting">&lt;fileName&gt;
+  &lt;ambientLight&gt;
+     &lt;colour&gt;      <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/colour&gt;
+    ?&lt;multiplier&gt;  <em class="replaceable"><code>float</code></em>              &lt;/multiplier&gt;
+  &lt;/ambientLight&gt;
+&lt;/fileName&gt;</pre><p><span class="citetitle">Grammar of XML light configuration file &#8212; Ambient
+                           lights</span></p>
+               <p>The grammar for the XML light configuration files for directional
+                        lights is described below:
+               </p><pre class="programlisting">&lt;fileName&gt;
+  &lt;directionalLight&gt;
+     &lt;colour&gt;      <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/colour&gt;
+     &lt;direction&gt;   <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/direction&gt;
+    ?&lt;dynamic&gt;     [true|false]       &lt;/dynamic&gt;
+    ?&lt;static&gt;      [true|false]       &lt;/static&gt;
+    ?&lt;specular&gt;    [true|false]       &lt;/specular&gt;
+    ?&lt;multiplier&gt;  <em class="replaceable"><code>float</code></em>              &lt;/multiplier&gt; 
+  &lt;/directionalLight&gt;
+&lt;/fileName&gt;</pre><p><span class="citetitle">Grammar of XML light configuration file &#8212; Directional
+                           lights</span></p>
+               <p>The grammar for the XML light configuration files for flares is
+                        described below:
+               </p><pre class="programlisting">&lt;fileName&gt;
+  &lt;flare&gt;
+     &lt;resource&gt;  <em class="replaceable"><code>file</code></em>               &lt;/resource&gt;
+     &lt;position&gt;  <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/position&gt;
+     &lt;colour&gt;    <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/colour&gt;
+  &lt;/ambientLight&gt;
+&lt;/fileName&gt;</pre><p><span class="citetitle">Grammar of XML light configuration file &#8212;
+                           Flares</span></p>
+               <p>The grammar for the XML light configuration files for omni lights
+                        is described below:
+               </p><pre class="programlisting">&lt;fileName&gt;
+  &lt;omniLight&gt;
+     &lt;colour&gt;        <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/colour&gt;
+     &lt;position&gt;      <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/position&gt;
+     &lt;innerRadius&gt;   <em class="replaceable"><code>float</code></em>              &lt;/innerRadius&gt;
+     &lt;outerRadius&gt;   <em class="replaceable"><code>float</code></em>              &lt;/outerRadius&gt;
+    ?&lt;dynamic&gt;      [true|false]        &lt;/dynamic&gt;
+    ?&lt;static&gt;       [true|false]        &lt;/static&gt;
+    ?&lt;specular&gt;     [true|false]        &lt;/specular&gt;
+    ?&lt;multiplier&gt;    <em class="replaceable"><code>float</code></em>              &lt;/multiplier&gt;
+  &lt;/omniLight&gt;
+&lt;/fileName&gt;</pre><p><span class="citetitle">Grammar of XML light configuration file &#8212; Omni
+                           lights</span></p>
+               <p>The grammar for the XML light configuration files for spot lights
+                        is described below:
+               </p><pre class="programlisting">&lt;fileName&gt;
+  &lt;spotLight&gt;
+     &lt;colour&gt;        <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/colour&gt;
+     &lt;position&gt;      <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/position&gt;
+     &lt;direction&gt;     <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/direction&gt;
+     &lt;innerRadius&gt;   <em class="replaceable"><code>float</code></em>              &lt;/innerRadius&gt;
+     &lt;outerRadius&gt;   <em class="replaceable"><code>float</code></em>              &lt;/outerRadius&gt; 
+     &lt;cosConeAngle&gt;  <em class="replaceable"><code>float</code></em>              &lt;/cosConeAngle&gt;
+    ?&lt;dynamic&gt;      [true|false]        &lt;/dynamic&gt;
+    ?&lt;static&gt;       [true|false]        &lt;/static&gt;
+    ?&lt;specular&gt;     [true|false]        &lt;/specular&gt;
+    ?&lt;multiplier&gt;    <em class="replaceable"><code>float</code></em>              &lt;/multiplier&gt;
+  &lt;/spotLight&gt;
+&lt;/fileName&gt;</pre><p><span class="citetitle">Grammar of XML light configuration file &#8212; Spot
+                           lights</span></p>
+               <p>The list below describes the tags in the MVL light configuration
+                        file:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">colour</span> (Available for
+                                        <span class="literal">ambientLight</span>,
+                                        <span class="literal">directionalLight</span>, <span class="literal">flare</span>,
+                                        <span class="literal">omniLight</span>, and
+                                        <span class="literal">spotlight</span>)</em></p>
+                        <p>Colour of the light.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">cosConeAngle</span>
+                                        (Available for <span class="literal">spotlight</span>)</em></p>
+                        <p>Cosine of the angle of light's cone.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">direction</span> (Available
+                                        for <span class="literal">directionalLight</span> and
+                                        <span class="literal">spotlight</span>)</em></p>
+                        <p>Direction at which light will be projected.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">dynamic</span> (Available
+                                        for <span class="literal">directionalLight</span>,
+                                        <span class="literal">omniLight</span>, and
+                                        <span class="literal">spotlight</span>)</em></p>
+                        <p>Specifies that light should be applied to dynamic, i.e.,
+                                     moving objects.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">innerRadius</span>
+                                        (Available for <span class="literal">omniLight</span>, and
+                                        <span class="literal">spotlight</span>)</em></p>
+                        <p>Area over which the light will be at full intensity.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">outerRadius</span>
+                                        (Available for <span class="literal">omniLight</span>, and
+                                        <span class="literal">spotlight</span>)</em></p>
+                        <p>Total area influenced by light.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">position</span> (Available
+                                        for <span class="literal">flare</span>, <span class="literal">omniLight</span>, and
+                                        <span class="literal">spotlight</span>)</em></p>
+                        <p>XYZ point of origin for the light.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">resource</span> (Available
+                                        for <span class="literal">flare</span>)</em></p>
+                        <p>Configuration file for the flare effect.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">specular</span> (Available
+                                        for <span class="literal">directionalLight</span>,
+                                        <span class="literal">omniLight</span>, and
+                                        <span class="literal">spotlight</span>)</em></p>
+                        <p>Boolean specifying whether light should be applied to
+                                     materials with a specular map specified.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">static</span> (Available for
+                                        <span class="literal">directionalLight</span>, <span class="literal">omniLight</span>,
+                                        and <span class="literal">spotlight</span>)</em></p>
+                        <p>Boolean specifying whether light should be applied to static,
+                                     i.e., scene objects.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_mouse_cursors_xml"></a>37.6.&nbsp;<span class="literal"><em class="replaceable"><code>&lt;mouse_cursors&gt;</code></em>.xml</span></h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Used by the client engine to define the shapes of mouse cursor
+                        available from within the game, the mouse cursor definition file can be
+                        specified in tag <span class="literal">gui/cursorDefinitions</span> in
+                        <span class="literal">res/resources.xml</span>, but defaults to
+                        <span class="literal">res/gui/mouse_cursor.xml</span> (the tags are documented in
+                        the file itself &#8212; for details, see <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                           Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Overview</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Configuration files</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">File
+                           <span class="literal">resources.xml</span></a>).
+               </p>
+               <p>For details on how to control the behaviour and appearance of
+                        mouse cursor via game scripts, see the document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                           Guide</a>'s section <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Graphical User Interface
+                           (GUI)</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Mouse cursor</a>.
+               </p>
+               <p>The grammar of
+                        <span class="literal"><em class="replaceable"><code>&lt;mouse_cursors&gt;</code></em>.xml</span>
+                        files is listed below:
+               </p><pre class="programlisting">&lt;mouse_cursors&gt;
+
+  *&lt;cursor_name&gt; 
+      &lt;hotspot&gt;  <em class="replaceable"><code>integer</code></em> <em class="replaceable"><code>integer</code></em>  &lt;/hotspot&gt;
+      &lt;texture&gt;  <em class="replaceable"><code>folder/file</code></em>      &lt;/texture&gt;
+   &lt;/cursor_name&gt; 
+
+&lt;/mouse_cursors&gt;</pre><p><span class="citetitle">Grammar of
+                           <span class="literal"><em class="replaceable"><code>&lt;mouse_cursors&gt;</code></em>.xml</span></span></p>
+               <p>The list below describes the tags in file
+                        <span class="literal"><em class="replaceable"><code>&lt;mouse_cursors&gt;</code></em>.xml</span>:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">cursor_name</span></em></p>
+                        <p>Arbitrary value identifying the type of cursor.</p>
+                        <p>For example, FantasyDemo's mouse cursor definition file
+                                     (<span class="literal">res/gui/ mouse_cursors.xml</span>) is shipped with the
+                                     following cursor names:
+                        </p>
+                        <div class="itemizedlist">
+                           <ul type="circle">
+                              <li>
+                                 <p><em class="emphasis"><span class="literal">arrow</span></em></p>
+                              </li>
+                              <li>
+                                 <p><em class="emphasis"><span class="literal">drag</span></em></p>
+                              </li>
+                              <li>
+                                 <p><em class="emphasis"><span class="literal">no</span></em></p>
+                              </li>
+                              <li>
+                                 <p><em class="emphasis"><span class="literal">point</span></em></p>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">hotspot</span></em></p>
+                        <p>XY location of the cursor icon's hotspot in the respective
+                                     texture.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">texture</span></em></p>
+                        <p>Image file to be associated to the icon type.</p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_particle_xml"></a>37.7.&nbsp;<span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Generated by ParticleEditor (for more details, see <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Content Tools Reference
+                           Guide</a>'s chapter <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">ParticleEditor</a>), the grammar for
+                        <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span> files
+                        is described below:
+               </p><pre class="programlisting">&lt;file_name&gt;
+
+  +&lt;sub_system&gt;  
+     &lt;serialiseVersionData&gt;  <em class="replaceable"><code>integer</code></em>            &lt;/serialiseVersionData&gt;
+     &lt;capacity&gt;              <em class="replaceable"><code>integer</code></em>            &lt;/capacity&gt;
+     &lt;windFactor_&gt;           <em class="replaceable"><code>float</code></em>              &lt;/windFactor_&gt;
+     &lt;explicitTransform_&gt;   [true|false]        &lt;/explicitTransform_&gt;
+     &lt;explicitPosition_&gt;     <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/explicitPosition_&gt;
+     &lt;explicitDirection_&gt;    <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/explicitDirection_&gt;
+     &lt;localOffset_&gt;          <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/localOffset_&gt;
+     &lt;maxLod_&gt;               <em class="replaceable"><code>float</code></em>              &lt;/maxLod_&gt;
+     &lt;fixedFrameRate_&gt;       <em class="replaceable"><code>float</code></em>              &lt;/fixedFrameRate_&gt;
+
+     &lt;Actions&gt;
+       *Source       <a name="co6560"></a><img src="../images/callouts/1.png" alt="1" border="0">
+       *Sink         <a name="co6561"></a><img src="../images/callouts/2.png" alt="2" border="0">
+       *Barrier      <a name="co6562"></a><img src="../images/callouts/3.png" alt="3" border="0">
+       *Force        <a name="co6563"></a><img src="../images/callouts/4.png" alt="4" border="0">
+       *Stream       <a name="co6564"></a><img src="../images/callouts/5.png" alt="5" border="0">
+       *Jitter       <a name="co6565"></a><img src="../images/callouts/6.png" alt="6" border="0">
+       *Scaler       <a name="co6566"></a><img src="../images/callouts/7.png" alt="7" border="0">
+       *TintShader   <a name="co6567"></a><img src="../images/callouts/8.png" alt="8" border="0">
+       *NodeClamp    <a name="co6568"></a><img src="../images/callouts/9.png" alt="9" border="0">
+       *Orbitor      <a name="co6569"></a><img src="../images/callouts/10.png" alt="10" border="0">
+       *Flare        <a name="co6570"></a><img src="../images/callouts/11.png" alt="11" border="0">
+       *Collide      <a name="co6571"></a><img src="../images/callouts/12.png" alt="12" border="0">
+       *MatrixSwarm  <a name="co6572"></a><img src="../images/callouts/13.png" alt="13" border="0">
+       *Magnet       <a name="co6573"></a><img src="../images/callouts/14.png" alt="14" border="0">
+       *Splat        <a name="co6574"></a><img src="../images/callouts/15.png" alt="15" border="0">
+     &lt;/Actions&gt;
+     &lt;Renderer&gt;
+       { Amp    |    <a name="co6577"></a>(16)
+         Blur   |    <a name="co6578"></a>(17)
+         Mesh   |    <a name="co6579"></a>(18)
+         Sprite |    <a name="co6580"></a>(19)
+         Trail  }    <a name="co6581"></a>(20)
+     &lt;/Renderer&gt;
+
+&lt;/file_name&gt;</pre><p><span class="citetitle">Grammar of
+                           <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+               <div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6560"><img src="../images/callouts/1.png" alt="1" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_SourceComponent" title="37.7.1.1.&nbsp;SourceComponent">SourceComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6561"><img src="../images/callouts/2.png" alt="2" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_SinkComponent" title="37.7.1.2.&nbsp;SinkComponent">SinkComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6562"><img src="../images/callouts/3.png" alt="3" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_BarrierComponent" title="37.7.1.3.&nbsp;BarrierComponent">BarrierComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6563"><img src="../images/callouts/4.png" alt="4" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_ForceComponent" title="37.7.1.4.&nbsp;ForceComponent">ForceComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6564"><img src="../images/callouts/5.png" alt="5" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_StreamComponent" title="37.7.1.5.&nbsp;StreamComponent">StreamComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6565"><img src="../images/callouts/6.png" alt="6" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_JitterComponent" title="37.7.1.6.&nbsp;JitterComponent">JitterComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6566"><img src="../images/callouts/7.png" alt="7" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_ScalerComponent" title="37.7.1.7.&nbsp;ScalerComponent">ScalerComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6567"><img src="../images/callouts/8.png" alt="8" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_TintShaderComponent" title="37.7.1.8.&nbsp;TintShaderComponent">TintShaderComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6568"><img src="../images/callouts/9.png" alt="9" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_NodeClampComponent" title="37.7.1.9.&nbsp;NodeClampComponent">NodeClampComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6569"><img src="../images/callouts/10.png" alt="10" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_OrbitorComponent" title="37.7.1.10.&nbsp;OrbitorComponent">OrbitorComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6570"><img src="../images/callouts/11.png" alt="11" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_FlareComponent" title="37.7.1.11.&nbsp;FlareComponent">FlareComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6571"><img src="../images/callouts/12.png" alt="12" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_CollideComponent" title="37.7.1.12.&nbsp;CollideComponent">CollideComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6572"><img src="../images/callouts/13.png" alt="13" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_MatrixSwarmComponent" title="37.7.1.13.&nbsp;MatrixSwarmComponent">MatrixSwarmComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6573"><img src="../images/callouts/14.png" alt="14" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_MagnetComponent" title="37.7.1.14.&nbsp;MagnetComponent">MagnetComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6574"><img src="../images/callouts/15.png" alt="15" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_SplatComponent" title="37.7.1.15.&nbsp;SplatComponent">SplatComponent</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6577">(16)</a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_AmpParticleRenderer" title="37.7.2.1.&nbsp;AmpParticleRenderer">AmpParticleRenderer</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6578">(17)</a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_BlurParticleRenderer" title="37.7.2.2.&nbsp;BlurParticleRenderer">BlurParticleRenderer</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6579">(18)</a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_MeshParticleRenderer" title="37.7.2.3.&nbsp;MeshParticleRenderer">MeshParticleRenderer</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6580">(19)</a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_SpriteParticleRenderer" title="37.7.2.4.&nbsp;SpriteParticleRenderer">SpriteParticleRenderer</a>.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co6581">(20)</a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch37.html#xref_TrailParticleRenderer" title="37.7.2.5.&nbsp;TrailParticleRenderer">TrailParticleRenderer</a>.
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e20937"></a>37.7.1.&nbsp;Sub system components
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>The sub-sections below describe the 15 possible sub system
+                             components of the particle system (they are described in the order in
+                             which they appear in ParticleEditor's <em class="emphasis">Add
+                                Component</em> drop-down list box):
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p><em class="emphasis">SourceComponent</em> &#8212; See <a href="ch37.html#xref_SourceComponent" title="37.7.1.1.&nbsp;SourceComponent">SourceComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">SinkComponent</em> &#8212; See <a href="ch37.html#xref_SinkComponent" title="37.7.1.2.&nbsp;SinkComponent">SinkComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">BarrierComponent</em> &#8212; See
+                                          <a href="ch37.html#xref_BarrierComponent" title="37.7.1.3.&nbsp;BarrierComponent">BarrierComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">ForceComponent</em> &#8212; See <a href="ch37.html#xref_ForceComponent" title="37.7.1.4.&nbsp;ForceComponent">ForceComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">StreamComponent</em> &#8212; See <a href="ch37.html#xref_StreamComponent" title="37.7.1.5.&nbsp;StreamComponent">StreamComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">JitterComponent</em> &#8212; See <a href="ch37.html#xref_JitterComponent" title="37.7.1.6.&nbsp;JitterComponent">JitterComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">ScalerComponent</em> &#8212; See <a href="ch37.html#xref_ScalerComponent" title="37.7.1.7.&nbsp;ScalerComponent">ScalerComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">TintShaderComponent</em> &#8212; See
+                                          <a href="ch37.html#xref_TintShaderComponent" title="37.7.1.8.&nbsp;TintShaderComponent">TintShaderComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">NodeClampComponent</em> &#8212; See
+                                          <a href="ch37.html#xref_NodeClampComponent" title="37.7.1.9.&nbsp;NodeClampComponent">NodeClampComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">OrbitorComponent</em> &#8212; See
+                                          <a href="ch37.html#xref_OrbitorComponent" title="37.7.1.10.&nbsp;OrbitorComponent">OrbitorComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">FlareComponent</em> &#8212; See <a href="ch37.html#xref_FlareComponent" title="37.7.1.11.&nbsp;FlareComponent">FlareComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">CollideComponent</em> &#8212; See
+                                          <a href="ch37.html#xref_CollideComponent" title="37.7.1.12.&nbsp;CollideComponent">CollideComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">MatrixSwarmComponent</em> &#8212; See
+                                          <a href="ch37.html#xref_MatrixSwarmComponent" title="37.7.1.13.&nbsp;MatrixSwarmComponent">MatrixSwarmComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">MagnetComponent</em> &#8212; See <a href="ch37.html#xref_MagnetComponent" title="37.7.1.14.&nbsp;MagnetComponent">MagnetComponent</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">SplatComponent</em> &#8212; See <a href="ch37.html#xref_SplatComponent" title="37.7.1.15.&nbsp;SplatComponent">SplatComponent</a>.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_SourceComponent"></a>37.7.1.1.&nbsp;SourceComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">SourceComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Source&gt;
+   &lt;delay_&gt;       <em class="replaceable"><code>float</code></em>  &lt;/delay_&gt;
+   &lt;minimumAge_&gt;  <em class="replaceable"><code>float</code></em>  &lt;/minimumAge_&gt;
+   &lt;name_&gt;        <em class="replaceable"><code>string</code></em> &lt;/name_&gt;
+   &lt;pPositionSrc&gt;
+      {<em class="emphasis">BoxVectorGenerator</em>      |   <a name="co6639"></a><img src="../images/callouts/1.png" alt="1" border="0">
+       <em class="emphasis">CylinderVectorGenerator</em> |   <a name="co6640"></a><img src="../images/callouts/2.png" alt="2" border="0">
+       <em class="emphasis">LineVectorGenerator</em>     |   <a name="co6641"></a><img src="../images/callouts/3.png" alt="3" border="0">
+       <em class="emphasis">PointVectorGenerator</em>    |   <a name="co6642"></a><img src="../images/callouts/4.png" alt="4" border="0">
+       <em class="emphasis">SphereVectorGenerator</em>   }   <a name="co6643"></a><img src="../images/callouts/5.png" alt="5" border="0">
+   &lt;/pPositionSrc&gt;
+   &lt;pVelocitySrc&gt;
+      {<em class="emphasis">BoxVectorGenerator</em>       |  <a name="co6646"></a><img src="../images/callouts/6.png" alt="6" border="0">
+       <em class="emphasis">CylinderVectorGenerator</em>  |  <a name="co6647"></a><img src="../images/callouts/7.png" alt="7" border="0">
+       <em class="emphasis">LineVectorGenerator</em>      |  <a name="co6648"></a><img src="../images/callouts/8.png" alt="8" border="0">
+       <em class="emphasis">PointVectorGenerator</em>     |  <a name="co6649"></a><img src="../images/callouts/9.png" alt="9" border="0">
+       <em class="emphasis">SphereVectorGenerator</em>    }  <a name="co6650"></a><img src="../images/callouts/10.png" alt="10" border="0">
+   &lt;/pVelocitySrc&gt;
+   &lt;motionTriggered_&gt;       [true|false]             &lt;/motionTriggered_&gt;
+   &lt;timeTriggered_&gt;         [true|false]             &lt;/timeTriggered_&gt;
+   &lt;grounded_&gt;              [true|false}             &lt;/grounded_&gt;
+   &lt;dropDistance_&gt;          <em class="replaceable"><code>float</code></em>                    &lt;/dropDistance_&gt;
+   &lt;rate_&gt;                  float                    &lt;/rate_&gt;
+   &lt;sensitivity_&gt;           <em class="replaceable"><code>float</code></em>                    &lt;/sensitivity_&gt;
+   &lt;activePeriod_&gt;          <em class="replaceable"><code>float</code></em>                    &lt;/activePeriod_&gt;
+   &lt;sleepPeriod_&gt;           <em class="replaceable"><code>float</code></em>                    &lt;/sleepPeriod_&gt;
+   &lt;sleepPeriodMax_&gt;        <em class="replaceable"><code>float</code></em>                    &lt;/sleepPeriodMax_&gt;
+   &lt;minimumSize_&gt;           <em class="replaceable"><code>float</code></em>                    &lt;/minimumSize_&gt;
+   &lt;maximumSize_&gt;           <em class="replaceable"><code>float</code></em>                    &lt;/maximumSize_&gt;
+   &lt;forcedUnitSize_&gt;        <em class="replaceable"><code>integer</code></em>                  &lt;/forcedUnitSize_&gt;
+   &lt;allowedTimeInSeconds_&gt;  <em class="replaceable"><code>float</code></em>                    &lt;/allowedTimeInSeconds_&gt;
+   &lt;initialRotation_&gt;       <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>              &lt;/initialRotation_&gt;
+   &lt;randomInitialRotation_&gt; <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>              &lt;/randomInitialRotation_&gt;
+   &lt;initialColour_&gt;         <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/initialColour_&gt;
+   &lt;randomSpin_&gt;            [true|false}             &lt;/randomSpin_&gt;
+   &lt;minSpin_&gt;               <em class="replaceable"><code>float</code></em>                    &lt;/minSpin_&gt;
+   &lt;maxSpin_&gt;               <em class="replaceable"><code>float</code></em>                    &lt;/maxSpin_&gt;
+   &lt;ignoreRotation_&gt;        [true|false]             &lt;/ignoreRotation_&gt;
+   &lt;inheritVelocity_&gt;       <em class="replaceable"><code>float</code></em>                    &lt;/inheritVelocity_&gt;
+&lt;/Source&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">SourceComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                     <div class="calloutlist">
+                        <table border="0" summary="Callout list">
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6639"><img src="../images/callouts/1.png" alt="1" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_BoxVectorGenerator" title="37.7.3.1.&nbsp;BoxVectorGenerator">BoxVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6640"><img src="../images/callouts/2.png" alt="2" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_CylinderVectorGenerator" title="37.7.3.2.&nbsp;CylinderVectorGenerator">CylinderVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6641"><img src="../images/callouts/3.png" alt="3" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_LineVectorGenerator" title="37.7.3.3.&nbsp;LineVectorGenerator">LineVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6642"><img src="../images/callouts/4.png" alt="4" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_PointVectorGenerator" title="37.7.3.4.&nbsp;PointVectorGenerator">PointVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6643"><img src="../images/callouts/5.png" alt="5" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_SphereVectorGenerator" title="37.7.3.5.&nbsp;SphereVectorGenerator">SphereVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6646"><img src="../images/callouts/6.png" alt="6" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_BoxVectorGenerator" title="37.7.3.1.&nbsp;BoxVectorGenerator">BoxVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6647"><img src="../images/callouts/7.png" alt="7" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_CylinderVectorGenerator" title="37.7.3.2.&nbsp;CylinderVectorGenerator">CylinderVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6648"><img src="../images/callouts/8.png" alt="8" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_LineVectorGenerator" title="37.7.3.3.&nbsp;LineVectorGenerator">LineVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6649"><img src="../images/callouts/9.png" alt="9" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_PointVectorGenerator" title="37.7.3.4.&nbsp;PointVectorGenerator">PointVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6650"><img src="../images/callouts/10.png" alt="10" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_SphereVectorGenerator" title="37.7.3.5.&nbsp;SphereVectorGenerator">SphereVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_SinkComponent"></a>37.7.1.2.&nbsp;SinkComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">SinkComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Sink&gt;
+   &lt;delay_&gt;         <em class="replaceable"><code>float</code></em>  &lt;/delay_&gt;
+   &lt;minimumAge_&gt;    <em class="replaceable"><code>float</code></em>  &lt;/minimumAge_&gt;
+   &lt;name_&gt;          <em class="replaceable"><code>string</code></em> &lt;/name_&gt;
+   &lt;maximumAge_&gt;    <em class="replaceable"><code>float</code></em>  &lt;/maximumAge_&gt;
+   &lt;minimumSpeed_&gt;  <em class="replaceable"><code>float</code></em>  &lt;/minimumSpeed_&gt;
+&lt;/Sink&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">SinkComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_BarrierComponent"></a>37.7.1.3.&nbsp;BarrierComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">BarrierComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Barrier&gt;
+   &lt;delay_&gt;       <em class="replaceable"><code>float</code></em>   &lt;/delay_&gt;
+   &lt;minimumAge_&gt;  <em class="replaceable"><code>float</code></em>   &lt;/minimumAge_&gt;
+   &lt;name_&gt;        <em class="replaceable"><code>string</code></em>  &lt;/name_&gt;
+   &lt;shape_&gt;       [1|2|3] &lt;/shape_&gt; <a name="co6751"></a><img src="../images/callouts/1.png" alt="1" border="0">
+   &lt;reaction_&gt;    [0|1|2] &lt;/reaction_&gt; <a name="co6752"></a><img src="../images/callouts/2.png" alt="2" border="0">
+   &lt;vecA_&gt;        <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/vecA_&gt;
+   &lt;vecB_&gt;        <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/vecB_&gt;
+   &lt;radius_&gt;      <em class="replaceable"><code>float</code></em>              &lt;/radius_&gt;
+&lt;/Barrier&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">BarrierComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                     <div class="calloutlist">
+                        <table border="0" summary="Callout list">
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6751"><img src="../images/callouts/1.png" alt="1" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>Possible values:</p>
+                                 <div class="itemizedlist">
+                                    <ul type="disc">
+                                       <li>
+                                          <p><em class="emphasis"><span class="literal">1</span></em>
+                                                               &#8212; Vertical cylinder
+                                          </p>
+                                       </li>
+                                       <li>
+                                          <p><em class="emphasis"><span class="literal">2</span></em>
+                                                               &#8212; Box
+                                          </p>
+                                       </li>
+                                       <li>
+                                          <p><em class="emphasis"><span class="literal">3</span></em>
+                                                               &#8212; Sphere
+                                          </p>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6572"><img src="../images/callouts/13.png" alt="13" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>Possible values:</p>
+                                 <div class="itemizedlist">
+                                    <ul type="disc">
+                                       <li>
+                                          <p><em class="emphasis"><span class="literal">0</span></em>
+                                                               &#8212; Bounce
+                                          </p>
+                                       </li>
+                                       <li>
+                                          <p><em class="emphasis"><span class="literal">1</span></em>
+                                                               &#8212; Remove
+                                          </p>
+                                       </li>
+                                       <li>
+                                          <p><em class="emphasis"><span class="literal">2</span></em>
+                                                               &#8212; Allow
+                                          </p>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_ForceComponent"></a>37.7.1.4.&nbsp;ForceComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">ForceComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Force&gt;
+   &lt;delay_&gt;      <em class="replaceable"><code>float</code></em>              &lt;/delay_&gt;
+   &lt;minimumAge_&gt; <em class="replaceable"><code>float</code></em>              &lt;/minimumAge_&gt;
+   &lt;name_&gt;       <em class="replaceable"><code>string</code></em>             &lt;/name_&gt;
+   &lt;vector_&gt;     <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/vector_&gt;
+&lt;/Force&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">ForceComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_StreamComponent"></a>37.7.1.5.&nbsp;StreamComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">StreamComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Stream&gt;
+   &lt;delay_&gt;      <em class="replaceable"><code>float</code></em>              &lt;/delay_&gt;
+   &lt;minimumAge_&gt; <em class="replaceable"><code>float</code></em>              &lt;/minimumAge_&gt;
+   &lt;name_&gt;       <em class="replaceable"><code>string</code></em>             &lt;/name_&gt;
+   &lt;vector_&gt;     <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/vector_&gt;
+   &lt;halfLife_&gt;   <em class="replaceable"><code>float</code></em>              &lt;/halfLife_&gt;
+&lt;/Stream&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">StreamComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_JitterComponent"></a>37.7.1.6.&nbsp;JitterComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">JitterComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Jitter&gt;
+   &lt;delay_&gt;          <em class="replaceable"><code>float</code></em>        &lt;/delay_&gt;
+   &lt;minimumAge_&gt;     <em class="replaceable"><code>float</code></em>        &lt;/minimumAge_&gt;
+   &lt;name_&gt;           <em class="replaceable"><code>string</code></em>       &lt;/name_&gt;
+   &lt;affectPosition_&gt; [true|false] &lt;/affectPosition_&gt;
+   &lt;affectVelocity&gt;  [true|false] &lt;/affectVelocity_&gt;
+   &lt;pPositionSrc&gt;
+      {BoxVectorGenerator      |  <a name="co6854"></a><img src="../images/callouts/1.png" alt="1" border="0">
+       CylinderVectorGenerator |  <a name="co6855"></a><img src="../images/callouts/2.png" alt="2" border="0">
+       LineVectorGenerator     |  <a name="co6856"></a><img src="../images/callouts/3.png" alt="3" border="0">
+       PointVectorGenerator    |  <a name="co6857"></a><img src="../images/callouts/4.png" alt="4" border="0">
+       SphereVectorGenerator   }  <a name="co6858"></a><img src="../images/callouts/5.png" alt="5" border="0">
+   &lt;/pPositionSrc&gt;
+   &lt;pVelocitySrc&gt;
+      {BoxVectorGenerator      |  <a name="co6861"></a><img src="../images/callouts/6.png" alt="6" border="0">
+       CylinderVectorGenerator |  <a name="co6862"></a><img src="../images/callouts/7.png" alt="7" border="0">
+       LineVectorGenerator     |  <a name="co6863"></a><img src="../images/callouts/8.png" alt="8" border="0">
+       PointVectorGenerator    |  <a name="co6864"></a><img src="../images/callouts/9.png" alt="9" border="0">
+       SphereVectorGenerator   }  <a name="co6865"></a><img src="../images/callouts/10.png" alt="10" border="0">
+   &lt;/pVelocitySrc&gt;
+&lt;/Jitter&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">JitterComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                     <div class="calloutlist">
+                        <table border="0" summary="Callout list">
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6854"><img src="../images/callouts/1.png" alt="1" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_BoxVectorGenerator" title="37.7.3.1.&nbsp;BoxVectorGenerator">BoxVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6855"><img src="../images/callouts/2.png" alt="2" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_CylinderVectorGenerator" title="37.7.3.2.&nbsp;CylinderVectorGenerator">CylinderVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6856"><img src="../images/callouts/3.png" alt="3" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_LineVectorGenerator" title="37.7.3.3.&nbsp;LineVectorGenerator">LineVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6857"><img src="../images/callouts/4.png" alt="4" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_PointVectorGenerator" title="37.7.3.4.&nbsp;PointVectorGenerator">PointVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6858"><img src="../images/callouts/5.png" alt="5" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_SphereVectorGenerator" title="37.7.3.5.&nbsp;SphereVectorGenerator">SphereVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6861"><img src="../images/callouts/6.png" alt="6" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_BoxVectorGenerator" title="37.7.3.1.&nbsp;BoxVectorGenerator">BoxVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6862"><img src="../images/callouts/7.png" alt="7" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_CylinderVectorGenerator" title="37.7.3.2.&nbsp;CylinderVectorGenerator">CylinderVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6863"><img src="../images/callouts/8.png" alt="8" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_LineVectorGenerator" title="37.7.3.3.&nbsp;LineVectorGenerator">LineVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6864"><img src="../images/callouts/9.png" alt="9" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_PointVectorGenerator" title="37.7.3.4.&nbsp;PointVectorGenerator">PointVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="5%" valign="top" align="left"><a href="#co6865"><img src="../images/callouts/10.png" alt="10" border="0"></a> 
+                              </td>
+                              <td valign="top" align="left">
+                                 <p>See <a href="ch37.html#xref_SphereVectorGenerator" title="37.7.3.5.&nbsp;SphereVectorGenerator">SphereVectorGenerator</a>.
+                                 </p>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_ScalerComponent"></a>37.7.1.7.&nbsp;ScalerComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">ScalerComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Scaler&gt;
+   &lt;delay_&gt;      <em class="replaceable"><code>float</code></em>  &lt;/delay_&gt;
+   &lt;minimumAge_&gt; <em class="replaceable"><code>float</code></em>  &lt;/minimumAge_&gt;
+   &lt;name_&gt;       <em class="replaceable"><code>string</code></em> &lt;/name_&gt;
+   &lt;size_&gt;       <em class="replaceable"><code>float</code></em>  &lt;/size_&gt;
+   &lt;rate_&gt;       <em class="replaceable"><code>float</code></em>  &lt;/rate_&gt;
+&lt;/Scaler&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">ScalerComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_TintShaderComponent"></a>37.7.1.8.&nbsp;TintShaderComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">TintShaderComponent</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;TintShader&gt;
+   &lt;delay_&gt;      <em class="replaceable"><code>float</code></em>         &lt;/delay_&gt;
+   &lt;minimumAge_&gt; <em class="replaceable"><code>float</code></em>         &lt;/minimumAge_&gt;
+   &lt;name_&gt;       <em class="replaceable"><code>string</code></em>        &lt;/name_&gt;
+   &lt;repeat_&gt;     [true|false]  &lt;/repeat_&gt;
+   &lt;period_&gt;     <em class="replaceable"><code>float</code></em>         &lt;/period_&gt;
+   &lt;tints_&gt;
+     *&lt;Tint&gt;
+         &lt;time&gt;  <em class="replaceable"><code>float</code></em>             &lt;/time&gt;
+         &lt;color&gt; <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> &lt;/color&gt;
+      &lt;/Tint&gt;
+   &lt;/tints_&gt; 
+&lt;/TintShader&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">TintShaderComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_NodeClampComponent"></a>37.7.1.9.&nbsp;NodeClampComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">NodeClampComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;NodeClamp&gt;
+   &lt;delay_&gt;       <em class="replaceable"><code>float</code></em>         &lt;/delay_&gt;
+   &lt;minimumAge_&gt;  <em class="replaceable"><code>float</code></em>         &lt;/minimumAge_&gt;
+   &lt;name_&gt;        <em class="replaceable"><code>string</code></em>        &lt;/name_&gt;
+   &lt;fullyClamp_&gt;  [true|false]  &lt;/fullyClamp_&gt;
+&lt;/NodeCLamp&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">NodeClampComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_OrbitorComponent"></a>37.7.1.10.&nbsp;OrbitorComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">OrbitorComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Orbitor&gt;
+   &lt;delay_&gt;           <em class="replaceable"><code>float</code></em>             &lt;/delay_&gt;
+   &lt;minimumAge_&gt;      <em class="replaceable"><code>float</code></em>             &lt;/minimumAge_&gt;
+   &lt;name_&gt;            <em class="replaceable"><code>string</code></em>            &lt;/name_&gt;
+   &lt;point_&gt;           <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> &lt;/point_&gt;
+   &lt;angularVelocity_&gt; <em class="replaceable"><code>float</code></em>             &lt;/angularVelocity_&gt;
+   &lt;affectVelocity_&gt;  [true|false]      &lt;/affectVelocity_&gt;
+&lt;/Orbitor&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">OrbitorComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_FlareComponent"></a>37.7.1.11.&nbsp;FlareComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">FlareComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Flare&gt;
+   &lt;delay_&gt;           <em class="replaceable"><code>float</code></em>         &lt;/delay_&gt;
+   &lt;minimumAge_&gt;      <em class="replaceable"><code>float</code></em>         &lt;/minimumAge_&gt;
+   &lt;name_&gt;            <em class="replaceable"><code>string</code></em>        &lt;/name_&gt;
+   &lt;flareName_&gt;       <em class="replaceable"><code>folder/file</code></em>   &lt;/flareName_&gt;
+   &lt;flareStep_&gt;       <em class="replaceable"><code>integer</code></em>       &lt;/flareStep_&gt;
+   &lt;colourize_&gt;       [true|false]  &lt;/colourize_&gt;
+   &lt;useParticleSize_&gt; [true|false]  &lt;/useParticleSize_&gt;
+&lt;/Flare&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">FlareComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_CollideComponent"></a>37.7.1.12.&nbsp;CollideComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">CollideComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Collide&gt;
+   &lt;delay_&gt;             <em class="replaceable"><code>float</code></em>         &lt;/delay_&gt;
+   &lt;minimumAge_&gt;        <em class="replaceable"><code>float</code></em>         &lt;/minimumAge_&gt;
+   &lt;name_&gt;              <em class="replaceable"><code>string</code></em>        &lt;/name_&gt;
+   &lt;spriteBased_&gt;       [true|false]  &lt;/spriteBased_&gt;
+   &lt;elasticity_&gt;        <em class="replaceable"><code>float</code></em>         &lt;/elasticity_&gt;
+   &lt;minAddedRotation_&gt;  <em class="replaceable"><code>float</code></em>         &lt;/minAddedRotation_&gt;
+   &lt;maxAddedRotation_&gt;  <em class="replaceable"><code>float</code></em>         &lt;/maxAddedRotation_&gt;
+   &lt;entityID_&gt;          <em class="replaceable"><code>integer</code></em>       &lt;/entityID_&gt;
+   &lt;soundTag_&gt;          string        &lt;/soundTag_&gt;
+   &lt;colourize_&gt;         [true|false]  &lt;/colourize_&gt;
+   &lt;useParticleSize_&gt;   [true|false]  &lt;/useParticleSize_&gt;
+&lt;/Collide&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">CollideComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_MatrixSwarmComponent"></a>37.7.1.13.&nbsp;MatrixSwarmComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">MatrixSwarmComponent</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;MatrixSwarm&gt;
+   &lt;delay_&gt;       <em class="replaceable"><code>float</code></em>  &lt;/delay_&gt;
+   &lt;minimumAge_&gt;  <em class="replaceable"><code>float</code></em>  &lt;/minimumAge_&gt;
+   &lt;name_&gt;        <em class="replaceable"><code>string</code></em> &lt;/name_&gt;
+&lt;/MatrixSwarm&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">MatrixSwarmComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_MagnetComponent"></a>37.7.1.14.&nbsp;MagnetComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">MagnetComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Magnet&gt;
+   &lt;delay_&gt;       <em class="replaceable"><code>float</code></em>  &lt;/delay_&gt;
+   &lt;minimumAge_&gt;  <em class="replaceable"><code>float</code></em>  &lt;/minimumAge_&gt;
+   &lt;name_&gt;        <em class="replaceable"><code>string</code></em> &lt;/name_&gt;
+   &lt;strength_&gt;    <em class="replaceable"><code>float</code></em>  &lt;/strength_&gt;
+   &lt;minDist_&gt;     <em class="replaceable"><code>float</code></em>  &lt;/minDist_&gt;
+&lt;/Magnet&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">MagnetComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_SplatComponent"></a>37.7.1.15.&nbsp;SplatComponent
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">SplatComponent</em> is described below:
+                     </p><pre class="programlisting">&lt;Splat&gt;
+   &lt;delay_&gt;       <em class="replaceable"><code>float</code></em>  &lt;/delay_&gt;
+   &lt;minimumAge_&gt;  <em class="replaceable"><code>float</code></em>  &lt;/minimumAge_&gt;
+   &lt;name_&gt;        <em class="replaceable"><code>string</code></em> &lt;/name_&gt;
+&lt;/Splat&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">SplatComponent</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml+</span></span></p>
+                  </div>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e21872"></a>37.7.2.&nbsp;Particle renderers
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>The sub-sections below describe the 5 possible vector generator
+                             for position and velocity:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p><em class="emphasis">AmpParticleRenderer</em> &#8212; See
+                                          <a href="ch37.html#xref_AmpParticleRenderer" title="37.7.2.1.&nbsp;AmpParticleRenderer">AmpParticleRenderer</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">BlurParticleRenderer</em> &#8212; See
+                                          <a href="ch37.html#xref_BlurParticleRenderer" title="37.7.2.2.&nbsp;BlurParticleRenderer">BlurParticleRenderer</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">SpriteParticleRenderer</em> &#8212;
+                                          See <a href="ch37.html#xref_SpriteParticleRenderer" title="37.7.2.4.&nbsp;SpriteParticleRenderer">SpriteParticleRenderer</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">MeshParticleRenderer</em> &#8212; See
+                                          <a href="ch37.html#xref_MeshParticleRenderer" title="37.7.2.3.&nbsp;MeshParticleRenderer">MeshParticleRenderer</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">TrailParticleRenderer</em> &#8212; See
+                                          <a href="ch37.html#xref_TrailParticleRenderer" title="37.7.2.5.&nbsp;TrailParticleRenderer">TrailParticleRenderer</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">VisualParticleRenderer</em> &#8212;
+                                          See <a href="ch37.html#xref_VisualParticleRenderer" title="37.7.2.6.&nbsp;VisualParticleRenderer">VisualParticleRenderer</a>.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_AmpParticleRenderer"></a>37.7.2.1.&nbsp;AmpParticleRenderer
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">AmpParticleRenderer</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;AmpParticleRenderer&gt;
+   &lt;viewDependent_&gt;  [true|false]  &lt;/viewDependent_&gt;
+   &lt;local_&gt;          [true|false]  &lt;/local_&gt;
+   &lt;textureName_&gt;    <em class="replaceable"><code>folder/file</code></em>   &lt;/textureName_&gt;
+   &lt;width_&gt;          <em class="replaceable"><code>float</code></em>         &lt;/width_&gt;
+   &lt;height_&gt;         <em class="replaceable"><code>float</code></em>         &lt;/height_&gt;
+   &lt;steps_&gt;          <em class="replaceable"><code>integer</code></em>       &lt;/steps_&gt;
+   &lt;variation_&gt;      <em class="replaceable"><code>float</code></em>         &lt;variation_&gt;
+   &lt;circular_&gt;       [true|false]  &lt;/circular_&gt;
+&lt;/AmpParticleRenderer&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">AmpParticleRenderer</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_BlurParticleRenderer"></a>37.7.2.2.&nbsp;BlurParticleRenderer
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">BlurParticleRenderer</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;BlurParticleRenderer&gt;
+   &lt;viewDependent_&gt;  [true|false]  &lt;/viewDependent_&gt;
+   &lt;local_&gt;          [true|false]  &lt;/local_&gt;
+   &lt;textureName_&gt;    <em class="replaceable"><code>folder/file</code></em>   &lt;/textureName_&gt;
+   &lt;width_&gt;          <em class="replaceable"><code>float</code></em>         &lt;/width_&gt;
+   &lt;time_&gt;           <em class="replaceable"><code>float</code></em>         &lt;/time_&gt;
+&lt;/BlurParticleRenderer&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">BlurParticleRenderer</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_MeshParticleRenderer"></a>37.7.2.3.&nbsp;MeshParticleRenderer
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">MeshParticleRenderer</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;MeshParticleRenderer&gt;
+   &lt;viewDependent_&gt;  [true|false]  &lt;/viewDependent_&gt;
+   &lt;local_&gt;          [true|false]  &lt;/local_&gt;
+   &lt;visualName_&gt;     <em class="replaceable"><code>folder/file</code></em>   &lt;/visualName_&gt;
+   &lt;doubleSided_&gt;    [true|false]  &lt;/doubleSided_&gt;
+   &lt;materialFX_&gt;     <em class="replaceable"><code>integer</code></em>       &lt;/materialFX_&gt;
+   &lt;sortType_&gt;       <em class="replaceable"><code>integer</code></em>       &lt;/sortType_&gt;
+&lt;/MeshParticleRenderer&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">MeshParticleRenderer</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_SpriteParticleRenderer"></a>37.7.2.4.&nbsp;SpriteParticleRenderer
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">SpriteParticleRenderer</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;SpriteParticleRenderer&gt;
+   &lt;viewDependent_&gt;  [true|false]  &lt;/viewDependent_&gt;
+   &lt;local_&gt;          [true|false]  &lt;/local_&gt;
+   &lt;textureName_&gt;    <em class="replaceable"><code>folder/file</code></em>   &lt;/textureName_&gt;
+   &lt;materialFX_&gt;     <em class="replaceable"><code>integer</code></em>       &lt;/materialFX_&gt;
+   &lt;frameCount_&gt;     <em class="replaceable"><code>integer</code></em>       &lt;/frameCount_&gt;
+   &lt;frameRate_&gt;      <em class="replaceable"><code>float</code></em>         &lt;/frameRate_&gt;
+&lt;/SpriteParticleRenderer&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">SpriteParticleRenderer</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_TrailParticleRenderer"></a>37.7.2.5.&nbsp;TrailParticleRenderer
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">TrailParticleRenderer</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;TrailParticleRenderer&gt;
+   &lt;viewDependent_&gt;  [true|false]  &lt;/viewDependent_&gt;
+   &lt;local_&gt;          [true|false]  &lt;/local_&gt;
+   &lt;textureName_&gt;    <em class="replaceable"><code>folder/file</code></em>   &lt;/textureName_&gt;
+   &lt;width_&gt;          <em class="replaceable"><code>float</code></em>         &lt;/width_&gt;
+   &lt;skip_&gt;           <em class="replaceable"><code>integer</code></em>       &lt;/skip_&gt;
+   &lt;steps_&gt;          <em class="replaceable"><code>integer</code></em>       &lt;/steps_&gt;
+&lt;/TrailParticleRenderer&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">TrailParticleRenderer</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_VisualParticleRenderer"></a>37.7.2.6.&nbsp;VisualParticleRenderer
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">VisualParticleRenderer</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;VisualParticleRenderer&gt;   &lt;viewDependent_&gt;  [true|false]  &lt;/viewDependent_&gt;
+   &lt;local_&gt;          [true|false]  &lt;/local_&gt;
+   &lt;visualName_&gt;     <em class="replaceable"><code>folder/file</code></em>   &lt;/visualName_&gt;
+&lt;/VisualParticleRenderer&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">VisualParticleRenderer</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+               </div>
+               <div class="sect2" lang="en">
+                  <div class="titlepage">
+                     <div>
+                        <div>
+                           <h3 class="title"><a name="d0e22100"></a>37.7.3.&nbsp;Position/velocity vector generators
+                           </h3>
+                        </div>
+                     </div>
+                  </div>
+                  <p>The sub-sections below describe the 5 possible vector generator
+                             for position and velocity:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul type="disc">
+                        <li>
+                           <p><em class="emphasis">BoxVectorGenerator</em> &#8212; See
+                                          <a href="ch37.html#xref_BoxVectorGenerator" title="37.7.3.1.&nbsp;BoxVectorGenerator">BoxVectorGenerator</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">CylinderVectorGenerator</em> &#8212;
+                                          See <a href="ch37.html#xref_CylinderVectorGenerator" title="37.7.3.2.&nbsp;CylinderVectorGenerator">CylinderVectorGenerator</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">LineVectorGenerator</em> &#8212; See
+                                          <a href="ch37.html#xref_LineVectorGenerator" title="37.7.3.3.&nbsp;LineVectorGenerator">LineVectorGenerator</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">PointVectorGenerator</em> &#8212; See
+                                          <a href="ch37.html#xref_PointVectorGenerator" title="37.7.3.4.&nbsp;PointVectorGenerator">PointVectorGenerator</a>.
+                           </p>
+                        </li>
+                        <li>
+                           <p><em class="emphasis">SphereVectorGenerator</em> &#8212; See
+                                          <a href="ch37.html#xref_SphereVectorGenerator" title="37.7.3.5.&nbsp;SphereVectorGenerator">SphereVectorGenerator</a>.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_BoxVectorGenerator"></a>37.7.3.1.&nbsp;BoxVectorGenerator
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">BoxVectorGenerator</em> is described below:
+                     </p><pre class="programlisting">&lt;BoxVectorGenerator&gt;
+   &lt;nameID_&gt;    BoxVectorGenerator  &lt;/nameID_&gt;
+   &lt;corner_&gt;    <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>   &lt;/corner_&gt;
+   &lt;opposite_&gt;  float <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>   &lt;/opposite_&gt;
+&lt;/BoxVectorGenerator&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">BoxVectorGenerator</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_CylinderVectorGenerator"></a>37.7.3.2.&nbsp;CylinderVectorGenerator
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">CylinderVectorGenerator</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;CylinderVectorGenerator&gt;
+   &lt;nameID_&gt;     CylinderVectorGenerator  &lt;/nameID_&gt;
+   &lt;origin_&gt;     <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>        &lt;/origin_&gt;
+   &lt;direction_&gt;  <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>        &lt;/direction_&gt;
+   &lt;maxRadius_&gt;  <em class="replaceable"><code>float</code></em>                    &lt;/maxRadius_&gt;
+   &lt;minRadius_&gt;  <em class="replaceable"><code>float</code></em>                    &lt;/minRadius_&gt;
+   &lt;basisU_&gt;     <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>        &lt;/basisU_&gt;
+   &lt;basisV_&gt;     <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>        &lt;/basisV_&gt;
+&lt;/CylinderVectorGenerator&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">CylinderVectorGenerator</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_LineVectorGenerator"></a>37.7.3.3.&nbsp;LineVectorGenerator
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">LineVectorGenerator</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;LineVectorGenerator&gt;
+   &lt;nameID_&gt;     LineVectorGenerator  &lt;/nameID_&gt;
+   &lt;origin_&gt;     <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>    &lt;/origin_&gt;
+   &lt;direction_&gt;  <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>    &lt;/direction_&gt;
+&lt;/LineVectorGenerator&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">LineVectorGenerator</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_PointVectorGenerator"></a>37.7.3.4.&nbsp;PointVectorGenerator
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">PointVectorGenerator</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;PointVectorGenerator&gt;
+   &lt;nameID_&gt;    PointVectorGenerator  &lt;/nameID_&gt;
+   &lt;position_&gt;  <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>     &lt;/position_&gt;
+&lt;/PointVectorGenerator&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">PointVectorGenerator</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+                  <div class="sect3" lang="en">
+                     <div class="titlepage">
+                        <div>
+                           <div>
+                              <h4 class="title"><a name="xref_SphereVectorGenerator"></a>37.7.3.5.&nbsp;SphereVectorGenerator
+                              </h4>
+                           </div>
+                        </div>
+                     </div>
+                     <p>The grammar for the <em class="emphasis">SphereVectorGenerator</em> is described
+                                  below:
+                     </p><pre class="programlisting">&lt;SphereVectorGenerator&gt;
+   &lt;nameID_&gt;     SphereVectorGenerator  &lt;/nameID_&gt;
+   &lt;centre_&gt;     <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>      &lt;/centre_&gt;
+   &lt;maxRadius_&gt;  <em class="replaceable"><code>float</code></em>                  &lt;/maxRadius_&gt;
+   &lt;minRadius_&gt;  <em class="replaceable"><code>float</code></em>                  &lt;/minRadius_&gt;
+&lt;/SphereVectorGenerator&gt;</pre><p><span class="citetitle">Grammar of <em class="emphasis">SphereVectorGenerator</em> in
+                                     <span class="literal"><em class="replaceable"><code>&lt;particle&gt;</code></em>.xml</span></span></p>
+                  </div>
+               </div>
+            </div>
+            <div class="sect1" lang="en">
+               <div class="titlepage">
+                  <div>
+                     <div>
+                        <h2 class="title" style="clear: both"><a name="xref_sky_xml"></a>37.8.&nbsp;<span class="literal"><em class="replaceable"><code>&lt;sky&gt;</code></em>.xml</span></h2>
+                     </div>
+                  </div>
+               </div>
+               <p>Sky configuration files are used by spaces, and can be located in
+                        any folder of your choice, as their location is set by the
+                        <span class="literal">timeOfDay</span> tag in
+                        <span class="literal"><em class="replaceable"><code>&lt;res&gt;</code></em>/spaces/<em class="replaceable"><code>&lt;space&gt;</code></em>/space.settings</span>
+                        (for details on this file's grammar, see <a href="ch30.html" title="Chapter&nbsp;30.&nbsp;space.settings"><i xmlns:xlink="http://www.w3.org/1999/xlink"><span class="literal">space.settings</span></i></a>).
+               </p>
+               <p>Mentioned in the document <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Client Programming
+                           Guide</a>'s sections <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Terrain</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Cloud shadows</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Tweaking</a> and <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">3D
+                           Engine (Moo)</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Features</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Lighting</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Light maps</a> <span class="symbol">&#8594;</span> <a xmlns:xlink="http://www.w3.org/1999/xlink" href="/cgi-bin/olink?sysid=" class="olink">Sky light map</a>.
+               </p>
+               <p>The grammar is listed below:</p><pre class="programlisting">&lt;root&gt;
+
+  &lt;texture&gt;            <em class="replaceable"><code>file</code></em>      &lt;/texture&gt;
+  &lt;mieAmount&gt;          <em class="replaceable"><code>float</code></em>     &lt;/mieAmount&gt;
+  &lt;turbidityOffset&gt;    <em class="replaceable"><code>float</code></em>     &lt;/turbidityOffset&gt;
+  &lt;turbidityFactor&gt;    <em class="replaceable"><code>float</code></em>     &lt;/turbidityFactor&gt;
+  &lt;vertexHeightEffect&gt; <em class="replaceable"><code>float</code></em>     &lt;/vertexHeightEffect&gt;
+  &lt;sunHeightEffect&gt;    <em class="replaceable"><code>float</code></em>     &lt;/sunHeightEffect&gt;
+  &lt;power&gt;              <em class="replaceable"><code>float</code></em>     &lt;/power&gt;
+  &lt;farPlane&gt;           <em class="replaceable"><code>integer</code></em>   &lt;/farPlane&gt;
+ 
+  ?<em class="emphasis">LightMapSection</em> <a name="co7857"></a><img src="../images/callouts/1.png" alt="1" border="0">
+
+  &lt;day_night_cycle&gt;
+     &lt;angle&gt;       <em class="replaceable"><code>float</code></em>              &lt;/angle&gt;
+     &lt;moonAngle&gt;   <em class="replaceable"><code>float</code></em>              &lt;/moonAngle&gt;
+     &lt;hourLength&gt;  <em class="replaceable"><code>float</code></em>              &lt;/hourLength&gt;
+     &lt;startTime&gt;   <em class="replaceable"><code>float</code></em>              &lt;/startTime&gt;
+
+    +&lt;lightKey&gt;
+      &lt;time&gt;      <em class="replaceable"><code>float</code></em>              &lt;/time&gt;
+      &lt;colour&gt;    <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/colour&gt;
+     &lt;/lightKey&gt;
+
+    +&lt;ambientKey&gt;
+      &lt;time&gt;      <em class="replaceable"><code>float</code></em>              &lt;/time&gt;
+      &lt;colour&gt;    <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em> <em class="replaceable"><code>float</code></em>  &lt;/colour&gt;
+     &lt;/ambientKey&gt;
+
+&lt;/root&gt;</pre><p><span class="citetitle">Grammar of sky configuration file</span></p>
+               <div class="calloutlist">
+                  <table border="0" summary="Callout list">
+                     <tr>
+                        <td width="5%" valign="top" align="left"><a href="#co7857"><img src="../images/callouts/1.png" alt="1" border="0"></a> 
+                        </td>
+                        <td valign="top" align="left">
+                           <p>See <a href="ch18.html" title="Chapter&nbsp;18.&nbsp;LightMapSection"><i xmlns:xlink="http://www.w3.org/1999/xlink">LightMapSection</i></a>.
+                           </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+               <p>The list below describes the tags in the sky configuration
+                        file:
+               </p>
+               <div class="itemizedlist">
+                  <ul type="disc">
+                     <li>
+                        <p><em class="emphasis"><span class="literal">ambientKey</span></em></p>
+                        <p>Section specifying <span class="literal">colour</span> that should be
+                                     used to evenly light all models at the specified
+                                     <span class="literal">time</span>.
+                        </p>
+                        <p>The ambient lighting is an approximation of global bounce
+                                     lighting, and hence comes from all directions (is
+                                     directionless)
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">angle</span></em></p>
+                        <p>Angle of the sun (in degrees).</p>
+                        <p>It determines the sun's path across de sky.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">colour</span></em></p>
+                        <p>Base colour that the respective light source (sun or ambient)
+                                     should produce.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">day_night_cycle</span></em></p>
+                        <p>Section containing settings that configure the lighting at
+                                     various times of the day, as well as how quickly hours pass.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">farPlane</span></em></p>
+                        <p>Camera far plane for all spaces using this sky definition
+                                     file.
+                        </p>
+                        <p>This will be overridden on a per-space basis if there is a
+                                     <span class="literal">farplane</span> entry in the
+                                     <span class="literal">space.settings</span> file (for details, see <a href="ch30.html" title="Chapter&nbsp;30.&nbsp;space.settings"><i xmlns:xlink="http://www.w3.org/1999/xlink"><span class="literal">space.settings</span></i></a>).
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">hourLength</span></em></p>
+                        <p>Number of real seconds that a game hour will last.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">lightKey</span></em></p>
+                        <p>Section specifying <span class="literal">colour</span> that the sun
+                                     should produce at the specified <span class="literal">time</span>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis">LightMapSection</em></p>
+                        <p>For details, see <a href="ch18.html" title="Chapter&nbsp;18.&nbsp;LightMapSection"><i xmlns:xlink="http://www.w3.org/1999/xlink">LightMapSection</i></a>.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">mieAmount</span><sup>A</sup></em></p>
+                        <p>Amount of mie (forward) scattering in the sky. Set this to
+                                     larger values to increase the amount of light that is added to the
+                                     sky when looking in the direction of the sun.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">moonAngle</span></em></p>
+                        <p>Angle of the moon (in degrees).</p>
+                        <p>It determines the moon's path across de sky.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">power</span></em></p>
+                        <p>Exponent for the mie (forward) scattering in the sky.</p>
+                        <p>Set this to a higher value to create a more focused corona
+                                     around the sun.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">sunHeightEffect</span><sup>A</sup></em></p>
+                        <p>Unit-less value that adds mie (forward) scattering as the sun
+                                     rises in the sky.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">texture</span></em></p>
+                        <p>File containing texture, which displays the colour gradient of
+                                     the sky over time.
+                        </p>
+                        <p>Vertical line displays the sky gradient at a particular
+                                     time.
+                        </p>
+                        <p>Horizontal line displays a point in the sky along the
+                                     day.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">time</span></em></p>
+                        <p>Time (in 24-hour format) at which the respective light should
+                                     be used.
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">turbidityFactor</span><sup>A</sup></em></p>
+                        <p>Overall multiplier for mie (forward) scattering in the
+                                     sky.
+                        </p>
+                        <p>Set this to a higher value to represent more particulate
+                                     matter in the sky (and thus see more forward scattering of light in
+                                     the direction of the sun).
+                        </p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">turbidityOffset</span><sup>A</sup></em></p>
+                        <p>Overall offset for mie (forward) scattering in the sky.</p>
+                     </li>
+                     <li>
+                        <p><em class="emphasis"><span class="literal">vertexHeightEffect</span><sup>A</sup></em></p>
+                        <p>Unit-less value that adds mie (forward) scattering depending
+                                     on the height of the vertex in the sky. Higher values produce more
+                                     scattering on the horizon.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <p><em class="emphasis"><em class="emphasis">A</em> &#8212; Advanced
+                           setting. Should only be modified by advanced users.</em></p>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch36.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;</td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;36.&nbsp;<span class="literal">visual_rules.xml</span>&nbsp;
+                  </td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

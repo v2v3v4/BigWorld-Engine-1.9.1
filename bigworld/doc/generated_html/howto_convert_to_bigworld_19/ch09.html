@@ -1,0 +1,90 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+      <title>Chapter&nbsp;9.&nbsp;Migrating the Game Database (MySQL)</title>
+      <link rel="stylesheet" href="../css/bigworld.css" type="text/css">
+      <meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+      <link rel="start" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="up" href="index.html" title="BigWorld's How To Convert to BigWorld 1.9">
+      <link rel="prev" href="ch08.html" title="Chapter&nbsp;8.&nbsp;Migrating WebConsole and other server tools">
+      <link rel="next" href="ch10.html" title="Chapter&nbsp;10.&nbsp;Client Script Changes"><script type="text/javascript" src="../css/bigworld.js"></script></head>
+   <body onLoad="loader();">
+      <div id="bigworld-header"><img src="bigworld_logo.gif" id="bwLogo" alt="bw logo"></div>
+      <div id="content">
+         <div class="navheader">
+            <table width="95%" align="center" summary="Navigation header">
+               <tr>
+                  <th colspan="3" align="center">Chapter&nbsp;9.&nbsp;Migrating the Game Database (MySQL)</th>
+               </tr>
+               <tr>
+                  <td width="20%" align="left"><a accesskey="p" href="ch08.html">Prev</a>&nbsp;
+                  </td>
+                  <th width="55%" align="center">&nbsp;</th>
+                  <td width="20%" align="right">&nbsp;<a accesskey="n" href="ch10.html">Next</a></td>
+               </tr>
+            </table>
+            <hr class="navheaderline">
+         </div>
+         <div class="chapter" lang="en">
+            <div class="titlepage">
+               <div>
+                  <div>
+                     <h2 class="title"><a name="xref_Migrating_the_Game_Database"></a>Chapter&nbsp;9.&nbsp;Migrating the Game Database (MySQL)
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <p>DBMgr in BigWorld 1.9 requires a slightly different database schema
+               	even when using the same entity definitions. When reusing a database
+               	that was working with BigWorld 1.8 you will need to run the following
+               	command to upgrade the database to the new schema:
+            </p><pre class="programlisting">$ dbmgr -upgrade</pre><p>As this command performs schema alterations, it is recommended to
+               	backup your data before running it. The upgrade will perform the following
+               	operations:
+            </p>
+            <div class="itemizedlist">
+               <ul type="disc">
+                  <li>Adds the "NOT NULL" specification to all entity data columns.
+                     		Existing NULL values will be set to the default value of the 
+                     		corresponding property.
+                  </li>
+                  <li>Removes the <code class="code">bigworldTableMetadata</code> table.
+                     		
+                  </li>
+                  <li>Changes <code class="code">bigworldSpaces</code>, 
+                     		<code class="code">bigworldSpaceData</code> and <code class="code">bigworldGameTime</code> tables
+                     		to use InnoDB and removes the <code class="code">version</code> column from 
+                     		<code class="code">bigworldSpaces</code> and <code class="code">bigworldSpaceData</code>.
+                     		
+                  </li>
+                  <li>Updates the version number in the <code class="code">bigworldInfo</code>
+                     		table.
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="navfooter">
+            <hr class="navheaderline">
+            <table width="95%" align="center" summary="Navigation footer">
+               <tr>
+                  <td width="38%" align="left"><a accesskey="p" href="ch08.html">Prev</a>&nbsp;
+                  </td>
+                  <td width="20%" align="center">&nbsp;</td>
+                  <td width="37%" align="right">&nbsp;<a accesskey="n" href="ch10.html">Next</a></td>
+               </tr>
+               <tr>
+                  <td width="40%" align="left" valign="top">Chapter&nbsp;8.&nbsp;Migrating WebConsole and other server tools&nbsp;</td>
+                  <td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+                  <td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;10.&nbsp;Client Script Changes</td>
+               </tr>
+               <tr>
+                  <td colspan="3">Copyright 1999-2008 BigWorld Pty. Ltd. All rights reserved. Proprietary commercial in confidence.
+                     		   
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
